@@ -1,6 +1,7 @@
 body {
     /***
-      1. Default Page Title Icon
+      1. Default Page Title Icon 
+      (This applies to every page)
     ***/
     .content h1::before {
         font-family: "Font Awesome 6 Free";
@@ -11,17 +12,19 @@ body {
     }
 
     /***
-      2. Specific Overrides
-      Note: We use '&' to attach the [data-path] to the 'body' tag 
+      2. Class-Based Overrides
+      (Targets the dg-content-classes you add in Obsidian)
     ***/
 
-    /* Target files containing 'matrix' in the path */
-    &[data-path*="matrix" i] .content h1::before {
+    /* Targets: dg-content-classes: matrix-page */
+    &.matrix-page .content h1::before {
         content: "\f0ce"; /* Table/Grid icon */
+        color: #2ecc71;   /* Optional: Green for Matrix */
     }
     
-    /* Target files containing 'spec' in the path */
-    &[data-path*="spec" i] .content h1::before {
+    /* Targets: dg-content-classes: spec-page */
+    &.spec-page .content h1::before {
         content: "\f15c"; /* File/Spec icon */
+        color: #3498db;   /* Optional: Blue for Specs */
     }
 }
