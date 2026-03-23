@@ -12,24 +12,13 @@ body {
         color: var(--accent-color);
     }
 
-    /* 2. Sidebar Folder Icons */
-    /* We add .filetree to make the rule "stronger" */
-    .filetree .folder-title {
-        &::before {
-            font-family: "Font Awesome 6 Free";
-            content: "\f07b" !important; /* Force the icon */
-            font-weight: 900;
-            margin-right: 8px;
-            display: inline-block;
-            width: 1.2em;
-            text-align: center;
-        }
+    /* Target any page where the filename contains 'Matrix' */
+    [data-path*="Matrix"] .content h1::before {
+        content: "\f0ce";
     }
     
-    /* 3. Folder Overrides */
-    /* Note: data-path is usually lowercase in the final HTML */
-    div[data-path*="hero-matrix"] > .folder-title::before {
-        content: "\f550" !important; 
-        color: var(--accent-color);
+    /* Target any page where the filename contains 'Spec' */
+    [data-path*="Spec"] .content h1::before {
+        content: "\f15c";
     }
 }
