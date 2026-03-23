@@ -2,12 +2,42 @@ body {
     /***
       ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
       IT WILL TAKE PRECEDENCE OVER THE STYLING IN THE STYLE.CSS FILE.
-   ***/
-    //  background-color: white;
-    //  .content {
-    //   font-size: 14px;
-    //  }
-    //  h1 {
-    //   color: black;
-    //  }
+    ***/
+    /* 1. Global Page Title Icon */
+    .content h1::before {
+        font-family: "Font Awesome 6 Free";
+        content: "\f11b"; /* Gamepad icon */
+        font-weight: 900;
+        margin-right: 12px;
+        color: var(--accent-color);
+    }
+    
+    /* 2. Sidebar Folder Icons */
+    /* This targets the folder title in the file tree */
+    .folder-title {
+      &::before {
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 8px;
+        display: inline-block;
+        width: 20px;
+        text-align: center;
+      }
+    }
+    
+    /* 3. Specific Folder Assignments */
+    /* Replace 'Project1' with the exact name of your folder in Obsidian */
+    div[data-path*="Project1"] > .folder-title::before {
+        content: "\f550"; /* 'Dice' icon for a specific project */
+    }
+    
+    div[data-path*="Characters"] > .folder-title::before {
+        content: "\f007"; /* 'User' icon */
+    }
+
+    .folder-title::before {
+        content: "\f07b"; /* Standard 'Folder' icon */
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+    }
 }
