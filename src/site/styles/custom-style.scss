@@ -13,12 +13,12 @@ body {
     }
 
     /* Target any page where the filename contains 'Matrix' */
-    [data-path*="matrix"] .content h1::before {
+    [data-path*="matrix" i] .content h1::before {
         content: "\f0ce";
     }
     
     /* Target any page where the filename contains 'Spec' */
-    [data-path*="spec"] .content h1::before {
+    [data-path*="spec" i] .content h1::before {
         content: "\f15c";
     }
 }
