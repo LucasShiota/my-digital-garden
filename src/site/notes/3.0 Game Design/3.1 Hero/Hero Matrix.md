@@ -1,7 +1,6 @@
 ---
-{"dg-publish":true,"permalink":"/3-0-game-design/3-1-hero/hero-matrix/","tags":["Model","Systems"],"noteIcon":"","dg-note-properties":{"tags":["Model","Systems"]}}
+{"dg-publish":true,"permalink":"/3-0-game-design/3-1-hero/hero-matrix/","contentClasses":"matrix-page","tags":["Model","Systems"],"dg-note-properties":{"tags":["Model","Systems"]}}
 ---
-
 
 ## Base
 

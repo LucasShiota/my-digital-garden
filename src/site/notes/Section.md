@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/section/","noteIcon":"","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/section/","dg-note-properties":{}}
 ---
 
 ```base

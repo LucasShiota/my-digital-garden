@@ -1,20 +1,20 @@
 ---
-{"dg-publish":true,"permalink":"/3-0-game-design/3-1-hero/corps-specs/","noteIcon":"","dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/3-0-game-design/3-1-hero/corps-specs/","dg-note-properties":{}}
 ---
 
 
 
-## //Attack
+## Attack
 
-## //Defense
+## Defense
 
-## //Engineer
+## Engineer
 
-## //Support
+## Support
 
-## //Scout
+## Scout
 
-## //Sabotage
+## Sabotage
 
 
 
