@@ -1,35 +1,38 @@
-body {
-    /***
-      ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
-    ***/
+/* 1. Global Page Title Icon (This stays inside body if you prefer) */
+body .content h1::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f11b"; 
+    font-weight: 900;
+    margin-right: 12px;
+    color: var(--accent-color);
+}
 
-    /* 1. Page Title Icon */
-    .content h1::before {
-        font-family: "Font Awesome 6 Free";
-        content: "\f11b"; 
-        font-weight: 900;
-        margin-right: 12px;
-        color: var(--accent-color);
-    }
+/* 2. FORCE SIDEBAR ICONS (Moved OUTSIDE the body block) */
 
-    /* 2. Sidebar Folder Icons */
-    /* We add .filetree to make the rule "stronger" */
-    .filetree .folder-title {
-        &::before {
-            font-family: "Font Awesome 6 Free";
-            content: "\f07b" !important; /* Force the icon */
-            font-weight: 900;
-            margin-right: 8px;
-            display: inline-block;
-            width: 1.2em;
-            text-align: center;
-        }
-    }
-    
-    /* 3. Folder Overrides */
-    /* Note: data-path is usually lowercase in the final HTML */
-    div[data-path*="matrix"] > .folder-title::before {
-        content: "\f550" !important; 
-        color: var(--accent-color);
-    }
+/* Target the folder icons */
+.folder-title::before {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    content: "\f07b" !important; /* Default Folder */
+    margin-right: 8px !important;
+    display: inline-block !important;
+    width: 20px !important;
+}
+
+/* Target the individual note icons */
+.note-link::before {
+    font-family: "Font Awesome 6 Free" !important;
+    font-weight: 900 !important;
+    content: "\f15c" !important; /* File icon */
+    margin-right: 8px !important;
+    opacity: 0.6;
+}
+
+/* 3. Folder Overrides */
+[data-path*="Project1"] > .folder-title::before {
+    content: "\f550" !important; /* Dice */
+}
+
+[data-path*="Characters"] > .folder-title::before {
+    content: "\f007" !important; /* User */
 }
