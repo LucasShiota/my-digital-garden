@@ -1,6 +1,29 @@
 body {
     /***
       ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
-      IT WILL TAKE PRECEDENCE OVER THE STYLING IN THE STYLE.CSS FILE.
     ***/
+
+    /* 1. Page Title Icon */
+    .content h1::before {
+        font-family: "Font Awesome 6 Free";
+        content: "\f11b"; 
+        font-weight: 900;
+        margin-right: 12px;
+        color: var(--accent-color);
+    }
+
+    /* 2. Sidebar Folder Icons */
+    .folder-title {
+        &::before {
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 8px;
+            content: "\f07b"; /* Default */
+        }
+    }
+
+    /* 3. Folder Overrides (Still inside body!) */
+    div[data-path*="Project1"] > .folder-title::before {
+        content: "\f550"; 
+    }
 }
