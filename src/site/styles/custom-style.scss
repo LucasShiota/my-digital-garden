@@ -13,17 +13,23 @@ body {
     }
 
     /* 2. Sidebar Folder Icons */
-    .folder-title {
+    /* We add .filetree to make the rule "stronger" */
+    .filetree .folder-title {
         &::before {
             font-family: "Font Awesome 6 Free";
+            content: "\f07b" !important; /* Force the icon */
             font-weight: 900;
             margin-right: 8px;
-            content: "\f07b"; /* Default */
+            display: inline-block;
+            width: 1.2em;
+            text-align: center;
         }
     }
-
-    /* 3. Folder Overrides (Still inside body!) */
-    div[data-path*="Project1"] > .folder-title::before {
-        content: "\f550"; 
+    
+    /* 3. Folder Overrides */
+    /* Note: data-path is usually lowercase in the final HTML */
+    div[data-path*="matrix"] > .folder-title::before {
+        content: "\f550" !important; 
+        color: var(--accent-color);
     }
 }
