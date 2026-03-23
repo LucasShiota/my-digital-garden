@@ -1,30 +1,25 @@
 body {
-    /***
-      1. Default Page Title Icon 
-      (This applies to every page)
-    ***/
+    /* 1. Global Page Title Icon (Default) */
     .content h1::before {
         font-family: "Font Awesome 6 Free";
-        content: "\f11b"; /* Default: Gamepad */
+        content: "\f11b"; /* Gamepad */
         font-weight: 900;
         margin-right: 12px;
         color: var(--accent-color);
     }
 
-    /***
-      2. Class-Based Overrides
-      (Targets the dg-content-classes you add in Obsidian)
-    ***/
-
-    /* Targets: dg-content-classes: matrix-page */
-    &.matrix-page .content h1::before {
-        content: "\f0ce"; /* Table/Grid icon */
-        color: #2ecc71;   /* Optional: Green for Matrix */
-    }
+    /* 2. Specific Overrides based on the URL */
+    /* This looks at the 'href' of the active note link in your sidebar */
     
-    /* Targets: dg-content-classes: spec-page */
-    &.spec-page .content h1::before {
-        content: "\f15c"; /* File/Spec icon */
-        color: #3498db;   /* Optional: Blue for Specs */
+    // Matrix Icon: Targets any page with "hero-matrix" in the URL
+    &:has(a[href*="hero-matrix"]) .content h1::before {
+        content: "\f0ce" !important; /* Table/Matrix icon */
+        color: #2ecc71;
+    }
+
+    // Spec Icon: Targets any page with "specs" in the URL
+    &:has(a[href*="specs"]) .content h1::before {
+        content: "\f15c" !important; /* File icon */
+        color: #3498db;
     }
 }
