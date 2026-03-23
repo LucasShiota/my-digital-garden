@@ -1,5 +1,5 @@
 body {
-    /* 1. GLOBAL FORCE (Ensures the 'F11B' text turns into an icon everywhere) */
+    /* 1. GLOBAL SETTINGS (Applied to all Page Title Icons) */
     .content h1::before {
         font-family: "Font Awesome 6 Free" !important;
         font-weight: 900 !important;
@@ -8,23 +8,34 @@ body {
         font-variant: normal;
         text-rendering: auto;
         -webkit-font-smoothing: antialiased;
-    }
-
-    /* 2. DEFAULT ICON */
-    .content h1::before {
-        content: "\f11b"; /* Gamepad */
+        content: "\f11b"; /* Default: Gamepad */
         margin-right: 12px;
         color: var(--accent-color);
     }
 
-    /* 3. YOUR EXISTING OVERRIDES (Matrix, Specs, etc.) */
+    /* 2. PAGE-SPECIFIC OVERRIDES */
+
+    // Matrix Icon
     &:has(.active-note a[href*="hero-matrix"]) .content h1::before {
         content: "\f0ce" !important; 
         color: #2ecc71;
     }
 
+    // Spec Icon
     &:has(.active-note a[href*="specs"]) .content h1::before {
         content: "\f15c" !important; 
         color: #3498db;
+    }
+
+    /* 3. HOMEPAGE RECOVERY */
+    /* Force the hidden H1 on the homepage to be visible */
+    &:has(.active-note a[href="/"]) .content h1 {
+        display: block !important;
+        visibility: visible !important;
+    }
+    
+    /* Ensure the icon renders correctly on the 'resurrected' title */
+    &:has(.active-note a[href="/"]) .content h1::before {
+        content: "\f11b" !important;
     }
 }
