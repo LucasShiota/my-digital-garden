@@ -1,23 +1,28 @@
 body {
-    /* 1. Global Page Title Icon (Default) */
+    /* 1. GLOBAL FORCE (Ensures the 'F11B' text turns into an icon everywhere) */
     .content h1::before {
-        font-family: "Font Awesome 6 Free";
-        content: "\f11b"; /* Default: Gamepad */
-        font-weight: 900;
+        font-family: "Font Awesome 6 Free" !important;
+        font-weight: 900 !important;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+    }
+
+    /* 2. DEFAULT ICON */
+    .content h1::before {
+        content: "\f11b"; /* Gamepad */
         margin-right: 12px;
         color: var(--accent-color);
     }
 
-    /* 2. Specific Overrides */
-    /* We only trigger these if the ACTIVE note in the sidebar matches the string */
-    
-    // Matrix Icon
+    /* 3. YOUR EXISTING OVERRIDES (Matrix, Specs, etc.) */
     &:has(.active-note a[href*="hero-matrix"]) .content h1::before {
         content: "\f0ce" !important; 
         color: #2ecc71;
     }
 
-    // Spec Icon
     &:has(.active-note a[href*="specs"]) .content h1::before {
         content: "\f15c" !important; 
         color: #3498db;
