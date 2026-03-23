@@ -2,24 +2,24 @@ body {
     /* 1. Global Page Title Icon (Default) */
     .content h1::before {
         font-family: "Font Awesome 6 Free";
-        content: "\f11b"; /* Gamepad */
+        content: "\f11b"; /* Default: Gamepad */
         font-weight: 900;
         margin-right: 12px;
         color: var(--accent-color);
     }
 
-    /* 2. Specific Overrides based on the URL */
-    /* This looks at the 'href' of the active note link in your sidebar */
+    /* 2. Specific Overrides */
+    /* We only trigger these if the ACTIVE note in the sidebar matches the string */
     
-    // Matrix Icon: Targets any page with "hero-matrix" in the URL
-    &:has(a[href*="hero-matrix"]) .content h1::before {
-        content: "\f0ce" !important; /* Table/Matrix icon */
+    // Matrix Icon
+    &:has(.active-note a[href*="hero-matrix"]) .content h1::before {
+        content: "\f0ce" !important; 
         color: #2ecc71;
     }
 
-    // Spec Icon: Targets any page with "specs" in the URL
-    &:has(a[href*="specs"]) .content h1::before {
-        content: "\f15c" !important; /* File icon */
+    // Spec Icon
+    &:has(.active-note a[href*="specs"]) .content h1::before {
+        content: "\f15c" !important; 
         color: #3498db;
     }
 }
