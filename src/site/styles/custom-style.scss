@@ -1,24 +1,27 @@
 body {
     /***
-      ADD YOUR CUSTOM STYLING HERE. (INSIDE THE body {...} section.)
+      1. Default Page Title Icon
     ***/
-
-    /* 1. Page Title Icon */
     .content h1::before {
         font-family: "Font Awesome 6 Free";
-        content: "\f11b"; 
+        content: "\f11b"; /* Default: Gamepad */
         font-weight: 900;
         margin-right: 12px;
         color: var(--accent-color);
     }
 
-    /* Target any page where the filename contains 'Matrix' */
-    [data-path*="matrix" i] .content h1::before {
-        content: "\f0ce";
+    /***
+      2. Specific Overrides
+      Note: We use '&' to attach the [data-path] to the 'body' tag 
+    ***/
+
+    /* Target files containing 'matrix' in the path */
+    &[data-path*="matrix" i] .content h1::before {
+        content: "\f0ce"; /* Table/Grid icon */
     }
     
-    /* Target any page where the filename contains 'Spec' */
-    [data-path*="spec" i] .content h1::before {
-        content: "\f15c";
+    /* Target files containing 'spec' in the path */
+    &[data-path*="spec" i] .content h1::before {
+        content: "\f15c"; /* File/Spec icon */
     }
 }
