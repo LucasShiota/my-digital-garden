@@ -27,12 +27,6 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     {% endif %}
 
     <main class="content cm-s-obsidian print {{contentClasses}}">
-      {% if banner %}
-      {% set bannerFilename = banner.split("/") | last %}
-      <div class="banner-container">
-          <img src="{% if banner.startsWith('http') %}{{ banner }}{% else %}/img/banners/{{ bannerFilename }}{% endif %}" alt="Page Banner">
-      </div>
-      {% endif %}
       <header>
         {% if settings.dgShowInlineTitle === true %}
           <h1 data-note-icon="{% if noteIcon %}{{noteIcon}}{% else %}{{meta.noteIconsSettings.default}}{% endif %}">{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</h1>
