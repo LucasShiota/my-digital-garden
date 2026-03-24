@@ -14,10 +14,24 @@
     }
 
     if (parsed_date.isValid) {
-      // Use relative time (e.g. "3 days ago")
-      el.innerHTML = parsed_date.toRelative();
-      // Add title attribute to show the full exact date on hover
-      el.setAttribute('title', parsed_date.toFormat(TIMESTAMP_FORMAT));
+      const now = luxon.DateTime.now().startOf('day');
+      const dateStart = parsed_date.startOf('day');
+      const diffInDays = Math.floor(now.diff(dateStart, 'days').days);
+
+      let relativeText = "";
+      if (diffInDays === 0) {
+        relativeText = "Today";
+      } else if (diffInDays === 1) {
+        relativeText = "Yesterday";
+      } else {
+        // Fallback to "X days ago"
+        relativeText = parsed_date.toRelative({ unit: 'days' });
+      }
+
+      el.innerHTML = relativeText;
+      // For privacy/security, only show the date in the tooltip, not the exact time.
+      const dateOnlyFormat = "MMM dd, yyyy";
+      el.setAttribute('title', parsed_date.toFormat(dateOnlyFormat));
     }
   })
 </script>
