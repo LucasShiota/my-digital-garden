@@ -6,6 +6,12 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
   <head>
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
     {%include "components/pageheader.njk"%}
+    {% if faIcon %}
+    <style>
+      :root { --custom-icon: '\{{ faIcon }}'; }
+    </style>
+    {% endif %}
+
     {% for imp in dynamics.common.head %}
       {% include imp %}
     {% endfor %}
