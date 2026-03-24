@@ -31,8 +31,6 @@
       <header>
       {% if settings.dgShowInlineTitle === true %}
         <h1>
-          {% set iconToUse = titleIcon if titleIcon else ("home" if isHome else "") %}
-          {% if iconToUse %}<i data-lucide="{{ iconToUse }}"></i>{% endif %}
           {{ noteTitle  }}
         </h1>
       {% endif %}
@@ -63,7 +61,9 @@
       {% for imp in dynamics.index.beforeContent %}
         {% include imp %}
       {% endfor %}
-      {{ content | hideDataview | taggify | link | safe}}
+      {% set iconToUse = titleIcon if titleIcon else ("home" if isHome else "") %}
+      {{ content | prependIcon(iconToUse) | hideDataview | taggify | link | safe}}
+
       {% for imp in dynamics.common.afterContent %}
         {% include imp %}
       {% endfor %}

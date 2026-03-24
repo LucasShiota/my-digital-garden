@@ -358,6 +358,13 @@ module.exports = function(eleventyConfig) {
     }
   });
 
+  eleventyConfig.addFilter("prependIcon", (content, iconName) => {
+    if (!content || !iconName) return content;
+    const iconHtml = `<i data-lucide="${iconName}"></i>`;
+    return content.replace(/<h1(.*?)>/, `<h1$1>${iconHtml}`);
+  });
+
+
 
 
 
