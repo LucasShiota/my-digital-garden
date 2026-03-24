@@ -28,6 +28,8 @@ views:
     filters:
       and:
         - file.hasTag("Project")
+    order:
+      - file.name
     cardSize: 300
 
 ```
