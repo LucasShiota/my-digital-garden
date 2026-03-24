@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/homepage/","hide":true,"tags":["gardenEntry"],"dg-note-properties":{}}
+{"dg-publish":true,"permalink":"/homepage/","hide":true,"tags":["gardenEntry"],"dg-note-properties":{"faIcon":"f015"}}
 ---
 
 
@@ -9,7 +9,13 @@ Welcome to my Game Design Documentation Wiki, the behind-the-scenes for all of m
 
 While my [main website portfolio](https://lucasshiota.com/) is my stylized showcase of me and my work, this subdomain houses technical documentation of my projects.
 
-This wiki was made possible with Obsidian.md and Digital Garden
+This wiki was made possible with:
+
+> [!QUOTE] Credits
+> This wiki was made possible with:
+>
+> - **Obsidian.md**, a content editing platform
+> - **Digital Garden**, a plugin that converts files from Obsidian into a static site
 
 ## About Me
 
