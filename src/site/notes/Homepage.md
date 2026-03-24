@@ -14,15 +14,16 @@ This wiki was made possible with:
 > [!QUOTE] Credits
 > This wiki was made possible with:
 >
-> - **[Obsidian](https://obsidian.md/)**, a content editing platform {% icon "edit-3" %}
-> - **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)**, a plugin that converts files from Obsidian into a static site {% icon "leaf" %}
+> - **[Obsidian](https://obsidian.md/)**, a content editing platform
+> - **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)**, a plugin that converts files from Obsidian into a static site
 
 ## About Me
 
 ## Projects List
 
-### Baraliot Fantasia
+```base
+```
 
-### Immune Defense
-
-Testing out the new icon shortcut: {% icon "home" %}
+::LiHome:
+::home::
+:LiHome:
