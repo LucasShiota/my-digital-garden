@@ -54,12 +54,15 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
               {% endfor %}
             </div>
           {% endif %}
-          {%- if (meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated) and showTimestamps !== false -%}
+          {%- set canShowCreated = (meta.timestampSettings.showCreated or (showTimestamps === true)) and (created or page.date) -%}
+          {%- set canShowUpdated = (meta.timestampSettings.showUpdated or (showTimestamps === true)) and updated -%}
+          
+          {%- if (canShowCreated or canShowUpdated) and showTimestamps !== false -%}
           <div class="timestamps">
-            {%- if meta.timestampSettings.showCreated and created -%}
-            <div><i data-lucide="calendar-plus"></i> <span class="human-date" data-date="{{created}}"></span></div>
+            {%- if canShowCreated -%}
+            <div><i data-lucide="calendar-plus"></i> <span class="human-date" data-date="{{created if created else page.date}}"></span></div>
             {%- endif -%}
-            {%- if meta.timestampSettings.showUpdated and updated -%}
+            {%- if canShowUpdated -%}
             <div><i data-lucide="calendar-clock"></i> <span class="human-date" data-date="{{updated}}"></span></div>
             {%- endif -%}
           </div>
