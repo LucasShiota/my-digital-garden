@@ -48,12 +48,14 @@ Added a suite of premium features focusing on micro-interactions and performance
 - **Reading Time Estimator:** Added a dynamic calculation filter to provide a "X min read" insight for all notes.
   - **Filter:** Custom `readingTime` Eleventy filter (strips HTML and estimates based on 225 wpm).
   - **Dynamics:** Displayed via `dynamics.notes.header` with a Lucide clock icon.
+  - **Per-note Toggle:** Set `showReadingTime: false` in frontmatter to hide on a specific note.
 - **Smart Copy Code Button:** Added a global, hover-based copy button to every `<pre>` block in the garden.
   - **Dynamics:** Managed through `dynamics.common.footer`.
   - **Visuals:** Uses sleek **Lucide copy/check icons** with a custom green feedback state and smooth transitions.
 - **Human-Friendly Timestamps:** Switched from static ISO dates to relative time ("3 days ago").
   - **Implementation:** Updated `timestamps.njk` to use Luxon's `.toRelative()` method.
   - **QoL:** Added a native **tooltip** (title attribute) so the exact date appears when hovering over the timestamp.
+  - **Per-note Toggle:** Set `showTimestamps: true` to force-show (even if global env is off), or `false` to force-hide.
 - **Reading Focus Ruler (Line Focus):** A niche navigation tool that highlights a single "window" around the cursor.
   - **Dynamics:** Managed through `dynamics.common.footer`.
   - **Toggle:** Instant toggle using **Alt + R**.

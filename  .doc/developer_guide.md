@@ -35,8 +35,8 @@ This garden uses two competing ways to render Lucide icons:
 
 ---
 
-- **Homepage Logic & Styling 🏠**: The template hides headers and metadata on the homepage.
-- **Frontmatter Toggles**: Notes can now override global settings using `showTimestamps: true/false` and `showReadingTime: true/false`. This allows per-page control over metadata visibility.
+## 4. Homepage Logic & Styling 🏠
+The homepage (usually `Homepage.md`) is special. It is detected via `dg-home: true` or `gardenEntry` tags.
 - **Header Removal**: The template automatically hides the `header h1` inside the main content of the homepage to prevent double-branding.
 - **Layout Switch**: It usually switches between `index.njk` (Homepage) and `note.njk` (Standard Notes). Ensure custom global components are included in **both** layouts if they are meant to be site-wide.
 

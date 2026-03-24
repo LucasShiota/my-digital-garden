@@ -2,9 +2,16 @@
 <script defer>
   TIMESTAMP_FORMAT = "{{meta.timestampSettings.timestampFormat}}";
   document.querySelectorAll('.human-date').forEach(function (el) {
-    const date = el.getAttribute('data-date');
-    if (!date) return;
-    const parsed_date = luxon.DateTime.fromISO(date);
+    date = el.getAttribute('data-date') || el.innerText
+    parsed_date = luxon.DateTime.fromISO(date)
+    if (parsed_date.invalid != null){
+      // Date cannot be parsed
+      parsed_date = luxon.DateTime.fromSQL(date)
+    }
+    if (parsed_date.invalid != null){
+      // Date still cannot be parsed
+      parsed_date = luxon.DateTime.fromHTML(date)
+    }
 
     if (parsed_date.isValid) {
       // Use relative time (e.g. "3 days ago")
