@@ -53,8 +53,12 @@ module.exports = {
       // data.created would also be circular — read dg-note-properties first
       const nested = data["dg-note-properties"];
       if (nested && nested.created) return nested.created;
-      // Fall back to Eleventy's file date (safe — page.date is not computed by us)
-      return data.page && data.page.date ? data.page.date : undefined;
+      // Fall back to Eleventy's file date — must stringify or Nunjucks outputs [object Object]
+      if (data.page && data.page.date) {
+        const d = data.page.date;
+        return d instanceof Date ? d.toISOString() : String(d);
+      }
+      return undefined;
     },
     updated: (data) => {
       const nested = data["dg-note-properties"];
