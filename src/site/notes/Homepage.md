@@ -21,6 +21,7 @@ views:
     order:
       - file.name
       - About
+      - file.tags
     cardSize: 300
     imageAspectRatio: 1
 
