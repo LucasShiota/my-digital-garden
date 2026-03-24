@@ -19,18 +19,22 @@ body {
         content: "\f15c" !important; 
     }
 
-    /* 3. HOMEPAGE CLEANUP & ICON */
-    &:has(.active-note a[href="/"]) {
-        /* Hide the template's auto-generated empty H1 to prevent double icons */
+/* 3. HOMEPAGE CLEANUP & ICON */
+    /* This targets the page if the title is 'Homepage' OR the URL is the root */
+    &:has(.active-note a[href="/"]), 
+    &:has(.active-note a[href*="homepage"]) {
+        
+        /* 1. Hide the plugin's auto-generated empty H1 */
         header h1[data-note-icon] {
             display: none !important;
         }
 
-        /* Style the manual # H1 icon */
-        .content h1::before {
-            content: "\f015" !important; /* House icon */
+        /* 2. Force the House icon on your manual # Homepage */
+        .content h1:first-of-type::before {
+            content: "\f015" !important; 
             font-family: "Font Awesome 6 Free" !important;
             font-weight: 900 !important;
+            color: var(--accent-color);
         }
     }
 }
