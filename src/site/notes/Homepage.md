@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/homepage/","tags":["gardenEntry"],"dg-note-properties":{"tags":["gardenEntry"],"icon":"home"}}
+{"dg-publish":true,"permalink":"/homepage/","hide":true,"tags":["gardenEntry"],"dg-note-properties":{"tags":["gardenEntry"],"icon":"home"}}
 ---
 
 
@@ -14,8 +14,8 @@ This wiki was made possible with:
 > [!QUOTE] Credits
 > This wiki was made possible with:
 >
-> - **Obsidian.md**, a content editing platform
-> - **Digital Garden**, a plugin that converts files from Obsidian into a static site
+> - **[Obsidian](https://obsidian.md/)**, a content editing platform
+> - **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)**, a plugin that converts files from Obsidian into a static site
 
 ## About Me
 
