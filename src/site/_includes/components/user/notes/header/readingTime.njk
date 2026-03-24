@@ -1,7 +1,9 @@
+{% if showReadingTime %}
 <div class="reading-time-container">
     <i data-lucide="clock"></i>
     <span>{{ content | readingTime }}</span>
 </div>
+{% endif %}
 
 <style>
 .reading-time-container {
