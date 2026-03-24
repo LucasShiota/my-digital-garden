@@ -27,18 +27,7 @@ body {
     &.is-homepage {
         header h1 { display: none !important; }
     }
-
-    /* --- INLINE ICONS --- */
-    .inline-icon {
-        width: 1.2em;
-        height: 1.2em;
-        display: inline-block;
-        vertical-align: sub; /* Better alignment for text */
-        margin: 0 0.1em;
-        stroke-width: 2;
-    }
 }
-
 
 
 

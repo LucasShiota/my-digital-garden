@@ -364,19 +364,6 @@ module.exports = function(eleventyConfig) {
     return content.replace(/<h1(.*?)>/, `<h1$1>${iconHtml}`);
   });
 
-  eleventyConfig.addShortcode("icon", function(name) {
-    return `<i data-lucide="${name}" class="inline-icon"></i>`;
-  });
-
-  eleventyConfig.addFilter("iconify", function(str) {
-    if (!str) return str;
-    return str.replace(/::([^:\s]+)::/g, (match, iconName) => {
-      return `<i data-lucide="${iconName}" class="inline-icon"></i>`;
-    });
-  });
-
-
-
 
 
 
