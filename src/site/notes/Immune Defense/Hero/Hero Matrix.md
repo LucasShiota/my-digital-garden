@@ -1,5 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/immune-defense/hero/hero-matrix/","tags":["Model","Systems"],"dg-note-properties":{"tags":["Model","Systems"],"icon":"file-text","showTimestamps":false,"showReadingTime":false}}
+{"dg-publish":true,"permalink":"/immune-defense/hero/hero-matrix/","tags":["Model","Systems"],"dg-note-properties":{"tags":["Model","Systems"],"icon":"table-properties","showTimestamps":false,"showReadingTime":false}}
+---
+
+
 ---
 
 ## Base
