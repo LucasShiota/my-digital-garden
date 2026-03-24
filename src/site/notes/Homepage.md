@@ -5,11 +5,11 @@
 
 # Lucas Shiota GDD Wiki
 
-Welcome to my GDD (Game Design Documentation) Wiki. The documentation for all of my projects that I'm proud to share and put my soul into are here.
+Welcome to my Game Design Documentation Wiki, the behind-the-scenes for all of my projects that I'm proud to share and have put my soul into.
 
-While my [main website portfolio](https://lucasshiota.com/) is my stylized promotional front end of me and my work, the GDD Wiki is the "behind the curtains" technical documentation of said works.
+While my [main website portfolio](https://lucasshiota.com/) is my stylized showcase of me and my work, this subdomain houses technical documentation of my projects.
 
-![Texturelabs_InkPaint_391M.jpg\|hidden](/img/user/assets/banners/Texturelabs_InkPaint_391M.jpg)
+## About Me
 
 ## Projects List
 
