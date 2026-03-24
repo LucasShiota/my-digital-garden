@@ -376,9 +376,16 @@ function buildCardsGrid(rows, columns, cardSize, imageField, imageFit, imageAspe
 			if (col === "file.name" || col === imageField) continue;
 			const value = getCellValue(row, col);
 			if (value == null) continue;
-			const displayName = getDisplayName(col, properties);
-			html += `<div class="obsidian-base-card-field"><span class="obsidian-base-card-label">${escapeHtml(displayName)}</span>: <span class="obsidian-base-card-value">${formatCellValue(value, col, row)}</span></div>`;
+
+			const colLower = col.toLowerCase();
+			if (colLower === "about" || colLower === "description" || colLower === "summary") {
+				html += `<div class="obsidian-base-card-summary">${formatCellValue(value, col, row)}</div>`;
+			} else {
+				const displayName = getDisplayName(col, properties);
+				html += `<div class="obsidian-base-card-field"><span class="obsidian-base-card-label">${escapeHtml(displayName)}</span>: <span class="obsidian-base-card-value">${formatCellValue(value, col, row)}</span></div>`;
+			}
 		}
+
 
 		html += "</div></div>";
 	}
