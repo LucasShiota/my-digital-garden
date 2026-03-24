@@ -9,12 +9,10 @@ Welcome to my Game Design Documentation Wiki, the behind-the-scenes for all of m
 
 While my [main website portfolio](https://lucasshiota.com/) is my stylized promotional showcase of me and my work, this subdomain archives technical documentation of my projects.
 
-This wiki was made possible with:
-
-> [!QUOTE] Credits
+> [!INFO] Credits
 > This wiki was made possible with:
 >
-> - **[Obsidian](https://obsidian.md/)**, a content editing platform
+> - **[Obsidian](https://obsidian.md/)**, a open source and open format content editing platform
 > - **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)**, a plugin that converts files from Obsidian into a static site
 
 ## About Me
@@ -30,6 +28,8 @@ views:
         - file.hasTag("Project")
     order:
       - file.name
-    cardSize: 300
+      - About
+    cardSize: 350
+    imageAspectRatio: 0.9
 
 ```
