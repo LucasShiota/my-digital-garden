@@ -9,6 +9,12 @@
                 {% endif %}
             </a>
         </div>
+        <div class="a11y-section-wrapper">
+          {% for imp in dynamics.common.navbarActions %}
+            {% include imp %}
+          {% endfor %}
+        </div>
+
         {% if settings.dgEnableSearch === true%}
             {% include "components/searchButton.njk" %}
         {%endif%}

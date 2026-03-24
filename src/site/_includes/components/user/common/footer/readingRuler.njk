@@ -53,15 +53,31 @@
   const ruler = document.getElementById('reading-ruler');
   let isActive = false;
 
-  function toggleRuler() {
-    isActive = !isActive;
+  function setRulerState(active) {
+    isActive = active;
     document.body.classList.toggle('reading-mode-active', isActive);
     
-    // Announce to user if they might be confused
-    if (isActive) {
-        console.log("Reading Focus Mode Active (Alt+R to toggle)");
-    }
+    // Update any toggle buttons in the UI
+    const buttons = document.querySelectorAll('.a11y-toggle-btn[id="reading-ruler-btn"]');
+    buttons.forEach(btn => {
+        btn.classList.toggle('is-active', isActive);
+        // Change icon to book-closed or similar if desired, 
+        // but typically colored background is enough
+    });
   }
+
+  function toggleRuler() {
+    setRulerState(!isActive);
+  }
+
+  // Handle Button Clicks (Delegated to handle dynamically added buttons)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('#reading-ruler-btn');
+    if (btn) {
+      e.preventDefault();
+      toggleRuler();
+    }
+  });
 
   // Handle Keyboard Toggle (Alt + R)
   window.addEventListener('keydown', (e) => {
@@ -74,16 +90,10 @@
   // Track Mouse Movement
   window.addEventListener('mousemove', (e) => {
     if (!isActive) return;
-    
-    // Update the CSS variable for the ruler's Y position
     ruler.style.setProperty('--ruler-y', e.clientY + 'px');
   });
 
-  // Also handle touches for mobile if desired (follows finger)
-  window.addEventListener('touchmove', (e) => {
-    if (!isActive) return;
-    const touch = e.touches[0];
-    ruler.style.setProperty('--ruler-y', touch.clientY + 'px');
-  }, { passive: true });
+  // Initial update for already rendered buttons
+  setRulerState(false);
 })();
 </script>
