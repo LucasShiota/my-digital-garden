@@ -1,7 +1,0 @@
-{% set currentBanner = banner %}
-{% if currentBanner %}
-<div class="banner-container">
-    {% set bannerFilename = currentBanner.split("/") | last %}
-    <img src="{% if currentBanner.startsWith('http') %}{{ currentBanner }}{% else %}/img/banners/{{ bannerFilename }}{% endif %}" alt="Page Banner">
-</div>
-{% endif %}

@@ -18,7 +18,7 @@ body {
     /* Homepage Icon */
     &:has(.active-note a[href="/"]),
     &:has(.active-note a[href*="homepage"]) {
-        header h1[data-note-icon] { display: none !important; }
+        header h1 { display: none !important; }
         .content h1:first-of-type::before {
             content: "\f015";
             color: var(--accent-color);
