@@ -364,6 +364,20 @@ module.exports = function(eleventyConfig) {
     return content.replace(/<h1(.*?)>/, `<h1$1>${iconHtml}`);
   });
 
+  eleventyConfig.addShortcode("icon", function(name) {
+    return `<i data-lucide="${name}" class="inline-icon"></i>`;
+  });
+
+  eleventyConfig.addFilter("iconify", function(str) {
+    if (!str) return str;
+    // Identifies :home:, ::home::, :LiHome:, ::LiHome:
+    return str.replace(/:{1,2}(?:Li)?([a-zA-Z0-9-]+):{1,2}/g, (match, iconName) => {
+      const normalizedName = iconName.toLowerCase();
+      return `<i data-lucide="${normalizedName}" class="inline-icon"></i>`;
+    });
+  });
+
+
 
 
 

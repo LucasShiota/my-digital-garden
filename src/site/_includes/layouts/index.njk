@@ -62,7 +62,8 @@
         {% include imp %}
       {% endfor %}
       {% set iconToUse = titleIcon if titleIcon else ("home" if isHome else "") %}
-      {{ content | prependIcon(iconToUse) | hideDataview | taggify | link | safe}}
+      {{ content | prependIcon(iconToUse) | hideDataview | taggify | link | iconify | safe}}
+
 
       {% for imp in dynamics.common.afterContent %}
         {% include imp %}
