@@ -2,8 +2,7 @@
 {"dg-publish":true,"permalink":"/immune-defense/immune-defense/","pinned":true,"tags":["Project"],"dg-note-properties":{"icon":"shield-plus","tags":["Project"],"About":"A charming top down team shooter that reimagines what a big picture multiplayer game can be. An easy to learn and fun to master MOBA-lite focusing on the casual experience.","showTimestamps":true,"showReadingTime":true,"created":"2026-03-22"}}
 ---
 
-
----
+# Immune Defense
 
 ## :LiMessageCircleQuestion: Problem
 
@@ -22,5 +21,3 @@ A charmingly unserious top down shooter that reimagines what a big picture objec
 3. **New Axes of Play** - Introduce new variables and asymmetrical roles to let players tackle the classic team battle formula in fresh ways.
 
 4. **Reliable Fun** - Respect players' time and accommodate them in matchmaking and rewards regardless of skill or retention levels.
-
-
