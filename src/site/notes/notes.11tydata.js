@@ -26,7 +26,16 @@ module.exports = {
         fileSlug: item.fileSlug,
       }));
     },
+    faIcon: (data) => {
+      // Allow top-level faIcon, or fall back to dg-note-properties.faIcon
+      // (Nunjucks can't access hyphenated keys like "dg-note-properties" directly)
+      if (data.faIcon) return data.faIcon;
+      const nested = data["dg-note-properties"];
+      if (nested && nested.faIcon) return nested.faIcon;
+      return null;
+    },
     settings: (data) => {
+
       const noteSettings = {};
       allSettings.forEach((setting) => {
         let noteSetting = data[setting];
