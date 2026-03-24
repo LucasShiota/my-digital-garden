@@ -3,11 +3,12 @@
   <head>
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
     {%include "components/pageheader.njk"%}
-    {% set isHome = ('gardenEntry' in tags or dgHome or ["dg-home"] == true) %}
-    {% if faIcon or isHome %}
+    {% set isHome = ('gardenEntry' in tags or dgHome == true or page.url == "/") %}
+    {% set currentIconCode = faIcon if faIcon else ("f015" if isHome else "") %}
+    {% if currentIconCode or isHome %}
     <style>
       {% if isHome %}.is-homepage header h1 { display: none !important; }{% endif %}
-      .content h1::before { content: {% if faIcon %}"{{'\\'}}{{faIcon}}"{% elif isHome %}"{{'\\'}}f015"{% else %}none{% endif %} !important; }
+      {% if currentIconCode %}.content h1::before { content: "{{ currentIconCode | faIconChar }}" !important; }{% endif %}
     </style>
     {% endif %}
 
@@ -18,7 +19,7 @@
       {% include imp %}
     {% endfor %}
   </head>
-  <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {% if settings.dgShowFileTree !== true %}no-filetree{% endif %} {% if settings.dgHomeLink === true and settings.dgShowFileTree !== true %}has-navbar{% endif %} {% if 'gardenEntry' in tags or dgHome or ["dg-home"] == true %}is-homepage{% endif %} {{meta.bodyClasses}}">
+  <body class="theme-{{meta.baseTheme}} markdown-preview-view markdown-rendered markdown-preview-section {% if settings.dgShowFileTree !== true %}no-filetree{% endif %} {% if settings.dgHomeLink === true and settings.dgShowFileTree !== true %}has-navbar{% endif %} {% if 'gardenEntry' in tags or dgHome == true or page.url == '/' %}is-homepage{% endif %} {{meta.bodyClasses}}">
     {%include "components/notegrowthhistory.njk"%}
     {% if settings.dgShowFileTree !== true %}
       {%include "components/navbar.njk"%}

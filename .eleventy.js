@@ -349,6 +349,16 @@ module.exports = function(eleventyConfig) {
     return stripNumbering(str);
   });
 
+    eleventyConfig.addFilter("faIconChar", (code) => {
+    if (!code) return "";
+    try {
+      return String.fromCodePoint(parseInt(code, 16));
+    } catch {
+      return "";
+    }
+  });
+
+
 
 
   eleventyConfig.addFilter("link", function(str) {
