@@ -364,6 +364,11 @@ module.exports = function(eleventyConfig) {
     return content.replace(/<h1(.*?)>/, `<h1$1>${iconHtml}`);
   });
 
+  eleventyConfig.addShortcode("icon", function(name) {
+    return `<i data-lucide="${name}" class="inline-icon"></i>`;
+  });
+
+
 
 
 
