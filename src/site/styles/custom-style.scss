@@ -11,10 +11,6 @@ body {
         transition: transform 0.2s ease;
     }
 
-    /* Page-Specific Icons */
-    &:has(.active-note a[href*="hero-matrix"]) .content h1::before { content: "\f0ce"; }
-    &:has(.active-note a[href*="specs"])       .content h1::before { content: "\f15c"; }
-
     /* Homepage Logic */
     &:has(.active-note a[href="/"]),
     &:has(.active-note a[href*="homepage"]) {
