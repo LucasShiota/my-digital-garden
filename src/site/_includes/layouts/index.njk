@@ -21,12 +21,6 @@
       {%include "components/searchContainer.njk"%}
     {% endif %}
     <main class="content cm-s-obsidian print {{contentClasses}}">
-      {% set currentBanner = banner or noteData.banner or page.data.banner %}
-      {% if currentBanner %}
-      <div class="banner-container">
-          <img src="{% if currentBanner.startsWith('http') or currentBanner.startsWith('/') %}{{ currentBanner }}{% else %}/img/user/{{ currentBanner }}{% endif %}" alt="Banner Image">
-      </div>
-      {% endif %}
       <header>
       {% if settings.dgShowInlineTitle === true %}
         <h1>{{ noteTitle  }}</h1>

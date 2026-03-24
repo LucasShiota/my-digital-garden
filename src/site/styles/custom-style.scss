@@ -4,7 +4,7 @@ body {
         font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
         font-weight: 900;
         display: inline-block;
-        content: "\f11b"; /* Default: Gamepad */
+        content: "\f11b"; /* Default */
         margin-right: 0.5em;
         color: var(--accent-color);
         -webkit-font-smoothing: antialiased;
@@ -25,53 +25,41 @@ body {
         }
     }
 
-    /* --- 2. DYNAMIC BANNER SYSTEM --- */
-    .banner-container {
-        position: relative;
-        width: 100%;
-        height: 320px;
-        margin-bottom: 2.5rem;
-        overflow: hidden;
-        border-radius: 0 0 24px 24px; /* Soft bottom corners */
-        background-color: var(--background-secondary);
+    /* --- 2. THE "CSS-ONLY" BANNER SYSTEM --- */
+    /* This transforms the hidden <img> at the bottom into a premium banner at the top */
+    .content {
+        display: flex !important;
+        flex-direction: column !important;
+        padding-top: 0 !important;
 
-        img {
-            width: 100%;
-            height: 100%;
+        /* Reorder children so the hidden image jumps to the top */
+        & > header, & > div, & > p, & > ul, & > ol { order: 1; }
+
+        img[alt*="hidden"], .banner-container {
+            order: -1 !important;
+            display: block !important;
+            width: calc(100% + 80px) !important;
+            height: 380px !important;
+            margin: -40px -40px 2rem -40px !important; /* Pull it wide to cover padding */
             object-fit: cover;
             object-position: center;
+            border-radius: 0 0 32px 32px;
+            
+            /* Professional Fade Mask */
+            mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%);
+            
+            z-index: 10;
         }
 
-        /* The Premium Fade Overlay */
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 50%; /* Gradual fade from mid-image downwards */
-            pointer-events: none;
-            background: linear-gradient(
-                to bottom,
-                transparent 0%,
-                var(--background-primary) 100%
-            );
-        }
-    }
-
-    /* Adjust content padding if banner exists */
-    .content:has(.banner-container) {
-        padding-top: 0 !important;
-        
+        /* Pull the title up so it sits slightly over the fade */
         header {
-            margin-top: -10px; /* Pull header closer to the fade */
+            margin-top: -20px;
             position: relative;
-            z-index: 2;
+            z-index: 11;
         }
     }
 
-    /* Hide the 'sync-helper' images used for banners */
-    img[alt*="hidden"] {
-        display: none !important;
-    }
+    /* Clean up any literal HTML code boxes if they appear */
+    code:contains("fa-solid") { display: none !important; }
 }
