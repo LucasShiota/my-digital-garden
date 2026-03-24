@@ -54,6 +54,10 @@ Added a suite of premium features focusing on micro-interactions and performance
 - **Human-Friendly Timestamps:** Switched from static ISO dates to relative time ("3 days ago").
   - **Implementation:** Updated `timestamps.njk` to use Luxon's `.toRelative()` method.
   - **QoL:** Added a native **tooltip** (title attribute) so the exact date appears when hovering over the timestamp.
+- **Reading Focus Ruler (Line Focus):** A niche navigation tool that highlights a single "window" around the cursor.
+  - **Dynamics:** Managed through `dynamics.common.footer`.
+  - **Toggle:** Instant toggle using **Alt + R**.
+  - **Visuals:** Dims the rest of the viewport with a soft blur and accent-color boundaries to guide the eye.
 
 ### Documentation History
 

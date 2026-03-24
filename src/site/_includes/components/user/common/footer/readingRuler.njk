@@ -1,0 +1,89 @@
+<div id="reading-ruler"></div>
+<style>
+  #reading-ruler {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.4); /* Dim the rest */
+    pointer-events: none; /* Let clicks pass through */
+    z-index: 9999;
+    display: none; /* Hidden by default */
+    backdrop-filter: blur(1.5px); /* Soften the background */
+    
+    /* Using a mask to create the "window" */
+    --ruler-y: 50%;
+    --ruler-height: 120px;
+    
+    clip-path: polygon(
+      0% 0%, 
+      100% 0%, 
+      100% calc(var(--ruler-y) - (var(--ruler-height) / 2)), 
+      0% calc(var(--ruler-y) - (var(--ruler-height) / 2)), 
+      0% calc(var(--ruler-y) + (var(--ruler-height) / 2)), 
+      100% calc(var(--ruler-y) + (var(--ruler-height) / 2)), 
+      100% 100%, 
+      0% 100%
+    );
+  }
+
+  body.reading-mode-active #reading-ruler {
+    display: block;
+  }
+
+  /* Optional: visual borders for the "slot" */
+  #reading-ruler::before,
+  #reading-ruler::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--accent-color, #4a9eff);
+    opacity: 0.3;
+  }
+
+  #reading-ruler::before { top: calc(var(--ruler-y) - (var(--ruler-height) / 2)); }
+  #reading-ruler::after { top: calc(var(--ruler-y) + (var(--ruler-height) / 2)); }
+</style>
+
+<script>
+(function() {
+  const ruler = document.getElementById('reading-ruler');
+  let isActive = false;
+
+  function toggleRuler() {
+    isActive = !isActive;
+    document.body.classList.toggle('reading-mode-active', isActive);
+    
+    // Announce to user if they might be confused
+    if (isActive) {
+        console.log("Reading Focus Mode Active (Alt+R to toggle)");
+    }
+  }
+
+  // Handle Keyboard Toggle (Alt + R)
+  window.addEventListener('keydown', (e) => {
+    if (e.altKey && (e.key === 'r' || e.key === 'R')) {
+      e.preventDefault();
+      toggleRuler();
+    }
+  });
+
+  // Track Mouse Movement
+  window.addEventListener('mousemove', (e) => {
+    if (!isActive) return;
+    
+    // Update the CSS variable for the ruler's Y position
+    ruler.style.setProperty('--ruler-y', e.clientY + 'px');
+  });
+
+  // Also handle touches for mobile if desired (follows finger)
+  window.addEventListener('touchmove', (e) => {
+    if (!isActive) return;
+    const touch = e.touches[0];
+    ruler.style.setProperty('--ruler-y', touch.clientY + 'px');
+  }, { passive: true });
+})();
+</script>
