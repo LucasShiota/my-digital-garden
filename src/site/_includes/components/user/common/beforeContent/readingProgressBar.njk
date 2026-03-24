@@ -1,0 +1,55 @@
+<div id="reading-progress-bar"></div>
+<style>
+  #reading-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: var(--accent-color, #4a9eff);
+    z-index: 10000;
+    transition: width 0.1s linear;
+    pointer-events: none;
+    box-shadow: 0 0 12px var(--accent-color, #4a9eff);
+    opacity: 0; /* Hidden initially */
+  }
+  
+  /* Show only on scroll */
+  body.is-scrolled #reading-progress-bar {
+    opacity: 1;
+  }
+</style>
+
+<script>
+(function() {
+  const progressBar = document.getElementById('reading-progress-bar');
+  if (!progressBar) return;
+
+  function updateProgress() {
+    const winScroll = window.scrollY || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    
+    // Only show if page is scrollable
+    if (height <= 0) {
+      progressBar.style.width = '0%';
+      return;
+    }
+
+    const scrolled = (winScroll / height) * 100;
+    progressBar.style.width = Math.min(scrolled, 100) + '%';
+    
+    // Toggle visibility based on scroll position
+    if (winScroll > 10) {
+        document.body.classList.add('is-scrolled');
+    } else {
+        document.body.classList.remove('is-scrolled');
+    }
+  }
+
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', updateProgress);
+  
+  // Initial check
+  updateProgress();
+})();
+</script>
