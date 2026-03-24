@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/immune-defense/3-0-game-design/3-1-hero/hero-matrix/","contentClasses":"matrix-page","tags":["Model","Systems"],"dg-note-properties":{"tags":["Model","Systems"],"faIcon":"f0ce"}}
+{"dg-publish":true,"permalink":"/immune-defense/3-0-game-design/3-1-hero/hero-matrix/","contentClasses":"matrix-page","tags":["Model","Systems"],"dg-note-properties":{"tags":["Model","Systems"],"faIcon":"f00b"}}
 ---
 
 ## Base
