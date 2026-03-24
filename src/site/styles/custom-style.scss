@@ -1,41 +1,29 @@
 body {
-    /* 1. GLOBAL SETTINGS (Applied to all Page Title Icons) */
-    .content h1::before {
+    /* 1. Target BOTH generated titles and manual Markdown titles */
+    .content h1::before, 
+    h1.inline-title::before {
         font-family: "Font Awesome 6 Free" !important;
         font-weight: 900 !important;
         display: inline-block;
-        font-style: normal;
-        font-variant: normal;
-        text-rendering: auto;
-        -webkit-font-smoothing: antialiased;
         content: "\f11b"; /* Default: Gamepad */
         margin-right: 12px;
         color: var(--accent-color);
+        -webkit-font-smoothing: antialiased;
     }
 
-    /* 2. PAGE-SPECIFIC OVERRIDES */
-
-    // Matrix Icon
+    /* 2. OVERRIDES */
     &:has(.active-note a[href*="hero-matrix"]) .content h1::before {
         content: "\f0ce" !important; 
         color: #2ecc71;
     }
 
-    // Spec Icon
     &:has(.active-note a[href*="specs"]) .content h1::before {
         content: "\f15c" !important; 
         color: #3498db;
     }
 
-    /* 3. HOMEPAGE RECOVERY */
-    /* Force the hidden H1 on the homepage to be visible */
-    &:has(.active-note a[href="/"]) .content h1 {
-        display: block !important;
-        visibility: visible !important;
-    }
-    
-    /* Ensure the icon renders correctly on the 'resurrected' title */
+    /* 3. HOMEPAGE SPECIFIC (Now that you've added the # Homepage text) */
     &:has(.active-note a[href="/"]) .content h1::before {
-        content: "\f11b" !important;
+        content: "\f015" !important; /* House icon */
     }
 }
