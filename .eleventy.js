@@ -382,7 +382,11 @@ module.exports = function(eleventyConfig) {
     if (!str) return str;
     // Identifies :home:, ::home::, :LiHome:, ::LiHome:
     return str.replace(/:{1,2}(?:Li)?([a-zA-Z0-9-]+):{1,2}/g, (match, iconName) => {
-      const normalizedName = iconName.toLowerCase();
+      // Convert camelCase to kebab-case (e.g., MessageCircleQuestion -> message-circle-question)
+      const normalizedName = iconName
+        .replace(/([a-z])([A-Z])/g, '$1-$2')
+        .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+        .toLowerCase();
       return `<i data-lucide="${normalizedName}" class="inline-icon"></i>`;
     });
   });
