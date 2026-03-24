@@ -1,9 +1,8 @@
 body {
-    /* 1. Target BOTH generated titles and manual Markdown titles */
-    .content h1::before, 
-    h1.inline-title::before {
+    /* 1. GLOBAL ICON CONFIG */
+    .content h1::before {
         font-family: "Font Awesome 6 Free" !important;
-        font-weight: 900 !important;
+        font-weight: 900 !important; /* CRITICAL: Must be 900 for Solid icons */
         display: inline-block;
         content: "\f11b"; /* Default: Gamepad */
         margin-right: 12px;
@@ -11,19 +10,27 @@ body {
         -webkit-font-smoothing: antialiased;
     }
 
-    /* 2. OVERRIDES */
+    /* 2. SPECIFIC OVERRIDES */
     &:has(.active-note a[href*="hero-matrix"]) .content h1::before {
         content: "\f0ce" !important; 
-        color: #2ecc71;
     }
 
     &:has(.active-note a[href*="specs"]) .content h1::before {
         content: "\f15c" !important; 
-        color: #3498db;
     }
 
-    /* 3. HOMEPAGE SPECIFIC (Now that you've added the # Homepage text) */
-    &:has(.active-note a[href="/"]) .content h1::before {
-        content: "\f015" !important; /* House icon */
+    /* 3. HOMEPAGE CLEANUP & ICON */
+    &:has(.active-note a[href="/"]) {
+        /* Hide the template's auto-generated empty H1 to prevent double icons */
+        header h1[data-note-icon] {
+            display: none !important;
+        }
+
+        /* Style the manual # H1 icon */
+        .content h1::before {
+            content: "\f015" !important; /* House icon */
+            font-family: "Font Awesome 6 Free" !important;
+            font-weight: 900 !important;
+        }
     }
 }
