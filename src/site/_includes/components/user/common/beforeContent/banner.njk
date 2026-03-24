@@ -1,0 +1,6 @@
+{% set currentBanner = banner or noteData.banner or page.data.banner %}
+{% if currentBanner %}
+<div class="banner-container">
+    <img src="{% if currentBanner.startsWith('http') or currentBanner.startsWith('/') %}{{ currentBanner }}{% else %}/img/banners/{{ currentBanner }}{% endif %}" alt="Page Banner">
+</div>
+{% endif %}
