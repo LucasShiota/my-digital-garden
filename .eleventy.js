@@ -490,6 +490,29 @@ module.exports = function(eleventyConfig) {
         continue;
       }
 
+      const calloutIconMap = {
+        "note": "info",
+        "info": "info",
+        "todo": "check-circle",
+        "done": "check-circle",
+        "check": "check-circle",
+        "question": "help-circle",
+        "help": "help-circle",
+        "faq": "help-circle",
+        "warning": "alert-triangle",
+        "caution": "alert-triangle",
+        "attention": "alert-triangle",
+        "failure": "x-circle",
+        "fail": "x-circle",
+        "missing": "x-circle",
+        "danger": "zap",
+        "error": "zap",
+        "bug": "bug",
+        "example": "list",
+        "quote": "quote",
+        "cite": "quote"
+      };
+
       content = content.replace(
         calloutMeta,
         function(metaInfoMatch, callout, metaData, collapse, title) {
@@ -501,15 +524,19 @@ module.exports = function(eleventyConfig) {
               .substring(1)
               .toLowerCase()}`;
           const fold = isCollapsable
-            ? `<div class="callout-fold"><i icon-name="chevron-down"></i></div>`
+            ? `<div class="callout-fold"><i data-lucide="chevron-down"></i></div>`
             : ``;
 
-          calloutType = callout;
+          calloutType = callout.toLowerCase();
+          const iconName = calloutIconMap[calloutType] || "pencil";
+          const iconDiv = `<div class="callout-icon"><i data-lucide="${iconName}"></i></div>`;
+
           calloutMetaData = metaData;
-          titleDiv = `<div class="callout-title"><div class="callout-title-inner">${titleText}</div>${fold}</div>`;
+          titleDiv = `<div class="callout-title">${iconDiv}<div class="callout-title-inner">${titleText}</div>${fold}</div>`;
           return "";
         }
       );
+
 
       /* Hacky fix for callouts with only a title */
       if (content === "\n<p>\n") {
