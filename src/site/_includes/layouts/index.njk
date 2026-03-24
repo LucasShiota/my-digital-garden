@@ -47,19 +47,6 @@
             {% endfor %}
           </div>
         {% endif %}
-        {%- set canShowCreated = (meta.timestampSettings.showCreated or (showTimestamps === true)) and (created or page.date) -%}
-        {%- set canShowUpdated = (meta.timestampSettings.showUpdated or (showTimestamps === true)) and updated -%}
-        
-        {%- if (canShowCreated or canShowUpdated) and showTimestamps !== false -%}
-        <div class="timestamps">
-          {%- if canShowCreated -%}
-          <div><i data-lucide="calendar-plus"></i> <span class="human-date" data-date="{{created if created else page.date}}"></span></div>
-          {%- endif -%}
-          {%- if canShowUpdated -%}
-          <div><i data-lucide="calendar-clock"></i> <span class="human-date" data-date="{{updated}}"></span></div>
-          {%- endif -%}
-        </div>
-        {%- endif -%}
       </div>
       {% for imp in dynamics.common.header %}
         {% include imp %}

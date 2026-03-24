@@ -58,13 +58,8 @@ Added a suite of premium features focusing on micro-interactions and performance
   - **Dynamics:** Managed through `dynamics.common.footer`.
   - **Toggle:** Instant toggle using **Alt + R**.
   - **Visuals:** Dims the rest of the viewport with a soft blur and accent-color boundaries to guide the eye.
-- **Frontmatter QoL Toggles:** Added per-note control for features.
-  - **Logic:** `showReadingTime` (Opt-in) and `showTimestamps` (Opt-out) boolean properties added to frontmatter.
-  - **Homepage Compatibility:** Updated `index.njk` and `note.njk` to ensure cross-layout consistency and added file-date fallbacks for the homepage.
-- **Cross-Layout Navbar Sync:** Synchronized the A11y action section across `navbar.njk`, `filetreeNavbar.njk`, and `filetree.njk` for a seamless experience on mobile and desktop.
 
 ### Documentation History
 
-Updated by Antigravity on 2026-03-24 (Added Frontmatter Toggles & Cross-Layout Sync).
 Updated by Antigravity on 2026-03-24 (Added QoL Section).
 Created by Antigravity on 2026-03-24.
