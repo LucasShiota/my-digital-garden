@@ -30,5 +30,5 @@ views:
 
 This wiki was made possible with:
 
-	- **[Obsidian](https://obsidian.md/)** - open source & format content editing platform
+- **[Obsidian](https://obsidian.md/)** - open source & format content editing platform
 - **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)** - plugin that converts files from Obsidian into a static site
