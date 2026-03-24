@@ -13,7 +13,9 @@ body {
 
     /* Homepage Logic */
     &:has(.active-note a[href="/"]),
-    &:has(.active-note a[href*="homepage"]) {
+    &:has(.active-note a[href*="homepage"]),
+    &.is-homepage {
         header h1 { display: none !important; }
     }
 }
+

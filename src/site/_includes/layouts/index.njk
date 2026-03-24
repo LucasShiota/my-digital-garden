@@ -3,9 +3,10 @@
   <head>
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
     {%include "components/pageheader.njk"%}
-    {% if faIcon %}
+    {% if faIcon or 'dg-home' in tags or 'dg-home' == true or ["dg-home"] == true or dgHome == true %}
     <style>
-      :root { --custom-icon: '\{{ faIcon }}'; }
+      :root { --custom-icon: "{{'\\'}}f015"; }
+      {% if faIcon %}:root { --custom-icon: "{{'\\'}}{{ faIcon }}"; }{% endif %}
     </style>
     {% endif %}
 
