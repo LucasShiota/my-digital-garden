@@ -4,6 +4,6 @@
 
 # Homepage
 
-## Other Projects
+## <i class="fa-solid fa-briefcase"></i>Other Projects
 
-
+<i class="fa-solid fa-briefcase"></i>
