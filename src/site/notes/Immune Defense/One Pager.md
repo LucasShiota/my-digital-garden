@@ -1,4 +1,4 @@
 ---
-{"dg-publish":true,"permalink":"/immune-defense/one-pager/","dg-note-properties":{"pinned":true}}
+{"dg-publish":true,"permalink":"/immune-defense/one-pager/","pinned":true,"dg-note-properties":{}}
 ---
 
