@@ -14,8 +14,8 @@ This wiki was made possible with:
 > [!QUOTE] Credits
 > This wiki was made possible with:
 >
-> - **[Obsidian](https://obsidian.md/)**, a content editing platform
-> - **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)**, a plugin that converts files from Obsidian into a static site
+> - **[Obsidian](https://obsidian.md/)**, a content editing platform {% icon "edit-3" %}
+> - **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)**, a plugin that converts files from Obsidian into a static site {% icon "leaf" %}
 
 ## About Me
 
@@ -24,3 +24,5 @@ This wiki was made possible with:
 ### Baraliot Fantasia
 
 ### Immune Defense
+
+Testing out the new icon shortcut: {% icon "home" %}
