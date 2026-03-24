@@ -45,9 +45,12 @@
                    <h1 style="text-align:center;">{{meta.siteName}}</h1>
          </a>
          {% endif %}
-         {% for imp in dynamics.filetree.afterTitle %}
+         <div class="a11y-section-wrapper sidebar-a11y">
+          {% for imp in dynamics.common.navbarActions %}
             {% include imp %}
-        {% endfor %}
+          {% endfor %}
+        </div>
+
         {% if settings.dgEnableSearch === true%}
             {% include "components/searchButton.njk" %}
         {%endif%}

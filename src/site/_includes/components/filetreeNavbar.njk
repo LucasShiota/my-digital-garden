@@ -16,6 +16,10 @@
         {% for imp in dynamics.filetree.afterTitle %}
             {% include imp %}
         {% endfor %}
+    <div class="a11y-section-wrapper">
+      {% for imp in dynamics.common.navbarActions %}
+        {% include imp %}
+      {% endfor %}
     </div>
 
     {% if settings.dgEnableSearch === true%}

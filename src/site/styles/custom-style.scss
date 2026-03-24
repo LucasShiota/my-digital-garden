@@ -115,8 +115,15 @@ body {
         display: flex;
         align-items: center;
         gap: 0.8em;
-        margin-left: auto; /* Push things to the right */
+        margin-left: auto; /* Push things to the right in horizontal nav */
         padding-right: 1em;
+
+        &.sidebar-a11y {
+            margin: 0.5em 0 1.5em 0;
+            padding: 0;
+            justify-content: center;
+            width: 100%;
+        }
     }
 
     .a11y-toggle-btn {
