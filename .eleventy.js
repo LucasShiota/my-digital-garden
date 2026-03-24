@@ -1,4 +1,13 @@
 const slugify = require("@sindresorhus/slugify");
+
+function stripNumbering(str) {
+    if (!str) return "";
+    return str
+        .split("/")
+        .map((part) => part.replace(/^[\d.]+\s*/, ""))
+        .join("/");
+}
+
 const markdownIt = require("markdown-it");
 const fs = require("fs");
 const matter = require("gray-matter");
@@ -46,7 +55,7 @@ function getAnchorAttributes(filePath, linkTitle) {
 
   let noteIcon = process.env.NOTE_ICON_DEFAULT;
   const title = linkTitle ? linkTitle : fileName;
-  let permalink = `/notes/${slugify(filePath)}`;
+  let permalink = `/notes/${slugify(stripNumbering(filePath))}`;
   let deadLink = false;
   try {
     const startPath = "./src/site/notes/";
@@ -330,6 +339,17 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("isoDate", function(date) {
     return date && date.toISOString();
   });
+
+  eleventyConfig.addFilter("slugify", (str) => {
+    if (!str) return "";
+    return slugify(stripNumbering(str));
+  });
+
+  eleventyConfig.addFilter("stripNumbering", (str) => {
+    return stripNumbering(str);
+  });
+
+
 
   eleventyConfig.addFilter("link", function(str) {
     return (
