@@ -5,7 +5,7 @@
 
 ---
 
-## :LiMessageCircleQuestionMark: Problem
+## :LiMessageCircleQuestion: Problem
 
 The modern MOBA and hero shooter landscape has become increasingly unaccommodating to the average player due to extreme skill ceilings and unbudging design molds. This creates a polarized player base where the performance gap between casual and elite tiers results in unbalanced matchmaking and toxicity while being subjected to FOMO-driven monetization and retention methods. This leaves the target audience exhausted in engaging the genre they love.
 
