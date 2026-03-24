@@ -164,4 +164,26 @@ body {
             svg, i { color: white !important; }
         }
     }
+
+    .timestamps {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1em;
+        font-size: 0.8em;
+        color: var(--text-muted);
+        margin: 0.5em 0 1.25em 0;
+        opacity: 0.85;
+
+        div {
+            display: flex;
+            align-items: center;
+            gap: 0.4em;
+        }
+
+        svg, i {
+            width: 1.1em;
+            height: 1.1em;
+            stroke-width: 1.75;
+        }
+    }
 }
