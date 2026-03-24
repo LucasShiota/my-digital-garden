@@ -36,6 +36,30 @@ module.exports = {
       }
       return null;
     },
+    showReadingTime: (data) => {
+      if (data.showReadingTime !== undefined) return data.showReadingTime;
+      const nested = data["dg-note-properties"];
+      if (nested && nested.showReadingTime !== undefined) return nested.showReadingTime;
+      return undefined; // inherit global default (show)
+    },
+    showTimestamps: (data) => {
+      if (data.showTimestamps !== undefined) return data.showTimestamps;
+      const nested = data["dg-note-properties"];
+      if (nested && nested.showTimestamps !== undefined) return nested.showTimestamps;
+      return undefined; // inherit global default
+    },
+    created: (data) => {
+      if (data.created) return data.created;
+      const nested = data["dg-note-properties"];
+      if (nested && nested.created) return nested.created;
+      return data.page && data.page.date ? data.page.date : undefined;
+    },
+    updated: (data) => {
+      if (data.updated) return data.updated;
+      const nested = data["dg-note-properties"];
+      if (nested && nested.updated) return nested.updated;
+      return undefined;
+    },
     settings: (data) => {
 
 
