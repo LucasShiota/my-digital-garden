@@ -1,17 +1,27 @@
 body {
     /* --- PREMIUM ICON SYSTEM --- */
-    .content h1::before {
-        font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
-        font-weight: 900;
-        display: inline-block;
-        content: none; /* No icon by default */
-        margin-right: 0.5em;
-        color: var(--accent-color);
-        -webkit-font-smoothing: antialiased;
-        transition: transform 0.2s ease;
+    /* --- PREMIUM SVG ICON SYSTEM (LUCIDE) --- */
+    .content h1 {
+        display: flex;
+        align-items: center;
+        gap: 0.4em;
+
+        svg, i {
+            width: 1.1em;
+            height: 1.1em;
+            stroke-width: 1.75; /* This controls the thinness! (2 is standard, 1.5 is thin) */
+            color: var(--accent-color);
+            flex-shrink: 0;
+            transition: transform 0.2s ease;
+        }
+
+        &:hover svg {
+            transform: scale(1.1);
+        }
     }
 
     /* Homepage Logic */
+
     &:has(.active-note a[href="/"]),
     &:has(.active-note a[href*="homepage"]),
     &.is-homepage {

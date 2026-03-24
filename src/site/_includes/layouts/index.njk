@@ -4,11 +4,9 @@
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
     {%include "components/pageheader.njk"%}
     {% set isHome = ('gardenEntry' in tags or dgHome == true or page.url == "/") %}
-    {% set currentIconCode = faIcon if faIcon else ("f015" if isHome else "") %}
-    {% if currentIconCode or isHome %}
+    {% if isHome %}
     <style>
-      {% if isHome %}.is-homepage header h1 { display: none !important; }{% endif %}
-      {% if currentIconCode %}.content h1::before { content: "{{ currentIconCode | faIconChar }}" !important; }{% endif %}
+      .is-homepage header h1 { display: none !important; }
     </style>
     {% endif %}
 
@@ -32,7 +30,11 @@
     <main class="content cm-s-obsidian print {{contentClasses}}">
       <header>
       {% if settings.dgShowInlineTitle === true %}
-        <h1>{{ noteTitle  }}</h1>
+        <h1>
+          {% set iconToUse = titleIcon if titleIcon else ("home" if isHome else "") %}
+          {% if iconToUse %}<i data-lucide="{{ iconToUse }}"></i>{% endif %}
+          {{ noteTitle  }}
+        </h1>
       {% endif %}
 
       <div class="header-meta">
