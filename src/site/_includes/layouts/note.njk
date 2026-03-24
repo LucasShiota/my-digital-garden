@@ -54,12 +54,12 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
               {% endfor %}
             </div>
           {% endif %}
-          {%- if (meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated or showTimestamps == true) and showTimestamps != false -%}
+          {%- if (meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated or settings.showTimestamps == true) and settings.showTimestamps != false -%}
           <div class="timestamps">
-            {%- if (meta.timestampSettings.showCreated or showTimestamps == true) and created -%}
+            {%- if (meta.timestampSettings.showCreated or settings.showTimestamps == true) and created -%}
             <div><i data-lucide="calendar-plus"></i> <span class="human-date" data-date="{{created}}"></span></div>
             {%- endif -%}
-            {%- if (meta.timestampSettings.showUpdated or showTimestamps == true) and updated -%}
+            {%- if (meta.timestampSettings.showUpdated or settings.showTimestamps == true) and updated -%}
             <div><i data-lucide="calendar-clock"></i> <span class="human-date" data-date="{{updated}}"></span></div>
             {%- endif -%}
           </div>
