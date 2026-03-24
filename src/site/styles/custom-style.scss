@@ -69,4 +69,9 @@ body {
             z-index: 2;
         }
     }
+
+    /* Hide the 'sync-helper' images used for banners */
+    img[alt*="hidden"] {
+        display: none !important;
+    }
 }
