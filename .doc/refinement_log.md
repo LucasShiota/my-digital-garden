@@ -38,6 +38,18 @@ Fixed the issue where callouts (like `[!QUOTE]`) were missing their characterist
 - **Performance:** Reverted `markdownTemplateEngine` to `false` and moved icon processing to lightweight Eleventy filters (`iconify`, `prependIcon`) to keep the build speed fast.
 - **Nunjucks Fix:** Solved the issue where hyphenated keys like `dg-note-properties` were inaccessible in templates using a computed data layer.
 
+## 6. Quality of Life (QoL) Enhancements
+
+Added a suite of premium features focusing on micro-interactions and performance feedback.
+
+- **Reading Progress Bar:** Implemented a sleek, animated scroll tracker at the top of the viewport.
+  - **Dynamics:** Automatically included via `dynamics.common.beforeContent`.
+  - **Visuals:** Features a subtle accent-color glow and linear transitions for a high-performance, native feel.
+- **Reading Time Estimator:** Added a dynamic calculation filter to provide a "X min read" insight for all notes.
+  - **Filter:** Custom `readingTime` Eleventy filter (strips HTML and estimates based on 225 wpm).
+  - **Dynamics:** Displayed via `dynamics.notes.header` with a Lucide clock icon.
+
 ### Documentation History
 
+Updated by Antigravity on 2026-03-24 (Added QoL Section).
 Created by Antigravity on 2026-03-24.

@@ -349,6 +349,16 @@ module.exports = function(eleventyConfig) {
     return stripNumbering(str);
   });
 
+  eleventyConfig.addFilter("readingTime", (content) => {
+    if (!content) return "0 min read";
+    const text = content.replace(/<[^>]*>/g, ""); 
+    const wordsPerMinute = 225;
+    const numberOfWords = text.split(/\s/g).filter(w => w.length > 0).length;
+    const minutes = numberOfWords / wordsPerMinute;
+    const readTime = Math.ceil(minutes);
+    return `${readTime} min read`;
+  });
+
     eleventyConfig.addFilter("faIconChar", (code) => {
     if (!code) return "";
     try {
