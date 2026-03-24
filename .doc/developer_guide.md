@@ -48,6 +48,44 @@ The homepage (usually `Homepage.md`) is special. It is detected via `dg-home: tr
 
 ---
 
+## 6. Eleventy Computed Data — Circular Reference Trap ⚠️
+
+> [!CAUTION]
+> If you define a computed property `showReadingTime` in `notes.11tydata.js` and then read `data.showReadingTime` inside that same computed function, **you get a circular reference**. Eleventy resolves this as `undefined`, silently breaking your logic.
+
+**Wrong:**
+```js
+showReadingTime: (data) => {
+  if (data.showReadingTime !== undefined) return data.showReadingTime; // CIRCULAR!
+  ...
+}
+```
+
+**Correct:** Only read from sources you don't own — `dg-note-properties`, `page.date`, etc.
+```js
+showReadingTime: (data) => {
+  const nested = data["dg-note-properties"];
+  if (nested && nested.showReadingTime !== undefined) return nested.showReadingTime;
+  return undefined;
+}
+```
+
+---
+
+## 7. Nunjucks vs JavaScript Operators ⚠️
+
+Nunjucks is **not JavaScript**. The following JS operators do NOT work in `.njk` templates:
+
+| JavaScript | Nunjucks (correct) |
+|---|---|
+| `===` | `==` |
+| `!==` | `!=` |
+| `undefined` | use `is defined` or `!= null` |
+
+Using `===` or `!==` in a Nunjucks template silently fails — the condition evaluates as truthy, breaking your visibility logic.
+
+---
+
 ### Archive Information
 - **Created by:** Antigravity (AI Architect)
 - **Last Deep Audit:** 2026-03-24

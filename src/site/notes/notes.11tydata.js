@@ -37,25 +37,26 @@ module.exports = {
       return null;
     },
     showReadingTime: (data) => {
-      if (data.showReadingTime !== undefined) return data.showReadingTime;
+      // Read ONLY from dg-note-properties to avoid circular reference
+      // (data.showReadingTime would reference this computed itself)
       const nested = data["dg-note-properties"];
       if (nested && nested.showReadingTime !== undefined) return nested.showReadingTime;
-      return undefined; // inherit global default (show)
+      return undefined; // undefined = show by default (no override)
     },
     showTimestamps: (data) => {
-      if (data.showTimestamps !== undefined) return data.showTimestamps;
+      // Read ONLY from dg-note-properties to avoid circular reference
       const nested = data["dg-note-properties"];
       if (nested && nested.showTimestamps !== undefined) return nested.showTimestamps;
-      return undefined; // inherit global default
+      return undefined; // undefined = follow global env vars
     },
     created: (data) => {
-      if (data.created) return data.created;
+      // data.created would also be circular — read dg-note-properties first
       const nested = data["dg-note-properties"];
       if (nested && nested.created) return nested.created;
+      // Fall back to Eleventy's file date (safe — page.date is not computed by us)
       return data.page && data.page.date ? data.page.date : undefined;
     },
     updated: (data) => {
-      if (data.updated) return data.updated;
       const nested = data["dg-note-properties"];
       if (nested && nested.updated) return nested.updated;
       return undefined;
