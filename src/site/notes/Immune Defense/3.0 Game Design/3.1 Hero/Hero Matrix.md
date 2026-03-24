@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/3-0-game-design/3-1-hero/hero-matrix/","contentClasses":"matrix-page","tags":["Model","Systems"],"dg-note-properties":{"tags":["Model","Systems"]}}
+{"dg-publish":true,"permalink":"/immune-defense/3-0-game-design/3-1-hero/hero-matrix/","contentClasses":"matrix-page","tags":["Model","Systems"],"dg-note-properties":{"tags":["Model","Systems"]}}
 ---
 
 ## Base
@@ -7,7 +7,7 @@
 
 ## Corps
 
-| Name     | Role                    | Main AoO^[1: [[Supplementary Docs/References#Area of Operations\|References > Area Of Operations]]]<br> |     |     |     |     |
+| Name     | Role                    | Main AoO^[1: [[Immune Defense/Supplementary Docs/References#Area of Operations\|References > Area Of Operations]]]<br> |     |     |     |     |
 | -------- | ----------------------- | ------------------------------------------------------------------------------------ | --- | --- | --- | --- |
 | Attack   | Pressure the Enemy      | 1 to -1                                                                              |     |     |     |     |
 | Defense  | Secure and Protect      | 2 to -1                                                                              |     |     |     |     |
