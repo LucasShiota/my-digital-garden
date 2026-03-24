@@ -29,7 +29,7 @@ views:
     order:
       - file.name
       - About
-    cardSize: 350
+    cardSize: 200
     imageAspectRatio: 0.9
 
 ```
