@@ -5,15 +5,15 @@
 
 ---
 
-## Problem
+## :LiMessageCircleQuestionMark: Problem
 
 The modern MOBA and hero shooter landscape has become increasingly unaccommodating to the average player due to extreme skill ceilings and unbudging design molds. This creates a polarized player base where the performance gap between casual and elite tiers results in unbalanced matchmaking and toxicity while being subjected to FOMO-driven monetization and retention methods. This leaves the target audience exhausted in engaging the genre they love.
 
-## Vision
+## :LiSparkle: Vision
 
 A charmingly unserious top down shooter that reimagines what a big picture objective based multiplayer can be. An intuitive and expressive team shooter that's easy to learn and fun to master. Prioritizing frictionless casual experience for mass audience appeal and reliable fun.
 
-## Goals
+## :LiGoal: Goals
 
 1. **Game Sense over Execution** - Prioritize horizontal skill expression over a mechanics-heavy vertical ceiling.
 
