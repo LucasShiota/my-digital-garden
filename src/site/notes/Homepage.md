@@ -28,5 +28,7 @@ views:
 
 ## Credits
 
-- **[Obsidian](https://obsidian.md/)**, a open source and open format content editing platform
-- **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)**, a plugin that converts files from Obsidian into a static site
+This wiki was made possible with:
+
+	- **[Obsidian](https://obsidian.md/)** - open source & format content editing platform
+- **[Digital Garden](https://github.com/oleeskild/obsidian-digital-garden)** - plugin that converts files from Obsidian into a static site
