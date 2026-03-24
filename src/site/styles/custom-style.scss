@@ -1,62 +1,72 @@
 body {
-    /* 1. GLOBAL ICON CONFIG */
+    /* --- 1. PREMIUM ICON SYSTEM --- */
     .content h1::before {
-        font-family: "Font Awesome 6 Free" !important;
-        font-weight: 900 !important; /* CRITICAL: Must be 900 for Solid icons */
+        font-family: "Font Awesome 6 Free", "Font Awesome 5 Free", sans-serif;
+        font-weight: 900;
         display: inline-block;
         content: "\f11b"; /* Default: Gamepad */
-        margin-right: 12px;
+        margin-right: 0.5em;
         color: var(--accent-color);
         -webkit-font-smoothing: antialiased;
+        transition: transform 0.2s ease;
     }
 
-    /* 2. SPECIFIC OVERRIDES */
-    &:has(.active-note a[href*="hero-matrix"]) .content h1::before {
-        content: "\f0ce" !important; 
-    }
+    /* Page-Specific Icon Icons (Optimized Selectors) */
+    &:has(.active-note a[href*="hero-matrix"]) .content h1::before { content: "\f0ce"; }
+    &:has(.active-note a[href*="specs"])       .content h1::before { content: "\f15c"; }
 
-    &:has(.active-note a[href*="specs"]) .content h1::before {
-        content: "\f15c" !important; 
-    }
-
-/* 3. HOMEPAGE CLEANUP & ICON */
-    /* This targets the page if the title is 'Homepage' OR the URL is the root */
+    /* Homepage Icon Cleanup */
     &:has(.active-note a[href="/"]), 
     &:has(.active-note a[href*="homepage"]) {
-        
-        /* 1. Hide the plugin's auto-generated empty H1 */
-        header h1[data-note-icon] {
-            display: none !important;
-        }
-
-        /* 2. Force the House icon on your manual # Homepage */
+        header h1[data-note-icon] { display: none !important; }
         .content h1:first-of-type::before {
-            content: "\f015" !important; 
-            font-family: "Font Awesome 6 Free" !important;
-            font-weight: 900 !important;
+            content: "\f015";
             color: var(--accent-color);
         }
     }
 
-    /* Banner logic */
-    .content:has(img[alt="banner"]) {
-        padding-top: 0;
-    }
-    
+    /* --- 2. DYNAMIC BANNER SYSTEM --- */
     .banner-container {
-        width: 100%;
-        height: 300px; /* Adjust height as needed */
-        overflow: hidden;
-        margin-bottom: 2rem;
-        border-radius: 12px; /* Premium look */
         position: relative;
-        
+        width: 100%;
+        height: 320px;
+        margin-bottom: 2.5rem;
+        overflow: hidden;
+        border-radius: 0 0 24px 24px; /* Soft bottom corners */
+        background-color: var(--background-secondary);
+
         img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
         }
+
+        /* The Premium Fade Overlay */
+        &::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%; /* Gradual fade from mid-image downwards */
+            pointer-events: none;
+            background: linear-gradient(
+                to bottom,
+                transparent 0%,
+                var(--background-primary) 100%
+            );
+        }
     }
 
+    /* Adjust content padding if banner exists */
+    .content:has(.banner-container) {
+        padding-top: 0 !important;
+        
+        header {
+            margin-top: -10px; /* Pull header closer to the fade */
+            position: relative;
+            z-index: 2;
+        }
+    }
 }

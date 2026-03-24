@@ -29,7 +29,7 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     <main class="content cm-s-obsidian print {{contentClasses}}">
       {% if banner %}
       <div class="banner-container">
-          <img src="{{ banner }}" alt="Page Banner">
+          <img src="{% if banner.startsWith('http') or banner.startsWith('/') %}{{ banner }}{% else %}/img/user/{{ banner }}{% endif %}" alt="Banner Image">
       </div>
       {% endif %}
       <header>
