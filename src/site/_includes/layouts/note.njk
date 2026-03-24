@@ -7,7 +7,8 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
     <title>{% if title %}{{ title }}{% else %}{{ page.fileSlug }}{% endif %}</title>
     {%include "components/pageheader.njk"%}
     {% set isHome = ('gardenEntry' in tags or dgHome == true or page.url == "/") %}
-    {% set currentIconCode = faIcon if faIcon else ("f015" if isHome else "") %}
+    {% set iconCode = faIcon if faIcon else (["dg-note-properties"].faIcon if ["dg-note-properties"] else "") %}
+    {% set currentIconCode = iconCode if iconCode else ("f015" if isHome else "") %}
     {% if currentIconCode or isHome %}
     <style>
       {% if isHome %}.is-homepage header h1 { display: none !important; }{% endif %}
