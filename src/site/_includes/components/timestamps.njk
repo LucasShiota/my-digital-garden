@@ -20,11 +20,11 @@
 
       let relativeText = "";
       if (diffInDays === 0) {
-        relativeText = "Today";
+        relativeText = "today";
       } else if (diffInDays === 1) {
-        relativeText = "Yesterday";
+        relativeText = "yesterday";
       } else {
-        // Fallback to "X days ago"
+        // Fallback to "x days ago"
         relativeText = parsed_date.toRelative({ unit: 'days' });
       }
 

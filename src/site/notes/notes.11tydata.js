@@ -50,19 +50,21 @@ module.exports = {
       return undefined; // undefined = follow global env vars
     },
     created: (data) => {
-      // data.created would also be circular — read dg-note-properties first
+      // Only use explicit creation date if provided
       const nested = data["dg-note-properties"];
       if (nested && nested.created) return nested.created;
-      // Fall back to Eleventy's file date — must stringify or Nunjucks outputs [object Object]
-      if (data.page && data.page.date) {
-        const d = data.page.date;
-        return d instanceof Date ? d.toISOString() : String(d);
-      }
+      if (data.created) return data.created;
       return undefined;
     },
     updated: (data) => {
       const nested = data["dg-note-properties"];
       if (nested && nested.updated) return nested.updated;
+      if (data.updated) return data.updated;
+      // Fall back to Eleventy's file date as the "Last Modified" date
+      if (data.page && data.page.date) {
+        const d = data.page.date;
+        return d instanceof Date ? d.toISOString() : String(d);
+      }
       return undefined;
     },
     settings: (data) => {

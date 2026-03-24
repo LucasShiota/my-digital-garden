@@ -57,10 +57,10 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
           {%- if showTimestamps != false and (meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated or showTimestamps == true) -%}
           <div class="timestamps">
             {%- if created and (meta.timestampSettings.showCreated or showTimestamps == true) -%}
-            <div><i data-lucide="calendar-plus"></i> Created: <span class="human-date" data-date="{{created}}"></span></div>
+            <div><i data-lucide="calendar-plus"></i> Published <span class="human-date" data-date="{{created}}"></span></div>
             {%- endif -%}
             {%- if updated and (meta.timestampSettings.showUpdated or showTimestamps == true) -%}
-            <div><i data-lucide="calendar-clock"></i> Updated: <span class="human-date" data-date="{{updated}}"></span></div>
+            <div><i data-lucide="calendar-clock"></i> Last updated <span class="human-date" data-date="{{updated}}"></span></div>
             {%- endif -%}
           </div>
           {%- endif -%}
