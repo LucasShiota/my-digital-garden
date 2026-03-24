@@ -1,8 +1,10 @@
 ---
-{"dg-publish":true,"permalink":"/immune-defense/hero/corps-specs/","dg-note-properties":{"icon":"table","showTimestamps":true,"showReadingTime":true}}
+{"dg-publish":true,"permalink":"/immune-defense/hero/corps-specs/","dg-note-properties":{"icon":"file-text","showTimestamps":true,"showReadingTime":true}}
 ---
 
-	
+
+---
+
 
 ## Attack
 
