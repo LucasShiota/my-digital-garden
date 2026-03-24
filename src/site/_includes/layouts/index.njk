@@ -47,6 +47,16 @@
             {% endfor %}
           </div>
         {% endif %}
+        {%- if (meta.timestampSettings.showCreated or meta.timestampSettings.showUpdated) and showTimestamps !== false -%}
+        <div class="timestamps">
+          {%- if meta.timestampSettings.showCreated and created -%}
+          <div><i data-lucide="calendar-plus"></i> <span class="human-date" data-date="{{created}}"></span></div>
+          {%- endif -%}
+          {%- if meta.timestampSettings.showUpdated and updated -%}
+          <div><i data-lucide="calendar-clock"></i> <span class="human-date" data-date="{{updated}}"></span></div>
+          {%- endif -%}
+        </div>
+        {%- endif -%}
       </div>
       {% for imp in dynamics.common.header %}
         {% include imp %}
