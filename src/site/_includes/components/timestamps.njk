@@ -12,6 +12,12 @@
       // Date still cannot be parsed
       parsed_date = luxon.DateTime.fromHTML(date)
     }
-    el.innerHTML = parsed_date.toFormat(TIMESTAMP_FORMAT);
+
+    if (parsed_date.isValid) {
+      // Use relative time (e.g. "3 days ago")
+      el.innerHTML = parsed_date.toRelative();
+      // Add title attribute to show the full exact date on hover
+      el.setAttribute('title', parsed_date.toFormat(TIMESTAMP_FORMAT));
+    }
   })
 </script>

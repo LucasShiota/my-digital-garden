@@ -1,0 +1,123 @@
+<style>
+  /* --- PREMIUM COPY CODE BUTTON --- */
+  .code-block-container {
+    position: relative;
+    /* Maintain the original code block styles but make container a wrapper if needed */
+  }
+
+  /* Target standard pre tags in digital garden */
+  pre[class*="language-"], 
+  pre {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .copy-code-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 6px;
+    background: var(--background-secondary, rgba(230,230,230,0.8));
+    border: 1px solid var(--background-modifier-border, #ddd);
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    opacity: 0; /* Hidden by default */
+    transition: all 0.2s ease;
+    z-index: 10;
+  }
+
+  pre:hover .copy-code-button,
+  .copy-code-button:hover {
+    opacity: 1;
+    background: var(--background-primary, #fff);
+    color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+
+  .copy-code-button svg, 
+  .copy-code-button i {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
+
+  .copy-code-button.copied {
+    background: #4caf50 !important;
+    color: white !important;
+    border-color: #4caf50;
+  }
+</style>
+
+<script>
+  (function() {
+    function addCopyButtons() {
+      // Find all code blocks (typically inside pre tags)
+      const codeBlocks = document.querySelectorAll('pre');
+      
+      codeBlocks.forEach((block) => {
+        // Skip if already has a button
+        if (block.querySelector('.copy-code-button')) return;
+        
+        // Create the button
+        const button = document.createElement('button');
+        button.className = 'copy-code-button';
+        button.type = 'button';
+        button.ariaLabel = 'Copy code to clipboard';
+        button.innerHTML = '<i data-lucide="copy"></i>';
+        
+        // We append it to the pre block
+        block.appendChild(button);
+        
+        // Refresh lucide icons for this button
+        if (window.lucide) {
+          window.lucide.createIcons({
+            attrs: {
+              class: 'lucide-icon'
+            },
+            nameAttr: 'data-lucide'
+          });
+        }
+
+        button.addEventListener('click', async () => {
+          // Get the code content
+          const code = block.querySelector('code');
+          const text = code ? code.innerText : block.innerText;
+          
+          try {
+            await navigator.clipboard.writeText(text);
+            
+            // Success feedback
+            button.classList.add('copied');
+            button.innerHTML = '<i data-lucide="check"></i>';
+            if (window.lucide) window.lucide.createIcons();
+            
+            setTimeout(() => {
+              button.classList.remove('copied');
+              button.innerHTML = '<i data-lucide="copy"></i>';
+              if (window.lucide) window.lucide.createIcons();
+            }, 2000);
+          } catch (err) {
+            console.error('Failed to copy code: ', err);
+            button.innerHTML = '<i data-lucide="alert-circle"></i>';
+          }
+        });
+      });
+    }
+
+    // Run on initial load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addCopyButtons);
+    } else {
+        addCopyButtons();
+    }
+    
+    // Also run when the garden content updates (if using dynamic loading or search)
+    // Most digital gardens don't need this, but good for robustness
+    document.addEventListener('garden-updated', addCopyButtons);
+  })();
+</script>
