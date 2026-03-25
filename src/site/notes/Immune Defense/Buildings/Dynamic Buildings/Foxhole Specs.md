@@ -1,5 +1,5 @@
 ---
-{"dg-publish":true,"permalink":"/immune-defense/buildings/dynamic-buildings/foxhole-specs/","dg-note-properties":{"icon":"file-text"}}
+{"dg-publish":true,"permalink":"/immune-defense/buildings/dynamic-buildings/foxhole-specs/","dg-note-properties":{"icon":"file-text","showTimestamps":true}}
 ---
 
 

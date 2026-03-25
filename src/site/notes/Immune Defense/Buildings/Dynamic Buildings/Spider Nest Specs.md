@@ -12,10 +12,14 @@ A low cost and quick-to-build covert safe space.
 Building a spider hole creates an small and camouflaged 'hole' where upon a player interacting, transports them into a tight underground room that shields them from artillery and hides them from enemy pursuers. In this room, the player can take simple vulnerable actions that would otherwise expose them, recollect their thoughts, and catch their breaths.
 
 - **Short Term:** The effectiveness of cheap, fast, and secrecy are maximized when used by rather solitary players deep in enemy territory, far away from large ally forces and supply camps to take refuge in.
+
 - **Medium Term:** This initial temporary safe space can be upgraded and expand into a more long term functional secret base. Further incentivizing Saboteurs and Scouts to use them since they operate in enemy territory for extended periods of time.
+
 - **Long Term**: A developed spider nest can eventually be connected to other nearby nests and create an underground network for mass covert stronghold and logistics.
 
-- **Strength:** Allowing sustained presence in enemy territory and potential infrastructural growth to greatly increase effectiveness of Saboteur and Scout operations opens an avenue for an <u>alternate & unconventional win condition</u>. 
+
+- **Strength:** Allowing sustained presence in enemy territory and potential infrastructural growth to greatly increase effectiveness of Saboteur and Scout operations opens an avenue for an ==alternate & unconventional win condition==. 
+
 - **Weakness:** 
 
 > [!note]- Design Note
@@ -28,14 +32,19 @@ Building a spider hole creates an small and camouflaged 'hole' where upon a play
 ## Visual & Layout
 
 - **Ground Layer:** Inconspicuous pile of leaves. The sprite art automatically changes to a color variation that blends with the environment. It is small, can be easily obscured, and players far away cannot detect it regardless of line of sight.
+
 - **Underground Layer:** A makeshift dirt bunker using bushcraft. Lantern, wooden support beams, crates, some military gear and equipment scattered.
 
 ## Technical Interaction Behavior
 
 - **Collision**: The 'Hole' has no collision, a player can walk right through it and not realize it
+
 - **Enter Nest:** `Interact` with the entrance to fade the screen to black >> despawns the player >> spawns the player on the underground layer next to the exit >> screen fades back out
+
 - **'Sneaky Peak':**  `Interact` with the exit to fade the screen to black >> screen fades back out on the <u>Ground</u> Layer >> The 'Hole Cover' sprite subtly changes to an ajar/lifted position to indicate someone is peaking
+
 - **Exit Nest:**  While in the Sneaky Peak state, `Interact` again to instantly teleport to the <u>Ground</u> Layer next to the entrance
+
 - **Stop 'Sneaky Peak'**:  While in the Sneaky Peak state, `Cancel` to fade in and out back to the player character
 
 ## Deployment & Levels
@@ -66,8 +75,11 @@ Building a spider hole creates an small and camouflaged 'hole' where upon a play
 ## Additional Rules
 
 - **Hidden:** Player must be within 3 meters of the 'Hole' for 3 seconds before the entrance is highlighted and becomes interactable.
+
 - **Grenade Drop**: When a player `Alt-Interact` the 'Hole Cover' while holding a grenade, they use-up the grenade and spawn a live grenade in the hole.
+
 - **Underground**:  
+
 - **Dibs** & **Anti-Idling:** When a player creates a Nest, they have 'Dibs' on that particular one. Only they can access the Nest while they have 'Dibs'
 	- This rule is ignored if they choose to unlock the 'Commune' upgrade.
 	- The player loses 'Dibs' and 'Commune' upgrade is automatically unlocked if:
