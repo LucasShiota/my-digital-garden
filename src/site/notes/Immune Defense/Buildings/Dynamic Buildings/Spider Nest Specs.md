@@ -7,45 +7,51 @@ _ _ _ _ __
 
 ## Design Intent
 
-A low cost and quick-to-build covert safe space. 
+A small and camouflaged 'hole' where a player can go inside, transporting them into a tight dug out room. Primarily a low cost and quick-to-build covert safe space. 
 
-Building a spider hole creates an small and camouflaged 'hole' where upon a player interacting, transports them into a tight underground room that shields them from artillery and hides them from enemy pursuers. In this room, the player can take simple vulnerable actions that would otherwise expose them, recollect their thoughts, and catch their breaths.
+| Use Case Evolution                                                                                                                                                                            |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Short Term**: An accessible refuge to catch their breath and take vulnerable actions that would otherwise expose them.                                                                      |
+| **Medium Term**: Multiple players can access the spider nest. Resources can be stored for players to resupply, allowing shorter downtime and sustaining backline operations.                  |
+| **Long Term**: A developed spider nest can eventually be connected to other nearby nests, creating an underground network for mass covert mobilization, supply transportation, and operation. |
 
-
-| Use Cases                                                                                                                                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Short Term**: The effectiveness of cheap, fast, and secrecy are maximized when used by rather solitary players deep in enemy territory, far away from large ally forces and supply camps to take refuge in.                                          |
-| **Medium Term**: This initial temporary safe space can be upgraded and expand into a more long term functional secret base. Further incentivizing Saboteurs and Scouts to use them since they operate in enemy territory for extended periods of time. |
-| **Long Term**: A developed spider nest can eventually be connected to other nearby nests and create an underground network for mass covert stronghold and logistics.                                                                                   |
-
-| Balance                                                                                                                                                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Strength**<br>- Allowing sustained presence in enemy territory and potential infrastructural growth to greatly increase effectiveness of Saboteur and Scout operations opens an avenue for an ==alternate & unconventional win condition==.            |
-| **Weakness** <br>- This initial temporary safe space can be upgraded and expand into a more long term functional secret base. Further incentivizing Saboteurs and Scouts to use them since they operate in enemy territory for extended periods of time. |
+| Balance                                                                                                                                                                                                                                                                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Strength**<br>- Enabling sustained presence in enemy territory can greatly increases the effectiveness of Saboteur and Scout operations and survivability. Over an extended periods of time, this value can compound to the point that it's influence enables an ==alternate & unconventional win approach==. |
+| **Weakness** <br>- A spider nests only security is it's secrecy. If the enemy is aware of it's location, they have an overwhelming advantage against players that are currently in it. They can invade and take over the nest, or destroy the nest and anyone inside it with ease.                              |
 
 > [!note]- Design Note
->  Spider nests allows role design space to delegate certain classes or players with certain playstyle to volunteer to serve as the "bug catchers" of the team. Where they consistently maintain this threat under control. This shows similarities to the "pybro" emergent playstyle  from Team Fortress 2. 
+>  Spider nests allows role design space to delegate certain classes (or allow players with certain playstyle to "volunteer") to serve as the "bug catchers" of the team. Where they consistently maintain this threat under control. This shows similarities to the "pybro" emergent playstyle  from Team Fortress 2. 
 >  
 >  
 >> [!tip]- Context
->> *In TF2, Pyro is a class that uses a flamethrower, a weapon that "hit-scans" a large amount of area. Often the best class to check for invisible enemy Spies, with experienced players turning this into an unwritten sub-responsibility within their team. "Pybros" (as in Pyro bro) goes a step further and sticks by their team Engineer and their buildings, a primary target for Spies. Dedicating their play time checking and eliminating Spies as well as saving buildings by removing their 'sappers'.*
+>> *In TF2, Pyro is a class that uses a flamethrower, a weapon that "hit-scans" a large amount of area. Often the best class to check for invisible enemy Spies, with experienced players turning this into an unwritten sub-responsibility within their team. "Pybros" (as in Pyro bro) goes a step further and sticks by their team Engineer and their buildings, a primary target for Spies. Dedicating their play time checking and eliminating Spies as well as saving buildings by removing their 'sappers' with a dedicated melee weapon they can equip.*
 
 ## Visual & Layout
 
-- **Ground Layer:** Inconspicuous pile of leaves. The sprite art automatically changes to a color variation that blends with the environment. It is small, can be easily obscured, and players far away cannot detect it regardless of line of sight.
-
+- **Ground Layer:** Inconspicuous pile of leaves. The sprite automatically changes to a color variation that blends with the environment. It is small, can be easily obscured, and is invisible to players far away.
 - **Underground Layer:** A makeshift dirt bunker using bushcraft. Lantern, wooden support beams, crates, some military gear and equipment scattered.
 
 ## Technical Interaction Behavior
 
+
+|                    |                        |         |         |         |         |
+| ------------------ | ---------------------- | ------- | ------- | ------- | ------- |
+| Interaction Name   | Requirements           | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
+| Collision          |                        |         |         |         |         |
+| Enter Nest         |                        |         |         |         |         |
+| 'Sneaky Peak'      |                        |         |         |         |         |
+| Exit Nest          |                        |         |         |         |         |
+| Stop 'Sneaky Peak' | In 'Sneaky Peak' state |         |         |         |         |
+|                    |                        |         |         |         |         |
+
+
+
+
 - **Collision**: The 'Hole' has no collision, a player can walk right through it and not realize it
-
 - **Enter Nest:** `Interact` with the entrance to fade the screen to black >> despawns the player >> spawns the player on the underground layer next to the exit >> screen fades back out
-
 - **'Sneaky Peak':**  `Interact` with the exit to fade the screen to black >> screen fades back out on the <u>Ground</u> Layer >> The 'Hole Cover' sprite subtly changes to an ajar/lifted position to indicate someone is peaking
-
 - **Exit Nest:**  While in the Sneaky Peak state, `Interact` again to instantly teleport to the <u>Ground</u> Layer next to the entrance
-
 - **Stop 'Sneaky Peak'**:  While in the Sneaky Peak state, `Cancel` to fade in and out back to the player character
 
 ## Deployment & Levels
@@ -76,11 +82,8 @@ Building a spider hole creates an small and camouflaged 'hole' where upon a play
 ## Additional Rules
 
 - **Hidden:** Player must be within 3 meters of the 'Hole' for 3 seconds before the entrance is highlighted and becomes interactable.
-
 - **Grenade Drop**: When a player `Alt-Interact` the 'Hole Cover' while holding a grenade, they use-up the grenade and spawn a live grenade in the hole.
-
-- **Underground**:  
-
+- **Underground**:
 - **Dibs** & **Anti-Idling:** When a player creates a Nest, they have 'Dibs' on that particular one. Only they can access the Nest while they have 'Dibs'
 	- This rule is ignored if they choose to unlock the 'Commune' upgrade.
 	- The player loses 'Dibs' and 'Commune' upgrade is automatically unlocked if:

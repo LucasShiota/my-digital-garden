@@ -7,17 +7,15 @@ _ _ _ _ __
 
 ## Design Intent
 
-A semi-open defensive refuge and secure fighting position .
+A medium sized pit with some fortifications a player can enter. Players inside have an innate increase to bullet avoid chance while still able to see and shoot normally. This allows foxholes to create a static zone control and become a secure fighting position.
 
-Building a foxhole creates a square in the <u>subsurface</u> layer, a player must interact with it to enter this square space. While inside and adjacent to the walls, they can maintain line of sight, shooting capabilities, while benefiting from a significant bullet avoid chance buff. If the player is not adjacent to a wall, their line of sight and shooting capabilities returns to default for that layer but is immune to bullets instead. Note: this bullet avoid chance is specifically for bullets from distant sources outside the foxhole.
-
-| Use Cases                                                                                                                                                                              |
+| Use Case Evolution                                                                                                                                                                     |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Short Term**: Immediate positional power advantage against enemies far away through the native bullet protection buff.                                                               |
+| **Short Term**: Immediate power advantage against enemies far away through the native bullet protection buff.                                                                          |
 | **Medium Term**: Greater territorial dominance through building upgrades like protective barriers and heavy weapons. Initial weaknesses are minimized.                                 |
 | **Long Term**: Medics and Engineers can operate inside and therefore near the frontline that otherwise would be too great of a risk. The foxhole becomes a self-sustaining stronghold. |
 
-| Balance                                                                                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Weaknesses**<br>- Enemy Countermeasures: Close-distance assault, grenades, spies, air strikes<br>- Overreliance: Becoming too dependent can stagnate acquiring more land and advancing the frontline further. |
-| **Strengths**<br>- Frontline control & zoning<br>- Allow safe space for multiple operations                                                                                                                     |
+| Balance                                                                                                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Weaknesses**<br>- Enemy Countermeasures: Close-distance assault, grenades, bomb plants by spies, air strikes<br>- Overreliance: Becoming too dependent can stagnate the momentum of advancing the frontline further. |
+| **Strengths**<br>- Frontline control & zoning<br>- Allow safe space for multiple operations and for operations to be closer to the frontline                                                                           |
