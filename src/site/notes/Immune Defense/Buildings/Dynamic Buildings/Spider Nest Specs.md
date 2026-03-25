@@ -11,16 +11,19 @@ A low cost and quick-to-build covert safe space.
 
 Building a spider hole creates an small and camouflaged 'hole' where upon a player interacting, transports them into a tight underground room that shields them from artillery and hides them from enemy pursuers. In this room, the player can take simple vulnerable actions that would otherwise expose them, recollect their thoughts, and catch their breaths.
 
-- **Short Term:** The effectiveness of cheap, fast, and secrecy are maximized when used by rather solitary players deep in enemy territory, far away from large ally forces and supply camps to take refuge in.
+**Short Term**
+The effectiveness of cheap, fast, and secrecy are maximized when used by rather solitary players deep in enemy territory, far away from large ally forces and supply camps to take refuge in.
 
-- **Medium Term:** This initial temporary safe space can be upgraded and expand into a more long term functional secret base. Further incentivizing Saboteurs and Scouts to use them since they operate in enemy territory for extended periods of time.
+**Medium Term**
+This initial temporary safe space can be upgraded and expand into a more long term functional secret base. Further incentivizing Saboteurs and Scouts to use them since they operate in enemy territory for extended periods of time.
 
-- **Long Term**: A developed spider nest can eventually be connected to other nearby nests and create an underground network for mass covert stronghold and logistics.
+**Long Term**
+A developed spider nest can eventually be connected to other nearby nests and create an underground network for mass covert stronghold and logistics.
 
+**Strength**
+Allowing sustained presence in enemy territory and potential infrastructural growth to greatly increase effectiveness of Saboteur and Scout operations opens an avenue for an ==alternate & unconventional win condition==. 
 
-- **Strength:** Allowing sustained presence in enemy territory and potential infrastructural growth to greatly increase effectiveness of Saboteur and Scout operations opens an avenue for an ==alternate & unconventional win condition==. 
-
-- **Weakness:** 
+**Weakness** 
 
 > [!note]- Design Note
 >  Spider nests allows role design space to delegate certain classes or players with certain playstyle to volunteer to serve as the "bug catchers" of the team. Where they consistently maintain this threat under control. This shows similarities to the "pybro" emergent playstyle  from Team Fortress 2. 
