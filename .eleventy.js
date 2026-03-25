@@ -381,12 +381,21 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter("iconify", function(str) {
     if (!str) return str;
     // Identifies :home:, ::home::, :LiHome:, ::LiHome:
-    return str.replace(/:{1,2}(?:Li)?([a-zA-Z0-9-]+):{1,2}/g, (match, iconName) => {
+    // Added 'i' flag to match :li: or :LI: or :Li:
+    return str.replace(/:{1,2}(?:li)?([a-zA-Z0-9-]+):{1,2}/gi, (match, iconName) => {
       // Convert camelCase to kebab-case (e.g., MessageCircleQuestion -> message-circle-question)
-      const normalizedName = iconName
+      let normalizedName = iconName
         .replace(/([a-z])([A-Z])/g, '$1-$2')
         .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
+        .replace(/([a-z0-9])([A-Z])/g, '$1-$2') // handle numbers (e.g., Grid3x3 -> grid-3x3)
         .toLowerCase();
+      
+      // Compatibility: Strip trailing "-mark" which some Obsidian plugins append
+      // (e.g., MessageCircleQuestionMark -> message-circle-question-mark -> message-circle-question)
+      if (normalizedName.endsWith("-mark")) {
+        normalizedName = normalizedName.replace(/-mark$/, '');
+      }
+      
       return `<i data-lucide="${normalizedName}" class="inline-icon"></i>`;
     });
   });

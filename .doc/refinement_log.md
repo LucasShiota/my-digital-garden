@@ -61,7 +61,15 @@ Added a suite of premium features focusing on micro-interactions and performance
   - **Toggle:** Instant toggle using **Alt + R**.
   - **Visuals:** Dims the rest of the viewport with a soft blur and accent-color boundaries to guide the eye.
 
+## 7. Icon Shortcode Robustness
+Updated the `iconify` filter to bridge the gap between Obsidian plugins and official Lucide naming conventions.
+
+- **Case Insensitivity:** The `Li` prefix is now case-insensitive (matching `:li:`, `:LI:`, or `:Li:`).
+- **Suffix Cleansing:** Added logic to automatically strip the `-mark` suffix (e.g., `MessageCircleQuestionMark` $\rightarrow$ `message-circle-question`). This ensures compatibility with Obsidian plugins that use extended descriptive names while the site's Lucide script expects the official ID.
+- **Improved Pattern Handling:** Enhanced the normalization logic to handle CamelCase more reliably across different platforms.
+
 ### Documentation History
 
+Updated by Antigravity on 2026-03-25 (Enhanced Icon Robustness).
 Updated by Antigravity on 2026-03-24 (Added QoL Section).
 Created by Antigravity on 2026-03-24.
