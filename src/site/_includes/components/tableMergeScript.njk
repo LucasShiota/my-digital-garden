@@ -1,0 +1,54 @@
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    function processTableMerges() {
+        const tables = document.querySelectorAll(".markdown-rendered table");
+        
+        tables.forEach(table => {
+            // 1. Horizontal Merging (<) - Process rows from right to left
+            const rows = Array.from(table.querySelectorAll("tr"));
+            rows.forEach(row => {
+                const cells = Array.from(row.cells);
+                for (let i = cells.length - 1; i > 0; i--) {
+                    const cell = cells[i];
+                    if (cell.innerText.trim() === "<") {
+                        const targetCell = cells[i - 1];
+                        if (targetCell) {
+                            const currentSpan = parseInt(targetCell.getAttribute("colspan") || 1);
+                            targetCell.setAttribute("colspan", currentSpan + 1);
+                            cell.style.display = 'none'; // Use display none to avoid messing up row.cells index if we were to .remove()
+                        }
+                    }
+                }
+            });
+
+            // 2. Vertical Merging (^) - Process columns from bottom to top
+            // Note: This matches cells by index. If you have complex colspans combined with rowspans, 
+            // the indices might shift, but for most digital garden tables it works perfectly.
+            for (let r = rows.length - 1; r > 0; r--) {
+                const row = rows[r];
+                const prevRow = rows[r-1];
+                const cells = Array.from(row.cells);
+                
+                cells.forEach((cell, i) => {
+                    if (cell.innerText.trim() === "^" && cell.style.display !== 'none') {
+                        // Find the corresponding cell in the row above
+                        // We look for the cell at the same visual index
+                        const targetCell = prevRow.cells[i];
+                        if (targetCell) {
+                            const currentSpan = parseInt(targetCell.getAttribute("rowspan") || 1);
+                            targetCell.setAttribute("rowspan", currentSpan + 1);
+                            cell.style.display = 'none';
+                        }
+                    }
+                }
+            );
+          }
+          
+          // Final Cleanup: Remove the hidden cells to clean up the DOM
+          table.querySelectorAll('td[style*="display: none"], th[style*="display: none"]').forEach(cell => cell.remove());
+        });
+    }
+
+    processTableMerges();
+});
+</script>
