@@ -9,11 +9,12 @@ _ _ _ _ __
 
 A small and camouflaged 'hole' where a player can go inside, transporting them into a tight dug out room. Primarily a low cost and quick-to-build covert safe space. 
 
-| Use Case Evolution                                                                                                                                                                            |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Short Term**: An accessible refuge to catch their breath and take vulnerable actions that would otherwise expose them.                                                                      |
-| **Medium Term**: Multiple players can access the spider nest. Resources can be stored for players to resupply, allowing shorter downtime and sustaining backline operations.                  |
-| **Long Term**: A developed spider nest can eventually be connected to other nearby nests, creating an underground network for mass covert mobilization, supply transportation, and operation. |
+| Use Case Evolution                                                                                                                                                                                                         |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **<font color="#f79646">Short Term</font>**: An accessible refuge to catch their breath and take vulnerable actions that would otherwise expose them.                                                                      |
+| <font color="#f79646">**Medium Term**</font>: Multiple players can access the spider nest. Resources can be stored for players to resupply, allowing shorter downtime and sustaining backline operations.                  |
+| <font color="#f79646">**Long Term**</font>: A developed spider nest can eventually be connected to other nearby nests, creating an underground network for mass covert mobilization, supply transportation, and operation. |
+|                                                                                                                                                                                                                            |
 
 | Balance                                                                                                                                                                                                                                                                                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -27,7 +28,7 @@ A small and camouflaged 'hole' where a player can go inside, transporting them i
 
 ## Visual & Layout
 
-- **Ground <font color="#953734">Layer</font>:** Inconspicuous pile of leaves. The sprite automatically changes to a color variation that blends with the environment. It is small, can be easily obscured, and is invisible to players far away.
+- **Ground Layer:** Inconspicuous pile of leaves. The sprite automatically changes to a color variation that blends with the environment. It is small, can be easily obscured, and is invisible to players far away.
 - **Underground Layer:** A makeshift dirt bunker using bushcraft. Lantern, wooden support beams, crates, some military gear and equipment scattered.
 
 ## Technical Interaction Behavior
