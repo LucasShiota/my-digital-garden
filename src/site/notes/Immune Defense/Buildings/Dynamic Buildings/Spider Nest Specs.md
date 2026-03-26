@@ -32,16 +32,6 @@ A small and camouflaged 'hole' where a player can go inside, transporting them i
 
 ## Technical Interaction Behavior
 
-|                    |                        |         |         |         |         |
-| ------------------ | ---------------------- | ------- | ------- | ------- | ------- |
-| Interaction Name   | Requirements           | Stage 1 | Stage 2 | Stage 3 | Stage 4 |
-| Collision          |                        |         |         |         |         |
-| Enter Nest         |                        |         |         |         |         |
-| 'Sneaky Peak'      |                        |         |         |         |         |
-| Exit Nest          |                        |         |         |         |         |
-| Stop 'Sneaky Peak' | In 'Sneaky Peak' state |         |         |         |         |
-|                    |                        |         |         |         |         |
-
 - **Collision**: The 'Hole' has no collision, a player can walk right through it and not realize it
 - **Enter Nest:** `Interact` with the entrance to fade the screen to black >> despawns the player >> spawns the player on the underground layer next to the exit >> screen fades back out
 - **'Sneaky Peak':**  `Interact` with the exit to fade the screen to black >> screen fades back out on the <u>Ground</u> Layer >> The 'Hole Cover' sprite subtly changes to an ajar/lifted position to indicate someone is peaking
@@ -52,7 +42,7 @@ A small and camouflaged 'hole' where a player can go inside, transporting them i
 
 - Build Access: Sabotage Corps (default),  Scout Corps (default)
 
-| Building Requirements Table | <               | <               | <              | <            | <              |               |
+| Building Requirements Table | <               | <               | <              | <            | <              | <             |
 | --------------------------- | --------------- | --------------- | -------------- | ------------ | -------------- | ------------- |
 | **Level**                   | **Set Up Cost** | **Cost/second** | **Build Time** | Max Subrooms | Main Room Size | Hallway Width |
 | 0.5 (Set Up)                | none            | none            | none           | n/a          | n/a            | n/a           |
