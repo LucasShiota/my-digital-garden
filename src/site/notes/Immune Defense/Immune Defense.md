@@ -16,9 +16,6 @@ A charmingly unserious top down shooter that reimagines what a big picture objec
 ## :LiGoal: Goals
 
 1. **Game Sense over Execution** - Prioritize horizontal skill expression over a mechanics-heavy vertical ceiling.
-
 2. **Cheerful Style, Cheerful Matches** - Lower match friction and play fatigue by delivering humor, lighthearted visuals, and a low-pressure atmosphere.
-
 3. **New Axes of Play** - Introduce new variables and asymmetrical roles to let players tackle the classic team battle formula in fresh ways.
-
 4. **Reliable Fun** - Respect players' time and accommodate them in matchmaking and rewards regardless of skill or retention levels.
