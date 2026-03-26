@@ -25,8 +25,8 @@ $border-radius-sm:  6px;
 // 3. TYPOGRAPHY
 $font-family-body:   "Atkinson Hyperlegible Next", sans-serif;
 $font-family-header: "Outfit", sans-serif;
-$base-font-size:     18px; // Increased for extra spaciousness
-$line-height:        1.8; // High line-height for a premium feel
+$base-font-size:     18px; 
+$line-height:        1.85; // Slightly increased for maximum spaciousness
 
 // 4. MAP TO CSS VARIABLES (Injects tokens into the system)
 :root {
@@ -56,9 +56,9 @@ $line-height:        1.8; // High line-height for a premium feel
     --code-background: #{$bg-alt};
     --code-block-background: #{$bg-alt};
 
-    // Tables
-    --table-header-background: #292e42; // Softened blue-gray for better header contrast
-    --table-border-color: #{$bg-highlight};
+    // Tables (Matched to OLD version precision)
+    --table-header-background: #292e42; 
+    --table-border-color: #292e42; // Integrated fill: border = header bg
 
     // Tags
     --tag-color: #{$accent-secondary};
@@ -85,26 +85,32 @@ $line-height:        1.8; // High line-height for a premium feel
 // 5. COMPONENT FIXES (Restoring lost theme logic)
 .markdown-rendered {
     p, li {
-        margin-bottom: 1.25em; // Dynamic spacing between paragraphs
+        margin-bottom: 1.5em; // Standardized paragraph gap from old version
+        line-height: var(--line-height, 1.85);
+    }
+
+    li > p {
+        margin-bottom: 0.5em; /* Tighter gap inside list items */
     }
 
     table {
         border-collapse: collapse;
-        margin: 2em 0; // More vertical air around tables
-        width: 100%;
+        margin: 2.5em 0; 
+        width: 100% !important;
         border: 1px solid var(--table-border-color);
         
         th {
             background-color: var(--table-header-background);
             font-family: var(--font-interface);
             color: var(--accent-vibrant);
-            padding: 14px 16px; // Generous breathable padding
+            padding: 16px 20px; // Premium breathable padding
             border: 1px solid var(--table-border-color);
-            text-align: left;
+            text-align: center; // Align center as requested
+            font-weight: 700;
         }
 
         td {
-            padding: 8px 12px;
+            padding: 10px 14px;
             border: 1px solid var(--table-border-color);
         }
 
