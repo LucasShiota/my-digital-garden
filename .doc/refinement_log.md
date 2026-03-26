@@ -104,8 +104,16 @@ Linked the diagram aesthetics directly to the centralized design tokens for a co
 - **Thematic Bridge:** Updated `mermaid.njk` to use the `base` theme and `themeVariables`. It now dynamically fetches current theme values via `getComputedStyle`, ensuring diagrams always match your Tokyo Night workspace.
 - **Spacious Fonts:** Standardized diagram font family to **Atkinson Hyperlegible Next** to match the body text.
 
+## 12. Horizontal Table Scrolling 📋
+
+Optimized the technical data viewing experience for complex building specs with high column counts.
+
+- **Non-Squish Scrolling:** Implemented `display: block` and `overflow-x: auto` for all tables. Large building specs with many columns will now scroll sideways horizontally (maintaining their data integrity) instead of being squished or overflowing the note container.
+- **Premium Legibility:** Maintained the optimized 18px/1.85 line-spacing and 900px column width for text reading, while allowing dense data tables to "break out" of the viewport safely.
+
 ### Documentation History
 
+Updated by Antigravity on 2026-03-26 (Horizontal Table Scrolling).
 Updated by Antigravity on 2026-03-26 (Unified Mermaid Styling via Design Tokens).
 Updated by Antigravity on 2026-03-26 (Enhanced DX, Table Merging, and Spacing).
 Updated by Antigravity on 2026-03-26 (Integrated Mermaid.js & Fixed Eleventy 3.x CLI).

@@ -104,10 +104,15 @@ $line-height:        1.85; // Slightly increased for maximum spaciousness
     }
 
     table {
+        display: block; // Enables overflow scroll without a wrapper
+        overflow-x: auto;
         border-collapse: collapse;
         margin: 2.5em 0; 
         width: 100% !important;
         border: 1px solid var(--table-border-color);
+        
+        // Ensure table fills the width if small, but allows scroll if large
+        min-width: 100%; 
         
         th {
             background-color: var(--table-header-background);
