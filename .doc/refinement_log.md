@@ -82,16 +82,13 @@ We detached the external theme dependency and implemented a centralized, localiz
 
 Enhanced the GDD Wiki's ability to document complex systems using Mermaid.js and resolved infrastructure issues.
 
-- **Mermaid.js Integration:** Added full support for Mermaid diagrams (flowcharts, state diagrams, and state machines).
-  - **Implementation:** Added `mermaid.njk` in `common/footer` to load and initialize **Mermaid v11** via ESM.
-  - **Backend:** Updated the `markdown-it` fence rule in `.eleventy.js` to correctly identify and prepare ` ```mermaid ` blocks for frontend rendering.
-- **Eleventy 3.x CLI Patch:** Fixed a fatal error where the `--open` flag caused the dev server to crash after upgrading to Eleventy 3.x.
-  - **Solution:** Migrated the "open browser" functionality to `eleventyConfig.setServerOptions({ open: true })` in the configuration file.
-- **Spec-to-SVG Synchronization:** Updated the **Spider Nest Specs** with valid Mermaid state diagrams.
-  - **QoL:** Replaced broken/manual syntax with standard symbols, ensuring diagrams render identically in Obsidian and on the live site.
+- **Minifier Protection:** Wrapped Mermaid blocks in `<code>` tags within `.eleventy.js` to ensure the HTML minifier preserves newlines, resolving the "Syntax error in text" on the live site.
+- **Robust Initialization:** Reconfigured `mermaid.njk` to use explicit `mermaid.run()` targeting only `.mermaid` elements. This avoids version clashes and allows for a customized **Forest** theme that complements the Tokyo Night aesthetic.
+- **Spec Synchronization:** Synchronized the corrected Mermaid syntax across both the Obsidian vault (`test/`) and the Garden source (`src/site/notes/`).
 
 ### Documentation History
 
+Updated by Antigravity on 2026-03-26 (Fixed Mermaid Whitespace Stripping & Initialization).
 Updated by Antigravity on 2026-03-26 (Integrated Mermaid.js & Fixed Eleventy 3.x CLI).
 Updated by Antigravity on 2026-03-26 (Refined Tokyo Night Storm & Font Migration).
 Updated by Antigravity on 2026-03-26 (Enhanced Icon Robustness).

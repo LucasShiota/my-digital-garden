@@ -184,7 +184,7 @@ module.exports = function(eleventyConfig) {
         const token = tokens[idx];
         if (token.info === "mermaid") {
           const code = token.content.trim();
-          return `<pre class="mermaid">${code}</pre>`;
+          return `<pre class="mermaid"><code>${code}</code></pre>`;
         }
         if (token.info === "transclusion") {
           const code = token.content.trim();
