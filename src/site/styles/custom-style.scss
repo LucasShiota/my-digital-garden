@@ -1,3 +1,5 @@
+@import "theme-control";
+
 body {
     /* --- PREMIUM SVG ICON SYSTEM (LUCIDE) --- */
     .content h1, 
@@ -185,5 +187,18 @@ body {
             height: 1.1em;
             stroke-width: 1.75;
         }
+    }
+
+    /* --- PREMIUM SELECTION & HIGHLIGHTS --- */
+    ::selection {
+        background-color: var(--accent-color, #7aa2f7);
+        color: #000 !important; /* Force high contrast on selection */
+    }
+
+    mark {
+        background-color: rgba(255, 158, 100, 0.4); /* Vibrant Tokyo Night Orange */
+        color: var(--text-normal);
+        border-radius: 4px;
+        padding: 0.1em 0.2em;
     }
 }
