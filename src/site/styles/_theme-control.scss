@@ -108,13 +108,14 @@ $line-height:        1.85; // Slightly increased for maximum spaciousness
         overflow-x: auto;
         border-collapse: collapse;
         margin: 2.5em 0; 
-        width: 100% !important;
         border: 1px solid var(--table-border-color);
         
-        // Ensure table fills the width if small, but allows scroll if large
-        min-width: 100%; 
+        // Ensure table container stays within its parent but content triggers overflow
+        width: 100%;
+        max-width: 100%;
         
         th {
+            white-space: nowrap; // Force headers to stay on one line to drive width
             background-color: var(--table-header-background);
             font-family: var(--font-interface);
             color: var(--accent-vibrant);
