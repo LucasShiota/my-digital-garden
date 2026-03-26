@@ -74,13 +74,13 @@ Updated the `iconify` filter to bridge the gap between Obsidian plugins and offi
 We detached the external theme dependency and implemented a centralized, localized design system.
 
 - **Theme Control Station:** Created `src/site/styles/_theme-control.scss` as a "hidden" dashboard for all design variables (typography, colors, and layout).
-- **Design Tokens:** Moved away from external theme URLs to local Sass variables (`$accent-primary`, `$bg-main`, etc.), providing faster load times and total creative control.
-- **High-Contrast Text Highlights:** Implemented explicit `::selection` and `mark` styling to ensure text remains perfectly readable regardless of the background theme colors.
-- **Infrastructure:** Updated `.env` and `custom-style.scss` to use the new local token system instead of a downloaded `.css` file.
+- **Atkinson Hyperlegible Next:** Migrated the main body font to **Atkinson Hyperlegible Next** (weights 200–800) for maximum readability, paired with **Outfit** for headers.
+- **Tokyo Night "Storm" Refinement:** Re-engineered the color palette to use the official Tokyo Night "Storm" specification, including signature #1a1b26 background and #ff9e64 vibrant orange accents.
+- **Infrastructure:** Updated `.env`, `pageheader.njk`, and `custom-style.scss` to use the new local token system instead of a downloaded `.css` file.
 
 ### Documentation History
 
-Updated by Antigravity on 2026-03-26 (Implemented Theme Control Station).
+Updated by Antigravity on 2026-03-26 (Refined Tokyo Night Storm & Font Migration).
 Updated by Antigravity on 2026-03-25 (Enhanced Icon Robustness).
 Updated by Antigravity on 2026-03-24 (Added QoL Section).
 Created by Antigravity on 2026-03-24.

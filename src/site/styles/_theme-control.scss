@@ -5,32 +5,34 @@
    color, and layout changes for your Digital Garden.
    ========================================================================== */
 
-// 1. COLORS (Using Tokyo Night placeholders)
-$accent-primary:   #7aa2f7; // Lucid Blue
-$accent-secondary: #bb9af7; // Magenta-Purple
+// 1. COLORS (Refined Tokyo Night "Storm" palette)
+$accent-primary:   #7aa2f7; // Vivid Blue
+$accent-secondary: #bb9af7; // Soft Magenta
+$accent-vibrant:   #ff9e64; // Tokyo Orange (for headers)
 $bg-main:          #1a1b26; // Deep Night Background
-$bg-alt:           #16161e; // Slightly Darker
-$bg-highlight:     #292e42; // Selection/Hover Background
-$text-normal:      #c0caf5; // Crisp White/Gray
-$text-muted:       #a9b1d6; // Softer Blue-Gray
-$text-faint:       #565f89; // Comments/Faint elements
+$bg-alt:           #16161e; // Darker Sidepanels
+$bg-highlight:     #292e42; // Perfect Selection Glow
+$text-normal:      #c0caf5; // Contrast-balanced foreground
+$text-muted:       #9aa5ce; // Muted blue-gray
+$text-faint:       #565f89; // Comments
 
 // 2. LAYOUT
-$content-max-width: 880px;
-$sidebar-width:     300px;
-$border-radius-lg:  12px;
-$border-radius-sm:  4px;
+$content-max-width: 900px;
+$sidebar-width:     280px;
+$border-radius-lg:  14px;
+$border-radius-sm:  6px;
 
 // 3. TYPOGRAPHY
-$font-family-body:   "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+$font-family-body:   "Atkinson Hyperlegible Next", sans-serif;
 $font-family-header: "Outfit", sans-serif;
-$base-font-size:     16px;
-$line-height:        1.6;
+$base-font-size:     17px; // Bumped up for legibility next
+$line-height:        1.7;
 
 // 4. MAP TO CSS VARIABLES (Injects tokens into the system)
 :root {
     --accent-color: #{$accent-primary};
     --accent-secondary: #{$accent-secondary};
+    --accent-vibrant: #{$accent-vibrant};
     
     // Backgrounds
     --background-primary: #{$bg-main};
@@ -42,11 +44,22 @@ $line-height:        1.6;
     --text-normal: #{$text-normal};
     --text-muted: #{$text-muted};
     --text-faint: #{$text-faint};
-    --text-accent: #{$accent-secondary};
+    --text-accent: #{$accent-vibrant};
 
     // Layout
     --file-line-width: #{$content-max-width};
     --radius-l: #{$border-radius-lg};
+
+    // Typography
+    --font-default: #{$font-family-body};
+    --font-interface: #{$font-family-header};
+}
+
+// 5. GLOBAL OVERRIDES (Unified Aesthetic)
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-interface);
+    color: var(--text-accent);
+    font-weight: 700;
 }
 
 .theme-dark {
