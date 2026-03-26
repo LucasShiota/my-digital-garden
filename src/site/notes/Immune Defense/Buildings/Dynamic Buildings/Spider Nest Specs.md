@@ -76,18 +76,17 @@ _ _ _ _ __
 
 ```mermaid
 stateDiagram-v2
-
     state UndergroundLayer {
-        [*] --> Interior: Safe Room
-        Interior --> SneakyPeak: Interact (Exit)
-        SneakyPeak --> Interior: Cancel
-        SneakyPeak --> GroundLayer: Interact (Exit Again)
+        [*] --> Interior : Safe Room
+        Interior --> SneakyPeak : Interact (Exit)
+        SneakyPeak --> Interior : Cancel
+        SneakyPeak --> GroundLayer : Interact (Exit Again)
     }
 ```
 
 ```mermaid
 flowchart LR
-Start --> Stop
+    Start --> Stop
 ```
 
 ```mermaid
@@ -95,5 +94,5 @@ graph BT
     User -->|Requests| App
     App -->|Queries| DB[(Database)]
     DB -.->|Responds| App
-    App ==>|Shows| UI[User Interface]
+    App -.->|Shows| UI[User Interface]
 ```
