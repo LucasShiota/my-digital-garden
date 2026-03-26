@@ -27,7 +27,7 @@ A small and camouflaged 'hole' where a player can go inside, transporting them i
 
 ## Visual & Layout
 
-- **Ground Layer:** Inconspicuous pile of leaves. The sprite automatically changes to a color variation that blends with the environment. It is small, can be easily obscured, and is invisible to players far away.
+- **Ground <font color="#953734">Layer</font>:** Inconspicuous pile of leaves. The sprite automatically changes to a color variation that blends with the environment. It is small, can be easily obscured, and is invisible to players far away.
 - **Underground Layer:** A makeshift dirt bunker using bushcraft. Lantern, wooden support beams, crates, some military gear and equipment scattered.
 
 ## Technical Interaction Behavior
