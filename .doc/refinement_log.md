@@ -96,8 +96,17 @@ Optimized the local development loop to support the new decentralized theme syst
 - **Incremental Speed:** Configured `package.json` and `.eleventy.js` to use `--incremental` building, reducing dev rebuild times from 2s to <200ms for large notes.
 - **Server Orchestration:** Migrated the "open browser" and watcher logic into `.eleventy.js` using `setServerOptions`. This prevents the "unknown flag" crashes seen during the v3 transition.
 
+## 11. Unified Mermaid Styling 🎨
+
+Linked the diagram aesthetics directly to the centralized design tokens for a cohesive cross-page experience.
+
+- **Token Integration:** Added Mermaid-specific tokens to `_theme-control.scss` for node backgrounds, borders, and line colors.
+- **Thematic Bridge:** Updated `mermaid.njk` to use the `base` theme and `themeVariables`. It now dynamically fetches current theme values via `getComputedStyle`, ensuring diagrams always match your Tokyo Night workspace.
+- **Spacious Fonts:** Standardized diagram font family to **Atkinson Hyperlegible Next** to match the body text.
+
 ### Documentation History
 
+Updated by Antigravity on 2026-03-26 (Unified Mermaid Styling via Design Tokens).
 Updated by Antigravity on 2026-03-26 (Enhanced DX, Table Merging, and Spacing).
 Updated by Antigravity on 2026-03-26 (Integrated Mermaid.js & Fixed Eleventy 3.x CLI).
 Updated by Antigravity on 2026-03-26 (Refined Tokyo Night Storm & Font Migration).

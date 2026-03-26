@@ -15,6 +15,8 @@ $bg-highlight:     #292e42; // Perfect Selection Glow
 $text-normal:      #c0caf5; // Contrast-balanced foreground
 $text-muted:       #9aa5ce; // Muted blue-gray
 $text-faint:       #565f89; // Comments
+$mermaid-node-bg:  #1e2233; // Deep Night blue-black
+$mermaid-node-border: #7aa2f7; // Blue border
 
 // 2. LAYOUT
 $content-max-width: 900px;
@@ -80,6 +82,14 @@ $line-height:        1.85; // Slightly increased for maximum spaciousness
     // Typography
     --font-default: #{$font-family-body};
     --font-interface: #{$font-family-header};
+
+    // Mermaid Diagrams
+    --mermaid-node-bg: #{$mermaid-node-bg};
+    --mermaid-node-border: #{$mermaid-node-border};
+    --mermaid-line-color: #{$text-muted};
+    --mermaid-text-color: #{$text-normal};
+    --mermaid-label-bg: #{$bg-alt};
+    --mermaid-font: #{$font-family-body};
 }
 
 // 5. COMPONENT FIXES (Restoring lost theme logic)

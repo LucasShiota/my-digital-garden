@@ -2,14 +2,24 @@
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
   (function() {
-      mermaid.initialize({
-          startOnLoad: false,
-          theme: 'forest',
-          securityLevel: 'loose',
-          fontFamily: 'Atkinson Hyperlegible Next, sans-serif'
-      });
-
       document.addEventListener('DOMContentLoaded', async () => {
+          // Initialize with current computed styles from our theme tokens
+          mermaid.initialize({
+              startOnLoad: false,
+              theme: 'base',
+              themeVariables: {
+                  primaryColor: getComputedStyle(document.body).getPropertyValue('--mermaid-node-bg').trim() || '#1e2233',
+                  primaryBorderColor: getComputedStyle(document.body).getPropertyValue('--mermaid-node-border').trim() || '#7aa2f7',
+                  primaryTextColor: getComputedStyle(document.body).getPropertyValue('--mermaid-text-color').trim() || '#c0caf5',
+                  lineColor: getComputedStyle(document.body).getPropertyValue('--mermaid-line-color').trim() || '#9aa5ce',
+                  secondaryColor: getComputedStyle(document.body).getPropertyValue('--mermaid-label-bg').trim() || '#16161e',
+                  tertiaryColor: getComputedStyle(document.body).getPropertyValue('--background-secondary').trim() || '#16161e',
+                  fontFamily: getComputedStyle(document.body).getPropertyValue('--mermaid-font').trim() || 'sans-serif',
+                  fontSize: '14px'
+              },
+              securityLevel: 'loose'
+          });
+
           const elements = document.querySelectorAll('.mermaid[data-mermaid-src]');
           for (const el of elements) {
               try {
