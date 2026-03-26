@@ -29,7 +29,7 @@ $base-font-size:     18px;
 $line-height:        1.85; // Slightly increased for maximum spaciousness
 
 // 4. MAP TO CSS VARIABLES (Injects tokens into the system)
-:root {
+:root, .theme-dark, .theme-light {
     --accent-color: #{$accent-primary};
     --accent-secondary: #{$accent-secondary};
     --accent-vibrant: #{$accent-vibrant};

@@ -78,9 +78,22 @@ We detached the external theme dependency and implemented a centralized, localiz
 - **Tokyo Night "Storm" Refinement:** Re-engineered the color palette to use the official Tokyo Night "Storm" specification, including signature #1a1b26 background and #ff9e64 vibrant orange accents.
 - **Infrastructure:** Updated `.env`, `pageheader.njk`, and `custom-style.scss` to use the new local token system instead of a downloaded `.css` file.
 
+## 9. Mermaid Visualization & Technical Fixes
+
+Enhanced the GDD Wiki's ability to document complex systems using Mermaid.js and resolved infrastructure issues.
+
+- **Mermaid.js Integration:** Added full support for Mermaid diagrams (flowcharts, state diagrams, and state machines).
+  - **Implementation:** Added `mermaid.njk` in `common/footer` to load and initialize **Mermaid v11** via ESM.
+  - **Backend:** Updated the `markdown-it` fence rule in `.eleventy.js` to correctly identify and prepare ` ```mermaid ` blocks for frontend rendering.
+- **Eleventy 3.x CLI Patch:** Fixed a fatal error where the `--open` flag caused the dev server to crash after upgrading to Eleventy 3.x.
+  - **Solution:** Migrated the "open browser" functionality to `eleventyConfig.setServerOptions({ open: true })` in the configuration file.
+- **Spec-to-SVG Synchronization:** Updated the **Spider Nest Specs** with valid Mermaid state diagrams.
+  - **QoL:** Replaced broken/manual syntax with standard symbols, ensuring diagrams render identically in Obsidian and on the live site.
+
 ### Documentation History
 
+Updated by Antigravity on 2026-03-26 (Integrated Mermaid.js & Fixed Eleventy 3.x CLI).
 Updated by Antigravity on 2026-03-26 (Refined Tokyo Night Storm & Font Migration).
-Updated by Antigravity on 2026-03-25 (Enhanced Icon Robustness).
+Updated by Antigravity on 2026-03-26 (Enhanced Icon Robustness).
 Updated by Antigravity on 2026-03-24 (Added QoL Section).
 Created by Antigravity on 2026-03-24.

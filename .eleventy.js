@@ -110,6 +110,15 @@ const markdownFileTypeRegex = /\.(md|markdown)$/i;
 const isMarkdownPage = (inputPath) => inputPath && inputPath.match(markdownFileTypeRegex);
 
 module.exports = function(eleventyConfig) {
+  eleventyConfig.setServerOptions({
+    showAllHosts: true,
+    enabled: true,
+    domDiff: true,
+    port: 8080,
+    showVersion: true,
+    open: true,
+  });
+
   eleventyConfig.setLiquidOptions({
     dynamicPartials: true,
   });
@@ -842,6 +851,12 @@ module.exports = function(eleventyConfig) {
   });
 
   userEleventySetup(eleventyConfig);
+  eleventyConfig.addWatchTarget("./src/site/styles/");
+
+  eleventyConfig.setServerOptions({
+    watch: ["dist/styles/*.css"],
+    showAllHosts: true,
+  });
 
   return {
     dir: {
