@@ -46,16 +46,107 @@ $line-height:        1.7;
     --text-faint: #{$text-faint};
     --text-accent: #{$accent-vibrant};
 
+    // Link Colors
+    --link-color: #{$accent-primary};
+    --link-color-hover: #{$accent-secondary};
+    --link-external-color: #{$accent-primary};
+
+    // Code Blocks
+    --code-normal: #{$text-normal};
+    --code-background: #{$bg-alt};
+    --code-block-background: #{$bg-alt};
+
+    // Tables
+    --table-header-background: #{$bg-highlight};
+    --table-border-color: #{$bg-highlight};
+
+    // Tags
+    --tag-color: #{$accent-secondary};
+    --tag-background: #{rgba($accent-secondary, 0.1)};
+    --tag-border: #{rgba($accent-secondary, 0.2)};
+
+    // Sidebar & Navigation
+    --nav-item-color: #{$text-muted};
+    --nav-item-color-hover: #{$text-normal};
+    --nav-item-color-active: #{$accent-primary};
+    --nav-item-background-hover: #{$bg-highlight};
+    --nav-item-background-active: #{$bg-highlight};
+
     // Layout
     --file-line-width: #{$content-max-width};
     --radius-l: #{$border-radius-lg};
+    --radius-s: #{$border-radius-sm};
 
     // Typography
     --font-default: #{$font-family-body};
     --font-interface: #{$font-family-header};
 }
 
-// 5. GLOBAL OVERRIDES (Unified Aesthetic)
+// 5. COMPONENT FIXES (Restoring lost theme logic)
+.markdown-rendered {
+    table {
+        border-collapse: collapse;
+        margin: 1.5em 0;
+        width: 100%;
+        border: 1px solid var(--table-border-color);
+        
+        th {
+            background-color: var(--table-header-background);
+            font-family: var(--font-interface);
+            color: var(--accent-vibrant);
+            padding: 10px;
+            border: 1px solid var(--table-border-color);
+        }
+
+        td {
+            padding: 8px 12px;
+            border: 1px solid var(--table-border-color);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba($bg-highlight, 0.3);
+        }
+    }
+
+    code {
+        background-color: var(--code-background);
+        color: var(--accent-secondary);
+        padding: 0.2em 0.4em;
+        border-radius: var(--radius-s);
+        font-size: 85%;
+        border: 1px solid rgba($accent-primary, 0.1);
+    }
+}
+
+// Keyboard / Shortcut UI
+kbd, .search-input-container .search-hotkey {
+    background-color: var(--background-secondary);
+    color: var(--text-normal);
+    border: 1px solid var(--background-modifier-border);
+    border-radius: var(--radius-s);
+    padding: 0.1em 0.4em;
+    font-size: 0.8em;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+}
+
+// Sidebar Link Normalization
+.tree-item-link, .nav-link, .sidebar-link {
+    color: var(--nav-item-color) !important;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        color: var(--nav-item-color-hover) !important;
+        background-color: var(--nav-item-background-hover);
+    }
+    
+    &.is-active {
+        color: var(--nav-item-color-active) !important;
+        background-color: var(--nav-item-background-active);
+        font-weight: 600;
+    }
+}
+
+// 6. GLOBAL OVERRIDES (Unified Aesthetic)
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-interface);
     color: var(--text-accent);
