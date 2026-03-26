@@ -2,20 +2,31 @@
   import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
 
   (function() {
-      // Configuration
       mermaid.initialize({
           startOnLoad: false,
-          theme: 'forest', // Matches your garden's aesthetic
+          theme: 'forest',
           securityLevel: 'loose',
           fontFamily: 'Atkinson Hyperlegible Next, sans-serif'
       });
 
-      // Run on DOM ready
       document.addEventListener('DOMContentLoaded', async () => {
-          // Explicitly run on .mermaid elements to avoid version 10 conflicts
-          await mermaid.run({
-              querySelector: '.mermaid'
-          });
+          const elements = document.querySelectorAll('.mermaid[data-mermaid-src]');
+          for (const el of elements) {
+              try {
+                  const encoded = el.getAttribute('data-mermaid-src');
+                  // Use a robust way to decode base64 including UTF-8
+                  const code = decodeURIComponent(atob(encoded).split('').map(function(c) {
+                      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                  }).join(''));
+                  
+                  const id = 'mermaid-' + Math.random().toString(36).substr(2, 9);
+                  const { svg } = await mermaid.render(id, code);
+                  el.innerHTML = svg;
+              } catch (e) {
+                  console.error('Mermaid render error:', e);
+                  el.innerHTML = '<pre class="error">Mermaid Syntax Error (Check Syntax)</pre>';
+              }
+          }
       });
   })();
 </script>

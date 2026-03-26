@@ -86,7 +86,34 @@ Using `===` or `!==` in a Nunjucks template silently fails — the condition eva
 
 ---
 
+## 8. Mermaid Visualization & Minifier Protection 🧜‍♂️
+
+We implemented a robust Mermaid.js (v11) integration to handle all technical diagrams and state machines.
+
+- **DSL Sensitivity:** Mermaid diagrams use a newline-separated DSL. If the instructions are merged into a single line, the parser fails with a "Syntax error in text."
+- **Minifier Collision:** The site's production `html-minifier` (`.eleventy.js`) aggressively collapses whitespace and newlines to optimize performance. This accidentally "crushes" Mermaid diagrams.
+
+> [!TIP]
+> **The Durable Solution:** We use **Base64 Encoding** to "wrap" the code during the build process.
+> 1.  **Server side (`.eleventy.js`)**: The Mermaid block is Base64 encoded and stored in a `data-mermaid-src` attribute on a `div`.
+> 2.  **Client side (`mermaid.njk`)**: The script decodes the Base64 data and renders it. This makes the diagrams 100% immune to HTML minification or whitespace-stripping.
+
+---
+
+## 9. Eleventy v3 CLI Migrations ⚙️
+
+After upgrading to Eleventy 3.x, some legacy CLI flags will cause the server to crash.
+
+- **The `--open` Flag**: In version 3.x, the `--open` flag (previously used for Browsersync) is **unsupported** and will throw a fatal error: `We don't know what --open is`.
+- **The Correct Way:** Browser-launching behavior is now controlled via the configuration file.
+  ```js
+  eleventyConfig.setServerOptions({ open: true });
+  ```
+
+---
+
 ### Archive Information
+
 - **Created by:** Antigravity (AI Architect)
-- **Last Deep Audit:** 2026-03-24
+- **Last Deep Audit:** 2026-03-26
 - **Project Name:** GDD-Wiki-Immune-Defence

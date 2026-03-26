@@ -184,7 +184,8 @@ module.exports = function(eleventyConfig) {
         const token = tokens[idx];
         if (token.info === "mermaid") {
           const code = token.content.trim();
-          return `<pre class="mermaid"><code>${code}</code></pre>`;
+          const encoded = Buffer.from(code).toString('base64');
+          return `<div class="mermaid" data-mermaid-src="${encoded}"></div>`;
         }
         if (token.info === "transclusion") {
           const code = token.content.trim();
@@ -192,7 +193,7 @@ module.exports = function(eleventyConfig) {
         }
         if (token.info.startsWith("ad-")) {
           const code = token.content.trim();
-          const parts = code.split("\n")
+          const parts = code.split("\n");
           let titleLine;
           let collapse;
           let collapsible = false

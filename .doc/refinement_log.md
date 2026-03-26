@@ -75,6 +75,8 @@ We detached the external theme dependency and implemented a centralized, localiz
 
 - **Theme Control Station:** Created `src/site/styles/_theme-control.scss` as a "hidden" dashboard for all design variables (typography, colors, and layout).
 - **Atkinson Hyperlegible Next:** Migrated the main body font to **Atkinson Hyperlegible Next** (weights 200–800) for maximum readability, paired with **Outfit** for headers.
+- **Micro-Aesthetics & Spaciousness:** Refined global typography with a larger **18px base font** and **1.85 line-height**. Increased paragraph and list margins to restore the "spacious, premium" feel lost during the theme detachment.
+- **Table Merge Script (V2):** Re-engineered `tableMergeScript.njk` to handle complex multi-cell merges. Added a `data-to-remove` marker system to cleanly purge "ghost cells" from the DOM, and updated header styling to be centered and high-contrast.
 - **Tokyo Night "Storm" Refinement:** Re-engineered the color palette to use the official Tokyo Night "Storm" specification, including signature #1a1b26 background and #ff9e64 vibrant orange accents.
 - **Infrastructure:** Updated `.env`, `pageheader.njk`, and `custom-style.scss` to use the new local token system instead of a downloaded `.css` file.
 
@@ -86,9 +88,17 @@ Enhanced the GDD Wiki's ability to document complex systems using Mermaid.js and
 - **Robust Initialization:** Reconfigured `mermaid.njk` to use explicit `mermaid.run()` targeting only `.mermaid` elements. This avoids version clashes and allows for a customized **Forest** theme that complements the Tokyo Night aesthetic.
 - **Spec Synchronization:** Synchronized the corrected Mermaid syntax across both the Obsidian vault (`test/`) and the Garden source (`src/site/notes/`).
 
+## 10. Dev Experience (DX) & Hot Reloading
+
+Optimized the local development loop to support the new decentralized theme system and faster build times.
+
+- **Hot Reloading:** Updated `.agent/workflows/dev.md` to ensure SCSS changes are automatically injected into the browser without full page refreshes.
+- **Incremental Speed:** Configured `package.json` and `.eleventy.js` to use `--incremental` building, reducing dev rebuild times from 2s to <200ms for large notes.
+- **Server Orchestration:** Migrated the "open browser" and watcher logic into `.eleventy.js` using `setServerOptions`. This prevents the "unknown flag" crashes seen during the v3 transition.
+
 ### Documentation History
 
-Updated by Antigravity on 2026-03-26 (Fixed Mermaid Whitespace Stripping & Initialization).
+Updated by Antigravity on 2026-03-26 (Enhanced DX, Table Merging, and Spacing).
 Updated by Antigravity on 2026-03-26 (Integrated Mermaid.js & Fixed Eleventy 3.x CLI).
 Updated by Antigravity on 2026-03-26 (Refined Tokyo Night Storm & Font Migration).
 Updated by Antigravity on 2026-03-26 (Enhanced Icon Robustness).
