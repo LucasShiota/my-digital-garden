@@ -81,11 +81,6 @@ A small and camouflaged 'hole' where a player can go inside, transporting them i
 
 ![[Untitled.canvas\|Untitled.canvas]]
 
-<div class="grid-2">
-
-<div>
-
-### Interaction States
 ```mermaid
 stateDiagram-v2
     [*] --> GroundLayer: Inconspicuous Leaves
@@ -103,26 +98,33 @@ stateDiagram-v2
     UndergroundLayer --> Destroyed: Attack/Invasion
     Destroyed --> [*]
 ```
-</div>
 
-<div>
-
-### Upgrade Path
 ```mermaid
-graph TD
-    LV1[Level 1: 1x2] --> LV2[Level 2: 2x3]
-    LV2 --> LV3[Level 3: 3x4]
-    LV3 --> LV4[Level 4: 4 Rooms]
+stateDiagram-v2
 
-    LV2 --> UP1{Upgrades}
-    UP1 --> Reinforced[Reinforced]
-    UP1 --> Storage[Storage]
-    
-    LV3 --> UP2{Advanced}
-    UP2 --> Commune[Commune]
-    UP2 --> Tunnel[Hive Tunnel]
+    state UndergroundLayer {
+        [*] --> Interior: Safe Room
+        Interior --> SneakyPeak: Interact (Exit)
+        SneakyPeak --> Interior: Cancel
+        SneakyPeak --> GroundLayer: Interact (Exit Again)
+    }
+
 ```
-</div>
 
-</div>
+
+```mermaid
+flowchart LR
+Start --> Stop
+```
+
+
+```mermaid
+graph BT
+    User -->|Requests| App
+    App -->|Queries| DB[(Database)]
+    DB -.->|Responds| App
+    App ==>|Shows| UI[User Interface]
+
+
+```
 
