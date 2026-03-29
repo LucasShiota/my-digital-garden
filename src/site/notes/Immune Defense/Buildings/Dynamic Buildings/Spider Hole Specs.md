@@ -51,17 +51,17 @@ Infiltrators classes like Saboteurs and Scouts needs to have a reliable permanen
 | 3 | n/a | | | 2 | 3x4 | 2 |
 | 4 | n/a | | | 4 | 3x4 | 2 |
 
-| Upgrades Table | <           | <                                                                                                                                                                                                 | <                                                               |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
-| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Name**       | Type        | Description                                                                                                                                                                                       | Restrictions                                                    |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
-| Reinforced     | Room        | +Minus X% Cave In Chance                                                                                                                                                                          |                                                                 |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
-| Secret Exit    | Subroom     | - New interactable exit object. - X00% longer interaction time, Sneaky Peak is still enabled. - Interacting teleports player to a random location in the Ground Layer X meters away from the Nest |                                                                 | - New interactable exit object. - X00% longer interaction time, Sneaky Peak is still enabled. - Interacting teleports player to a random location in the Ground Layer X meters away from the Nest | - New interactable exit object. - X00% longer interaction time, Sneaky Peak is still enabled. - Interacting teleports player to a random location in the Ground Layer X meters away from the Nest |
-| Commune        | Main Room   | - Allow up to 3 other allies to occupy the Nest. - Allow Hive Tunnels to be connected to the Nest                                                                                                 |                                                                 |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
-| Storage        | Subroom     | - Creates HP and Ammo globs storing interactable                                                                                                                                                  |                                                                 |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
-| Storage 2      | Storage     |                                                                                                                                                                                                   |                                                                 |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
-| Hive Tunnel    | Subroom     | - Creates a narrow tunnel that connects to another Nest if it's within X meters away. - Tunnel has property: 'tight space'                                                                        | - Pioneer Subclass. - 'Commune' Upgrade. - Nest within X meters |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
-| Hive Tunnel 2  | Hive Tunnel |                                                                                                                                                                                                   | Level 4                                                         |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
-| Empty Room     |             |                                                                                                                                                                                                   |                                                                 |                                                                                                                                                                                                   |                                                                                                                                                                                                   |
+| Upgrades Table | <           | <                                                                                                                                                                                                 | <                                                               |
+| -------------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| **Name**       | Type        | Description                                                                                                                                                                                       | Restrictions                                                    |
+| Reinforced     | Room        | +Minus X% Cave In Chance                                                                                                                                                                          |                                                                 |
+| Secret Exit    | Subroom     | - New interactable exit object. - X00% longer interaction time, Sneaky Peak is still enabled. - Interacting teleports player to a random location in the Ground Layer X meters away from the Nest |                                                                 |
+| Commune        | Main Room   | - Allow up to 3 other allies to occupy the Nest. - Allow Hive Tunnels to be connected to the Nest                                                                                                 |                                                                 |
+| Storage        | Subroom     | - Creates HP and Ammo globs storing interactable                                                                                                                                                  |                                                                 |
+| Storage 2      | Storage     |                                                                                                                                                                                                   |                                                                 |
+| Hive Tunnel    | Subroom     | - Creates a narrow tunnel that connects to another Nest if it's within X meters away. - Tunnel has property: 'tight space'                                                                        | - Pioneer Subclass. - 'Commune' Upgrade. - Nest within X meters |
+| Hive Tunnel 2  | Hive Tunnel |                                                                                                                                                                                                   | Level 4                                                         |
+| Empty Room     |             |                                                                                                                                                                                                   |                                                                 |
 
 ## Additional Rules
 
@@ -77,130 +77,56 @@ Infiltrators classes like Saboteurs and Scouts needs to have a reliable permanen
 ```mermaid
 ---
 config:
-    theme: dark
-    flowchart:
-        defaultRenderer: elk
-        nodeSpacing: 50
-        rankSpacing: 80
-    elk:
-        nodePlacementStrategy: LINEAR_SEGMENTS
-        cycleBreakingStrategy: GREEDY
+  theme: dark
+  layout: elk
+  flowchart:
+    defaultRenderer: elk
+    nodeSpacing: 50
+    rankSpacing: 50
+  elk:
+    nodePlacementStrategy: LINEAR_SEGMENTS
 ---
-
 flowchart LR
-    %%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
+    subgraph chart [Spidernest Behavior & Interaction Flowchart]
+        direction LR
+        subgraph under [Underground Layer]
+            direction LR
+            subgraph stateinside [Player state: Inside]
+                direction LR
+                inside([Player is inside the Spiderhole]) ==> exit{Exit?}
+                exit -. yes .-> under-to-peak(Go To Subgraph: <br/> Peaking)
+                exit -. no .-> inside
+            end
 
+            subgraph statepeaking [Player state: Peaking]
+                direction LR
+                peaking([Player is peaking outside]) ==> input{Input?}
+                input -- none --> peaking
+                input -- *Exit* --> peaking-to-vis(Go To Subgraph: <br/> Visible)
+                input -- *Back* --> peaking-to-inside(Go To Subgraph: <br/> Inside)
+            end
+        end
 
+        subgraph stateground [Ground Layer]
+            direction LR
+            subgraph stateinvis [Spiderhole state: Invisible]
+                direction LR
+                invis([Spiderhole is invisible]) ==> hardCheck{In Range <br/> for Ys?}
+                hardCheck -. yes .-> invis-to-vis(Go To Subgraph: <br/> Visible)
+                hardCheck -. no .-> invis
+            end
+            
+            subgraph statevis [Spiderhole state: Visible]
+                direction LR
+                vis([Spiderhole is visible]) ==> enter{Enter?}
+                enter -. yes .-> vis-to-inside(Go To Subgraph: <br/> Inside)
+                enter -. no .-> softCheck{In Range?}
+                softCheck -. yes .-> enter
+                softCheck -. no .-> vis-to-invis(Go To Subgraph: <br/> Invisible)
+            end
+        end
+    end
 
-    subgraph chart[ Spidernest Behavior & Interaction Flowchart]
-
-        direction LR
-
-  
-
-        subgraph under[Underground Layer]
-
-            direction LR
-
-  
-
-            subgraph stateinside[Player state: Inside]
-
-                direction LR
-
-                inside([Player is inside the Spiderhole]) ==> exit{Exit?}
-
-  
-
-                exit -. yes .-> under-to-peak>Go To Subgraph: </br> Peaking]
-
-                exit -. no .-> inside
-
-            end
-
-  
-
-            subgraph statepeaking[Player state: Peaking]
-
-                direction LR
-
-  
-
-                peaking([Player is peaking outside]) ==> input{Input?}
-
-  
-
-                input -- none --> peaking
-
-                input -- *Exit* --> peaking-to-vis>Go To Subgraph: </br> Visible]
-
-                input -- *Back* --> peaking-to-inside>Go To Subgraph: </br> Inside]
-
-            end
-
-  
-
-        end
-
-  
-
-        subgraph stateground[Ground Layer]
-
-            direction LR
-
-  
-
-            subgraph stateinvis[Spiderhole state: Invisible]
-
-                direction LR
-
-  
-
-                invis([Spiderhole is invisible]) ==> hardCheck{In Range </br> for Ys?}
-
-  
-
-                hardCheck -. yes .-> invis-to-vis>Go To Subgraph: </br> Visible]
-
-                hardCheck -. no .-> invis
-
-            end
-
-  
-
-            subgraph statevis[Spiderhole state: Visible]
-
-                direction LR
-
-                vis([Spiderhole is visible]) ==> enter{Enter?}
-
-  
-
-                enter -. yes .-> vis-to-inside>Go To Subgraph:  </br>Inside]
-
-                enter -. no .-> softCheck{In Range?}
-
-  
-
-                softCheck -. yes .-> enter
-
-                softCheck -. no .-> vis-to-invis>Go To Subgraph: </br> Invisible]
-
-            end
-
-  
-
-        end
-
-    end
-
-  
-
-%% Yes
-
-linkStyle 1,8,11,13 stroke:#492,stroke-width:2px;
-
-%% No %%
-
-linkStyle 2,9,12,14 stroke:#e32,stroke-width:2px;
+linkStyle 1,4,8,11,13 stroke:#492,stroke-width:2px;
+linkStyle 2,5,9,12,14 stroke:#e32,stroke-width:2px;
 ```
