@@ -7,6 +7,12 @@
           mermaid.initialize({
               startOnLoad: false,
               theme: 'base',
+              flowchart: {
+                defaultRenderer: 'elk',
+                useMaxWidth: true,
+                htmlLabels: true,
+                curve: 'basis'
+              },
               themeVariables: {
                   primaryColor: getComputedStyle(document.body).getPropertyValue('--mermaid-node-bg').trim() || '#1e2233',
                   primaryBorderColor: getComputedStyle(document.body).getPropertyValue('--mermaid-node-border').trim() || '#7aa2f7',

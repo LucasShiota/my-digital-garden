@@ -95,7 +95,7 @@ $line-height:        1.85; // Slightly increased for maximum spaciousness
 // 5. COMPONENT FIXES (Restoring lost theme logic)
 .markdown-rendered {
     p, li {
-        margin-bottom: 1.5em; // Standardized paragraph gap from old version
+        margin-bottom: 1em; // Standardized paragraph gap from old version
         line-height: var(--line-height, 1.85);
     }
 
@@ -104,18 +104,12 @@ $line-height:        1.85; // Slightly increased for maximum spaciousness
     }
 
     table {
-        display: block; // Enables overflow scroll without a wrapper
-        overflow-x: auto;
         border-collapse: collapse;
-        margin: 2.5em 0; 
-        border: 1px solid var(--table-border-color);
-        
-        // Ensure table container stays within its parent but content triggers overflow
-        width: 100%;
-        max-width: 100%;
+        margin: 1em 0; 
+        width: 100% !important;
+        border: 2px solid var(--table-border-color);
         
         th {
-            white-space: nowrap; // Force headers to stay on one line to drive width
             background-color: var(--table-header-background);
             font-family: var(--font-interface);
             color: var(--accent-vibrant);
@@ -136,12 +130,12 @@ $line-height:        1.85; // Slightly increased for maximum spaciousness
     }
 
     code {
-        background-color: var(--code-background);
+        background-color: var(--table-header-background);
         color: var(--accent-secondary);
         padding: 0.2em 0.4em;
         border-radius: var(--radius-s);
         font-size: 85%;
-        border: 1px solid rgba($accent-primary, 0.1);
+        border: 0px solid rgba($accent-primary, 0.1);
     }
 }
 

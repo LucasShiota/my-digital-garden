@@ -5,6 +5,7 @@ This document archives the specific architectural patterns and "gotchas" discove
 ---
 
 ## 1. The Tri-Navbar Architecture 🚢
+
 The site does **not** have one single navbar. Depending on the user's view (Mobile, Note with Filetree, or Homepage), it switches between three different templates.
 
 - **`navbar.njk`**: The classic top-bar (mostly used on Homepages or when Filetree is disabled).
@@ -17,6 +18,7 @@ The site does **not** have one single navbar. Depending on the user's view (Mobi
 ---
 
 ## 2. The Dynamics System 🧩
+
 The site uses a powerful but sensitive "Dynamics" system (`src/site/_data/dynamics.js`) to automatically inject user-created components into specific "slots".
 
 - **Slot Strategy**: To add a new UI feature (like our Reading Time or Progress Bar), create a `.njk` file in `src/site/_includes/components/user/[namespace]/[slot]/`.
@@ -26,7 +28,9 @@ The site uses a powerful but sensitive "Dynamics" system (`src/site/_data/dynami
 ---
 
 ## 3. Icon Collision Avoidance 🛡️
+
 This garden uses two competing ways to render Lucide icons:
+
 1. **Server-side Transforms** (`.eleventy.js`): Injects SVG tags into blockquotes at build time for performance.
 2. **Client-side Scripts** (`calloutScript.njk`): Injects icons into callouts after the page loads.
 
@@ -36,13 +40,16 @@ This garden uses two competing ways to render Lucide icons:
 ---
 
 ## 4. Homepage Logic & Styling 🏠
+
 The homepage (usually `Homepage.md`) is special. It is detected via `dg-home: true` or `gardenEntry` tags.
+
 - **Header Removal**: The template automatically hides the `header h1` inside the main content of the homepage to prevent double-branding.
 - **Layout Switch**: It usually switches between `index.njk` (Homepage) and `note.njk` (Standard Notes). Ensure custom global components are included in **both** layouts if they are meant to be site-wide.
 
 ---
 
 ## 5. CSS Patterns
+
 - **Functional Scoping**: Use `.theme-dark` or `.theme-light` classes on the body to handle theme-specific colors.
 - **Component Styling**: Keep custom QoL feature styles in `src/site/styles/custom-style.scss` to maintain a single source of truth for the "Immune Defence" aesthetic.
 
@@ -54,6 +61,7 @@ The homepage (usually `Homepage.md`) is special. It is detected via `dg-home: tr
 > If you define a computed property `showReadingTime` in `notes.11tydata.js` and then read `data.showReadingTime` inside that same computed function, **you get a circular reference**. Eleventy resolves this as `undefined`, silently breaking your logic.
 
 **Wrong:**
+
 ```js
 showReadingTime: (data) => {
   if (data.showReadingTime !== undefined) return data.showReadingTime; // CIRCULAR!
@@ -62,6 +70,7 @@ showReadingTime: (data) => {
 ```
 
 **Correct:** Only read from sources you don't own — `dg-note-properties`, `page.date`, etc.
+
 ```js
 showReadingTime: (data) => {
   const nested = data["dg-note-properties"];
@@ -77,7 +86,7 @@ showReadingTime: (data) => {
 Nunjucks is **not JavaScript**. The following JS operators do NOT work in `.njk` templates:
 
 | JavaScript | Nunjucks (correct) |
-|---|---|
+| --- | --- |
 | `===` | `==` |
 | `!==` | `!=` |
 | `undefined` | use `is defined` or `!= null` |
@@ -95,8 +104,9 @@ We implemented a robust Mermaid.js (v11) integration to handle all technical dia
 
 > [!TIP]
 > **The Durable Solution:** We use **Base64 Encoding** to "wrap" the code during the build process.
-> 1.  **Server side (`.eleventy.js`)**: The Mermaid block is Base64 encoded and stored in a `data-mermaid-src` attribute on a `div`.
-> 2.  **Client side (`mermaid.njk`)**: The script decodes the Base64 data and renders it. This makes the diagrams 100% immune to HTML minification or whitespace-stripping.
+>
+> 1. **Server side (`.eleventy.js`)**: The Mermaid block is Base64 encoded and stored in a `data-mermaid-src` attribute on a `div`.
+> 2. **Client side (`mermaid.njk`)**: The script decodes the Base64 data and renders it. This makes the diagrams 100% immune to HTML minification or whitespace-stripping.
 
 ---
 
@@ -106,9 +116,10 @@ After upgrading to Eleventy 3.x, some legacy CLI flags will cause the server to 
 
 - **The `--open` Flag**: In version 3.x, the `--open` flag (previously used for Browsersync) is **unsupported** and will throw a fatal error: `We don't know what --open is`.
 - **The Correct Way:** Browser-launching behavior is now controlled via the configuration file.
-  ```js
-  eleventyConfig.setServerOptions({ open: true });
-  ```
+
+```js
+eleventyConfig.setServerOptions({ open: true });
+```
 
 ---
 
