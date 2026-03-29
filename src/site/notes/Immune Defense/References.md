@@ -1,5 +1,8 @@
 ---
-{"dg-publish":true,"permalink":"/immune-defense/references/","dg-note-properties":{"icon":"file-question-mark","showReadingTime":false}}
+dg-publish: true
+permalink: /immune-defense/references/
+icon: file-question-mark
+showReadingTime: false
 ---
 
 

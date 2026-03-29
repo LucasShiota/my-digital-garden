@@ -1,10 +1,9 @@
 ---
 dg-publish: true
-permalink: "/immune-defense/buildings/dynamic-buildings/spider-hole-specs/"
-dg-note-properties:
-  icon: file-text
-  showTimestamps: true
-  showReadingTime: true
+permalink: /immune-defense/buildings/dynamic-buildings/spider-hole-specs/
+icon: file-text
+showTimestamps: true
+showReadingTime: true
 ---
 
 _ _ _ _ __

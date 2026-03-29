@@ -1,0 +1,46 @@
+# Task Board Logs
+
+## System Information
+
+- **Obsidian version**: 1.12.4
+- **Installer version**: 1.12.4
+- **Operating system**: Windows 11 Home 10.0.26200
+- **Use [[Wikilinks]]**: true
+- **Base color scheme**: dark
+- **Community theme**: none
+- **Snippets enabled**: 0
+- **Plugins installed**: 21
+- **Plugins enabled**: 
+  - Advanced Canvas v6.0.0
+  - Advanced Slides v1.20.0
+  - Advanced Tables v0.22.1
+  - Banners v1.3.3
+  - Buttons v0.9.13
+  - Charts v3.9.0
+  - Dataview v0.5.68
+  - Editing Toolbar v3.2.7
+  - Enhancing Export v1.11.1
+  - Iconize v2.14.7
+  - Mind Map v1.1.0
+  - Tag Wrangler v0.6.4
+  - Tasks v7.23.1
+  - Templater v2.18.1
+  - Homepage v4.3.1
+  - Admonition v10.3.2
+  - Outliner v4.10.0
+  - Style Settings v1.0.9
+  - Task Board v1.9.7
+
+## Recent Bug Reports
+
+Timestamp : 2026-03-20T03:10:32
+ID : 145
+Message : 
+Context : RealTimeScanner.ts/initializeTasksCache
+Version : 1.9.7
+
+#### Bug Content
+```log
+No need to worry if this is appearing on the fresh install.
+Error: ENOENT: no such file or directory, open 'C:\Users\lshio\Desktop\Lucas Shiota\test\.obsidian\plugins\task-board\tasks.json'
+```

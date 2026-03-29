@@ -1,0 +1,4 @@
+.hideprops .metadata-properties,
+.hideprops .metadata-container {
+    display: none !important;
+}

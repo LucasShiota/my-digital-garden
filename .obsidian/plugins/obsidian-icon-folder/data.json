@@ -1,0 +1,47 @@
+{
+  "settings": {
+    "migrated": 6,
+    "iconPacksPath": ".obsidian/icons",
+    "fontSize": 16,
+    "emojiStyle": "native",
+    "iconColor": null,
+    "recentlyUsedIcons": [
+      "LiFileText",
+      "LiType",
+      "LiStore",
+      "LiUser",
+      "LiFileType"
+    ],
+    "recentlyUsedIconsSize": 5,
+    "rules": [],
+    "extraMargin": {
+      "top": 0,
+      "right": 4,
+      "bottom": 0,
+      "left": 0
+    },
+    "iconInTabsEnabled": false,
+    "iconInTitleEnabled": false,
+    "iconInTitlePosition": "above",
+    "iconInFrontmatterEnabled": false,
+    "iconInFrontmatterFieldName": "icon",
+    "iconColorInFrontmatterFieldName": "iconColor",
+    "iconsBackgroundCheckEnabled": false,
+    "iconsInNotesEnabled": true,
+    "iconsInLinksEnabled": true,
+    "iconIdentifier": ":",
+    "lucideIconPackType": "native",
+    "debugMode": false,
+    "useInternalPlugins": false
+  },
+  "Homepage.md": "LiHome",
+  "Immune Defense/Hero": "LiFolders",
+  "Immune Defense/Hero/Hero Matrix.md": "LiTableProperties",
+  "Immune Defense/Buildings": "LiFolders",
+  "Immune Defense/Buildings/Buildings Matrix.md": "LiTableProperties",
+  "Immune Defense/References.md": "LiFileQuestionMark",
+  "Immune Defense/Buildings/Dynamic Buildings/Foxhole Specs.md": "LiFileText",
+  "Immune Defense/Hero/Sabotage Corps Specs.md": "LiType",
+  "Immune Defense/Buildings/Dynamic Buildings/Trench Specs.md": "LiFileText",
+  "Immune Defense/Buildings/Dynamic Buildings/Spider Hole Specs.md": "LiFileText"
+}

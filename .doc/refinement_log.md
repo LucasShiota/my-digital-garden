@@ -104,8 +104,18 @@ Linked the diagram aesthetics directly to the centralized design tokens for a co
 - **Thematic Bridge:** Updated `mermaid.njk` to use the `base` theme and `themeVariables`. It now dynamically fetches current theme values via `getComputedStyle`, ensuring diagrams always match your Tokyo Night workspace.
 - **Spacious Fonts:** Standardized diagram font family to **Atkinson Hyperlegible Next** to match the body text.
 
+## 12. Vault Integration & YAML Flattening
+
+Merged the local Obsidian test vault directly into the Digital Garden repository to create a strict single-source-of-truth environment.
+
+- **Security & Organization:** Configured `.gitignore` to protect the Digital Garden plugin token and safely ignore 100MB+ of compiled `.obsidian` plugin binaries while preserving workspace settings.
+- **Drafts System:** Established a local-only `src/site/notes/_drafts` strategy that is ignored by both Git and Eleventy.
+- **Frontmatter Standardization:** Ran a bulk standardization script across all markdown files to parse and flatten legacy single-line `dg-note-properties` JSON blobs into native Obsidian YAML block frontmatter.
+- **Technical Debt Removal:** Refactored `src/site/notes/notes.11tydata.js` to strip out all legacy proxy logic that previously handled the nested plugin properties, improving build simplicity.
+
 ### Documentation History
 
+Updated by Antigravity on 2026-03-29 (Vault Integration & YAML Flattening).
 Updated by Antigravity on 2026-03-26 (Unified Mermaid Styling via Design Tokens).
 Updated by Antigravity on 2026-03-26 (Enhanced DX, Table Merging, and Spacing).
 Updated by Antigravity on 2026-03-26 (Integrated Mermaid.js & Fixed Eleventy 3.x CLI).

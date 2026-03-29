@@ -1,5 +1,12 @@
 ---
-{"dg-publish":true,"permalink":"/homepage/","hide":true,"tags":["gardenEntry"],"dg-note-properties":{"tags":["gardenEntry"],"icon":"home","showTimestamps":true,"showReadingTime":true}}
+dg-publish: true
+permalink: /homepage/
+hide: true
+tags:
+  - gardenEntry
+icon: home
+showTimestamps: true
+showReadingTime: true
 ---
 
 

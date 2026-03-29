@@ -30,35 +30,22 @@ module.exports = {
       // Return the icon name (Lucide format)
       if (data.icon) return data.icon;
       if (data.faIcon) return data.faIcon;
-      const nested = data["dg-note-properties"];
-      if (nested) {
-        return nested.icon || nested.faIcon;
-      }
       return null;
     },
     showReadingTime: (data) => {
-      // Read ONLY from dg-note-properties to avoid circular reference
-      // (data.showReadingTime would reference this computed itself)
-      const nested = data["dg-note-properties"];
-      if (nested && nested.showReadingTime !== undefined) return nested.showReadingTime;
+      if (data.showReadingTime !== undefined) return data.showReadingTime;
       return undefined; // undefined = show by default (no override)
     },
     showTimestamps: (data) => {
-      // Read ONLY from dg-note-properties to avoid circular reference
-      const nested = data["dg-note-properties"];
-      if (nested && nested.showTimestamps !== undefined) return nested.showTimestamps;
+      if (data.showTimestamps !== undefined) return data.showTimestamps;
       return undefined; // undefined = follow global env vars
     },
     created: (data) => {
       // Only use explicit creation date if provided
-      const nested = data["dg-note-properties"];
-      if (nested && nested.created) return nested.created;
       if (data.created) return data.created;
       return undefined;
     },
     updated: (data) => {
-      const nested = data["dg-note-properties"];
-      if (nested && nested.updated) return nested.updated;
       if (data.updated) return data.updated;
       // Fall back to Eleventy's file date as the "Last Modified" date
       if (data.page && data.page.date) {

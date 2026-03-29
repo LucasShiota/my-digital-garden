@@ -1,5 +1,7 @@
 ---
-{"dg-publish":true,"permalink":"/immune-defense/interaction-spec/","dg-note-properties":{"icon":"file-text"}}
+dg-publish: true
+permalink: /immune-defense/interaction-spec/
+icon: file-text
 ---
 
 
