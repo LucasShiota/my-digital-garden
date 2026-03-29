@@ -113,8 +113,18 @@ Merged the local Obsidian test vault directly into the Digital Garden repository
 - **Frontmatter Standardization:** Ran a bulk standardization script across all markdown files to parse and flatten legacy single-line `dg-note-properties` JSON blobs into native Obsidian YAML block frontmatter.
 - **Technical Debt Removal:** Refactored `src/site/notes/notes.11tydata.js` to strip out all legacy proxy logic that previously handled the nested plugin properties, improving build simplicity.
 
+## 13. Repository Cleanup & Architectural Documentation
+
+We performed a deep quality-of-life clean-up to shed dead weight from the repository's root structure and improve navigation.
+
+- **Defunct Artifact Removal:** Safely deleted old site configuration files (`plugin-info.json`, `vercel.json`, `netlify.toml`) no longer necessary since migrating to Cloudflare Pages.
+- **Dead Asset Purge:** Removed 5 default vector graphics from `src/site/img/` (like `tree-1.svg`) that became orphaned after our transition to the Lucide SVG framework.
+- **Typo Fixes:** Identified and deleted the accidental `" .doc/"` duplicate folder.
+- **Structural Guide:** Successfully mapped out the entire physical architecture of the repository to `project_structure.md` located inside `.doc/`. 
+
 ### Documentation History
 
+Updated by Antigravity on 2026-03-29 (Repository Cleanup & Architectural Documentation).
 Updated by Antigravity on 2026-03-29 (Vault Integration & YAML Flattening).
 Updated by Antigravity on 2026-03-26 (Unified Mermaid Styling via Design Tokens).
 Updated by Antigravity on 2026-03-26 (Enhanced DX, Table Merging, and Spacing).
