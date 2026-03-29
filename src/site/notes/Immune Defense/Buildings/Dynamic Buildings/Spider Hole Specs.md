@@ -76,26 +76,20 @@ Infiltrators classes like Saboteurs and Scouts needs to have a reliable permanen
 
 ```mermaid
 ---
-
 config:
-
-    theme: dark
-
-    nodeSpacing: 50
-
-    rankSpacing: 50
-
-    layout: elk
-
-    elk:
-
-        nodePlacementStrategy: LINEAR_SEGMENTS
-
+    theme: dark
+    flowchart:
+        defaultRenderer: elk
+        nodeSpacing: 50
+        rankSpacing: 80
+    elk:
+        nodePlacementStrategy: LINEAR_SEGMENTS
+        cycleBreakingStrategy: GREEDY
 ---
 
-  
 
 flowchart LR
+
 
     subgraph chart[ Spidernest Behavior & Interaction Flowchart]
 
