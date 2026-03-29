@@ -87,8 +87,9 @@ config:
         cycleBreakingStrategy: GREEDY
 ---
 
-
 flowchart LR
+    %%{init: {"flowchart": {"defaultRenderer": "elk"}} }%%
+
 
 
     subgraph chart[ Spidernest Behavior & Interaction Flowchart]
