@@ -113,6 +113,18 @@ Merged the local Obsidian test vault directly into the Digital Garden repository
 - **Frontmatter Standardization:** Ran a bulk standardization script across all markdown files to parse and flatten legacy single-line `dg-note-properties` JSON blobs into native Obsidian YAML block frontmatter.
 - **Technical Debt Removal:** Refactored `src/site/notes/notes.11tydata.js` to strip out all legacy proxy logic that previously handled the nested plugin properties, improving build simplicity.
 
+## 14. Quick Definitions (Glossary) 📖
+
+Implemented a premium "Quick Definitions" system that automatically identifies technical terms and provides hover-based explanations without cluttering the page.
+
+- **Automated Tagging:** Scans all inline code blocks (`` `text` ``) and matches them against a central glossary dictionary.
+- **Self-Contained Data:** Dictionary and logic are unified in `glossaryScript.njk` for 100% reliability, bypassing server-side data waterfall issues.
+- **Premium Interaction:** 
+  - **Visual Indicator:** Matching terms receive a subtle dotted underline and a `help` cursor.
+  - **Reused Component:** Leverages the existing link-preview tooltip infrastructure for visual consistency.
+  - **Case-Insensitive Matching:** Correctly identifies terms regardless of capitalization (e.g., `Spiderhole` vs `spiderhole`).
+- **Styling:** Added dedicated CSS to `_visual-elements.scss` for accented headers and high-readability definition text within the tooltips.
+
 ## 13. Repository Cleanup & Architectural Documentation
 
 We performed a deep quality-of-life clean-up to shed dead weight from the repository's root structure and improve navigation.
@@ -124,6 +136,7 @@ We performed a deep quality-of-life clean-up to shed dead weight from the reposi
 
 ### Documentation History
 
+Updated by Antigravity on 2026-03-30 (Quick Definitions / Glossary Implementation).
 Updated by Antigravity on 2026-03-29 (Repository Cleanup & Architectural Documentation).
 Updated by Antigravity on 2026-03-29 (Vault Integration & YAML Flattening).
 Updated by Antigravity on 2026-03-26 (Unified Mermaid Styling via Design Tokens).

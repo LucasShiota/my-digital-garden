@@ -1,4 +1,5 @@
 @import "theme-control";
+@import "visual-elements";
 
 body {
     /* --- PREMIUM SVG ICON SYSTEM (LUCIDE) --- */
@@ -200,5 +201,12 @@ body {
         color: var(--text-normal);
         border-radius: 4px;
         padding: 0.1em 0.2em;
+    }
+
+    /* --- MERMAID DIAGRAMS --- */
+    .mermaid {
+        display: flex;
+        justify-content: center;
+        margin: 1.5em 0;
     }
 }

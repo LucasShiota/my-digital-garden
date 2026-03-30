@@ -1,0 +1,90 @@
+<script>
+  /**
+   * Quick Definitions / Glossary Tooltip System
+   * Self-contained dictionary and logic for maximum reliability.
+   */
+  window.addEventListener("load", function() {
+    // --- DICTIONARY ---
+    // Add your terms here (Case-insensitive matching)
+    const glossary = {
+      "Spiderhole": "A well-camouflaged, shallow pit used for observation and shooting. Often reinforced and hidden with natural vegetation.",
+      "Specs": "Short for Specifications. Detailed requirements or characteristics of a building, unit, or technology.",
+      "Dynamic": "In this context, buildings that can change their behavior, state, or stats based on player interaction or environment.",
+      "Tier 1": "The initial level of buildings or units. Generally cheaper and faster to produce but with lower combat efficacy.",
+      "Refit": "The process of upgrading or specializing a building or unit to adapt to new combat requirements.",
+      "Camp": "A temporary or permanent base of operations for units, providing basic supplies and a respawn point."
+    };
+    
+    const content = document.querySelector('main.content');
+    if (!content) return;
+
+    console.log('Glossary logic started. Data found:', Object.keys(glossary).length, 'terms');
+
+    // Scan for code blocks containing glossary terms
+    const codeBlocks = content.querySelectorAll('code');
+    codeBlocks.forEach(el => {
+      const term = el.textContent.trim();
+      // Case-insensitive match check
+      const matchedTerm = Object.keys(glossary).find(
+        key => key.toLowerCase() === term.toLowerCase()
+      );
+
+      if (matchedTerm) {
+        el.classList.add('has-glossary');
+        el.setAttribute('data-definition', glossary[matchedTerm]);
+        setupGlossaryListeners(el);
+      }
+    });
+
+    function setupGlossaryListeners(el) {
+      let tooltipWrapper = document.getElementById('tooltip-wrapper');
+      let tooltipContent = document.getElementById('tooltip-content');
+      
+      // Fallback: Create tooltip if linkPreview is disabled
+      if (!tooltipWrapper) {
+        tooltipWrapper = document.createElement('div');
+        tooltipWrapper.id = 'tooltip-wrapper';
+        tooltipWrapper.style.cssText = 'opacity: 0; display: none; position: fixed; background: var(--background-primary); padding: 1em; border-radius: 4px; box-shadow: 0 5px 10px rgba(0,0,0,0.1); z-index: 1000; max-width: 400px; transition: opacity 100ms;';
+        tooltipContent = document.createElement('div');
+        tooltipContent.id = 'tooltip-content';
+        tooltipWrapper.appendChild(tooltipContent);
+        document.body.appendChild(tooltipWrapper);
+      }
+      
+      el.addEventListener('mouseenter', function(event) {
+        const definition = el.getAttribute('data-definition');
+        const term = el.textContent.trim();
+        
+        if (typeof opacityTimeout !== 'undefined') clearTimeout(opacityTimeout);
+        if (typeof contentTimeout !== 'undefined') clearTimeout(contentTimeout);
+        
+        tooltipContent.innerHTML = `<div class="glossary-tooltip-container">
+          <div class="glossary-term">${term}</div>
+          <div class="glossary-definition">${definition}</div>
+        </div>`;
+        
+        tooltipWrapper.style.display = 'block';
+        tooltipWrapper.style.opacity = 0;
+        
+        if (typeof positionTooltip === 'function') {
+          positionTooltip(el);
+        } else {
+          const rect = el.getBoundingClientRect();
+          tooltipWrapper.style.left = rect.left + 'px';
+          tooltipWrapper.style.top = (rect.bottom + 10) + 'px';
+        }
+        
+        setTimeout(() => { tooltipWrapper.style.opacity = 1; }, 10);
+      });
+
+      el.addEventListener('mouseleave', function() {
+        if (typeof hideTooltip === 'function') {
+          hideTooltip();
+        } else {
+          tooltipWrapper.style.opacity = 0;
+          setTimeout(() => { tooltipWrapper.style.display = 'none'; }, 100);
+        }
+      });
+    }
+  });
+</script>
