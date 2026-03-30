@@ -7,12 +7,30 @@
     // --- DICTIONARY ---
     // Add your terms here (Case-insensitive matching)
     const glossary = {
-      "Spiderhole": "A well-camouflaged, shallow pit used for observation and shooting. Often reinforced and hidden with natural vegetation.",
-      "Specs": "Short for Specifications. Detailed requirements or characteristics of a building, unit, or technology.",
-      "Dynamic": "In this context, buildings that can change their behavior, state, or stats based on player interaction or environment.",
-      "Tier 1": "The initial level of buildings or units. Generally cheaper and faster to produce but with lower combat efficacy.",
-      "Refit": "The process of upgrading or specializing a building or unit to adapt to new combat requirements.",
-      "Camp": "A temporary or permanent base of operations for units, providing basic supplies and a respawn point."
+      "Spiderhole": {
+        "type": "Building",
+        "def": "A well-camouflaged, shallow pit used for observation and shooting. Often reinforced and hidden with natural vegetation."
+      },
+      "Specs": {
+        "type": "Terminology",
+        "def": "Short for Specifications. Detailed requirements or characteristics of a building, unit, or technology."
+      },
+      "Dynamic": {
+        "type": "System",
+        "def": "In this context, buildings that can change their behavior, state, or stats based on player interaction or environment."
+      },
+      "Tier 1": {
+        "type": "Level",
+        "def": "The initial level of buildings or units. Generally cheaper and faster to produce but with lower combat efficacy."
+      },
+      "Refit": {
+        "type": "Action",
+        "def": "The process of upgrading or specializing a building or unit to adapt to new combat requirements."
+      },
+      "Camp": {
+        "type": "Building",
+        "def": "A temporary or permanent base of operations for units, providing basic supplies and a respawn point."
+      }
     };
     
     const content = document.querySelector('main.content');
@@ -30,8 +48,16 @@
       );
 
       if (matchedTerm) {
+        const item = glossary[matchedTerm];
         el.classList.add('has-glossary');
-        el.setAttribute('data-definition', glossary[matchedTerm]);
+        
+        // Handle both object structure and simple string fallback
+        const definition = typeof item === 'string' ? item : item.def;
+        const type = typeof item === 'string' ? '' : item.type;
+        
+        el.setAttribute('data-definition', definition);
+        if (type) el.setAttribute('data-type', type);
+        
         setupGlossaryListeners(el);
       }
     });
@@ -53,13 +79,19 @@
       
       el.addEventListener('mouseenter', function(event) {
         const definition = el.getAttribute('data-definition');
+        const type = el.getAttribute('data-type');
         const term = el.textContent.trim();
         
         if (typeof opacityTimeout !== 'undefined') clearTimeout(opacityTimeout);
         if (typeof contentTimeout !== 'undefined') clearTimeout(contentTimeout);
         
+        const typeHtml = type ? `<span class="glossary-type">${type}</span>` : '';
+        
         tooltipContent.innerHTML = `<div class="glossary-tooltip-container">
-          <div class="glossary-term">${term}</div>
+          <div class="glossary-header">
+            <span class="glossary-term">${term}</span>
+            ${typeHtml}
+          </div>
           <div class="glossary-definition">${definition}</div>
         </div>`;
         

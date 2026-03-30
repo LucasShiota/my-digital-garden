@@ -119,7 +119,7 @@ Implemented a premium "Quick Definitions" system that automatically identifies t
 
 - **Automated Tagging:** Scans all inline code blocks (`` `text` ``) and matches them against a central glossary dictionary.
 - **Self-Contained Data:** Dictionary and logic are unified in `glossaryScript.njk` for 100% reliability, bypassing server-side data waterfall issues.
-- **Premium Interaction:** 
+- **Premium Interaction:**
   - **Visual Indicator:** Matching terms receive a subtle dotted underline and a `help` cursor.
   - **Reused Component:** Leverages the existing link-preview tooltip infrastructure for visual consistency.
   - **Case-Insensitive Matching:** Correctly identifies terms regardless of capitalization (e.g., `Spiderhole` vs `spiderhole`).
@@ -132,7 +132,7 @@ We performed a deep quality-of-life clean-up to shed dead weight from the reposi
 - **Defunct Artifact Removal:** Safely deleted old site configuration files (`plugin-info.json`, `vercel.json`, `netlify.toml`) no longer necessary since migrating to Cloudflare Pages.
 - **Dead Asset Purge:** Removed 5 default vector graphics from `src/site/img/` (like `tree-1.svg`) that became orphaned after our transition to the Lucide SVG framework.
 - **Typo Fixes:** Identified and deleted the accidental `" .doc/"` duplicate folder.
-- **Structural Guide:** Successfully mapped out the entire physical architecture of the repository to `project_structure.md` located inside `.doc/`. 
+- **Structural Guide:** Successfully mapped out the entire physical architecture of the repository to `project_structure.md` located inside `.doc/`.
 
 ### Documentation History
 

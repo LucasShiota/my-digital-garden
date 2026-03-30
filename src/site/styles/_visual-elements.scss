@@ -99,7 +99,7 @@
 /* 5. QUICK DEFINITIONS (GLOSSARY) */
 code.has-glossary {
     cursor: help;
-    border-bottom: 1px dashed var(--accent-color, #f79646) !important;
+    border-bottom: 2px dotted var(--accent-color, #f79646) !important;
     transition: background-color 0.2s ease;
     text-decoration: none !important;
 }
@@ -108,20 +108,39 @@ code.has-glossary:hover {
     background-color: rgba(247, 150, 70, 0.15) !important;
 }
 
-/* Styling for the content inside the reused tooltip wrapper */
+/* Tooltip Content Formatting */
 .glossary-tooltip-container {
     padding: 2px;
+}
+
+.glossary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--background-modifier-border, #444);
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    gap: 15px;
 }
 
 .glossary-term {
     font-weight: 700;
     color: var(--accent-color, #f79646);
-    margin-bottom: 10px;
     font-size: 0.95rem;
-    border-bottom: 1px solid var(--background-modifier-border, #444);
-    padding-bottom: 6px;
     text-transform: uppercase;
     letter-spacing: 0.08em;
+}
+
+.glossary-type {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted, #888);
+    background: var(--background-modifier-border, #444);
+    padding: 2px 8px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
 }
 
 .glossary-definition {
