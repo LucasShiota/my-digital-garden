@@ -78,7 +78,7 @@ permalink: "notes/{{ page.fileSlug | slugify }}/"
       {% for imp in dynamics.notes.beforeContent %}
         {% include imp %}
       {% endfor %}
-      {{ content | renderCanvas | hideDataview | taggify | link | iconify | safe}}
+      {{ content | renderCanvas | renderDataview(collections.note) | renderExcalidraw | renderTransclusions | hideDataview | taggify | link | iconify | safe}}
       {% for imp in dynamics.common.afterContent %}
         {% include imp %}
       {% endfor %}

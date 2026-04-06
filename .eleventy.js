@@ -81,12 +81,12 @@ const { parse } = require("node-html-parser");
 const htmlMinifier = require("html-minifier-terser");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 
-const { headerToId, namedHeadingsFilter } = require("./src/helpers/utils");
 const {
-  userMarkdownSetup,
-  userEleventySetup,
+    userMarkdownSetup,
+    userEleventySetup,
 } = require("./src/helpers/userSetup");
 const { basesPlugin } = require("./src/helpers/basesPlugin");
+const { headerToId, namedHeadingsFilter } = require("./src/helpers/utils");
 
 const Image = require("@11ty/eleventy-img");
 function transformImage(src, cls, alt, sizes, widths = ["500", "700", "auto"]) {
@@ -97,7 +97,73 @@ function transformImage(src, cls, alt, sizes, widths = ["500", "700", "auto"]) {
     urlPath: "/img/optimized",
   };
 
-  // generate images, while this is async we don’t wait
+  Image(src, options);
+  let metadata = Image.statsSync(src, options);
+  return metadata;
+}
+
+/**
+ * A lightweight DQL (Dataview Query Language) runner for the Digital Garden.
+ * Supports: LIST/TABLE, FROM "folder", FROM #tag, SORT field ASC/DESC.
+ */
+function runDataview(query, collection) {
+  const lines = query.split("\n").map(l => l.trim()).filter(l => l);
+  let type = "LIST";
+  let columns = [];
+  let fromSource = "";
+  let sortField = "file.name";
+  let sortDir = "ASC";
+
+  for (const line of lines) {
+    const uc = line.toUpperCase();
+    if (uc.startsWith("LIST")) { type = "LIST"; }
+    else if (uc.startsWith("TABLE")) {
+      type = "TABLE";
+      columns = line.replace(/TABLE/i, "").split(",").map(c => c.trim()).filter(c => c);
+    }
+    else if (uc.startsWith("FROM")) { fromSource = line.replace(/FROM/i, "").trim().replace(/^"|"$/g, ""); }
+    else if (uc.startsWith("SORT")) {
+      const parts = line.replace(/SORT/i, "").trim().split(/\s+/);
+      sortField = parts[0] || "file.name";
+      sortDir = (parts[1] || "ASC").toUpperCase();
+    }
+  }
+
+  let results = collection.filter(item => {
+    if (item.data["dg-publish"] === false) return false;
+    if (fromSource) {
+      if (fromSource.startsWith("#")) {
+        const tag = fromSource.substring(1);
+        if (!item.data.tags || !item.data.tags.includes(tag)) return false;
+      } else {
+        const pathMatch = item.filePathStem.toLowerCase().includes(fromSource.toLowerCase());
+        if (!pathMatch) return false;
+      }
+    }
+    return true;
+  });
+
+  results.sort((a, b) => {
+    let valA = a.data[sortField] || a.fileSlug || "";
+    let valB = b.data[sortField] || b.fileSlug || "";
+    if (sortField === "file.name") { valA = a.data.title || a.fileSlug; valB = b.data.title || b.fileSlug; }
+    if (valA < valB) return sortDir === "ASC" ? -1 : 1;
+    if (valA > valB) return sortDir === "ASC" ? 1 : -1;
+    return 0;
+  });
+
+  if (type === "LIST") {
+    const list = results.map(item => `<li><a href="${item.url}">${item.data.title || item.fileSlug}</a></li>`).join("");
+    return `<ul class="dataview list-view">${list}</ul>`;
+  } else {
+    const headers = columns.map(c => `<th>${c}</th>`).join("");
+    const rows = results.map(item => {
+      const cells = columns.map(c => `<td>${item.data[c] || ""}</td>`).join("");
+      return `<tr><td><a href="${item.url}">${item.data.title || item.fileSlug}</a></td>${cells}</tr>`;
+    }).join("");
+    return `<table class="dataview table-view"><thead><tr><th>File</th>${headers}</tr></thead><tbody>${rows}</tbody></table>`;
+  }
+}
   Image(src, options);
   let metadata = Image.statsSync(src, options);
   return metadata;
@@ -917,11 +983,63 @@ module.exports = function(eleventyConfig) {
       if (rawContent.trim().startsWith("{")) {
         return renderCanvasContent(rawContent);
       }
-      // Pre-compiled HTML format (old DG plugin): strip YAML frontmatter
-      return matter(rawContent).content;
+    }
+  });
+
+  /**
+   * Dataview Filter: Intercepts dataview code blocks in HTML and executes the queries
+   * against the provided Eleventy collection at build-time.
+   */
+  eleventyConfig.addFilter("renderDataview", function(html, collections) {
+    if (!html || !html.includes('class="language-dataview"')) return html;
+    try {
+      const root = parse(html);
+      root.querySelectorAll('pre code.language-dataview').forEach(block => {
+        const query = block.text.trim();
+        block.parentNode.replaceWith(runDataview(query, collections));
+      });
+      return root.toString();
     } catch (e) {
-      console.error("[renderCanvas] Failed to process canvas file:", e);
-      return content;
+      console.error("[Filter Error] Dataview:", e);
+      return html;
+    }
+  });
+
+  eleventyConfig.addFilter("renderExcalidraw", function(html) {
+    if (!html || !html.includes('class="language-excalidraw"')) return html;
+    try {
+      const root = parse(html);
+      root.querySelectorAll('pre code.language-excalidraw').forEach(block => {
+        const json = block.text.trim();
+        const base64 = Buffer.from(json).toString('base64');
+        block.parentNode.replaceWith(`<div class="excalidraw-container" data-excalidraw="${base64}"></div>`);
+      });
+      return root.toString();
+    } catch (e) {
+      console.error("[Filter Error] Excalidraw:", e);
+      return html;
+    }
+  });
+
+  eleventyConfig.addFilter("renderTransclusions", function(html) {
+    if (!html) return html;
+    // Handle ![[link.canvas]] transclusions by replacing them with an interactive iframe
+    return html.replace(/!\[\[([^\]]+\.canvas)\]\]/g, (match, path) => {
+      const slug = slugify(path.replace(".canvas", ""));
+      return `<div class="canvas-embed"><iframe src="/notes/${slug}?canvas=true" class="canvas-embed-iframe"></iframe></div>`;
+    });
+  });
+
+  eleventyConfig.addExtension("excalidraw", {
+    read: true,
+    getData: async function(inputPath) {
+        const content = fs.readFileSync(inputPath, "utf-8");
+        const parsed = parseFrontMatter(content);
+        parsed.data.contentClasses = (parsed.data.contentClasses || "") + " excalidraw-page";
+        return parsed.data;
+    },
+    compile: async function(inputContent) {
+      return async () => `<div class="excalidraw-container" data-excalidraw="${Buffer.from(inputContent).toString('base64')}"></div>`;
     }
   });
 

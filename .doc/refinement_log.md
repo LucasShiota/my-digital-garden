@@ -125,19 +125,22 @@ Implemented a premium "Quick Definitions" system that automatically identifies t
   - **Case-Insensitive Matching:** Correctly identifies terms regardless of capitalization (e.g., `Spiderhole` vs `spiderhole`).
 - **Styling:** Added dedicated CSS to `_visual-elements.scss` for accented headers and high-readability definition text within the tooltips.
 
-## 15. Obsidian Canvas JSON Support & Repository Sanitization
+## 16. Obsidian Feature Parity: Native Dataview & Excalidraw
 
-Implemented a robust bridge between native Obsidian data formats and the Digital Garden's web-rendered output.
+Implemented a robust rendering bridge to ensure all vault-native features work correctly on the live site after the vault merge.
 
-- **Native Canvas Rendering:** Added a build-time renderer in `.eleventy.js` that transforms raw Obsidian `.canvas` files (JSON) into interactive HTML boards.
-  - **Node Support:** Correctly renders text (with markdown processing via Base64 passing), file embeds (via iframes), groups, and links.
-  - **Filter Injection:** Introduced a `renderCanvas` Eleventy filter in `note.njk` to safely intercept and render JSON content even when a Markdown engine override is active for the folder.
-- **Dual-Mode Frontmatter Parsing:** Implemented `parseFrontMatter` in the build config to correctly extract `permalink` and `dg-publish` status from both standard YAML (Markdown) and internal JSON metadata (Canvas).
-- **Sidebar & Permalink Accuracy:** Updated `filetreeUtils.js` to correctly preserve the `.canvas` extension in the navigation tree, ensuring sidebar links always point to the correct resolved permalink.
-- **Repository Sanitization (.gitignore):** Standardized the project to ignore the entire `.obsidian/` directory. This hides personal workspace states (`workspace.json`), plugin configurations (`tasks.json`), and binaries, resulting in a cleaner, content-focused Git history.
+- **Native Dataview Engine (DQL):** Built a server-side parser and runner for ` ```dataview ` code blocks.
+  - **Functionality:** Supports `LIST` and `TABLE` queries, folder-based filtering (`FROM "folder"`), tag-based filtering (`FROM #tag`), and multi-directional sorting (`SORT field ASC/DESC`).
+  - **Build-time Rendering:** Queries are executed against the Eleventy collection at build-time, injecting pre-rendered HTML lists/tables directly into the note content.
+- **Excalidraw Rendering Bridge:** Implemented support for raw `.excalidraw` JSON files and embedded code blocks.
+  - **Standalone Support:** Added the `.excalidraw` extension to Eleventy, allowing drawings to have their own permalinks and layouts.
+  - **Transclusion Support:** Fixed the "broken embed" issue by automatically transforming standard wiki-link transclusions (`![[my.canvas]]`) into interactive iframes.
+- **Content Pipeline Optimization:** Refactored `note.njk` to include a sequential rendering pipeline:
+  `renderCanvas` $\rightarrow$ `renderDataview` $\rightarrow$ `renderExcalidraw` $\rightarrow$ `renderTransclusions`.
 
 ### Documentation History
 
+Updated by Antigravity on 2026-04-06 (Obsidian Feature Parity: Native Dataview & Excalidraw).
 Updated by Antigravity on 2026-04-06 (Obsidian Canvas JSON Support & Repository Sanitization).
 Updated by Antigravity on 2026-03-30 (Quick Definitions / Glossary Implementation).
 Updated by Antigravity on 2026-03-29 (Repository Cleanup & Architectural Documentation).
