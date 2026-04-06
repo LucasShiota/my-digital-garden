@@ -125,17 +125,20 @@ Implemented a premium "Quick Definitions" system that automatically identifies t
   - **Case-Insensitive Matching:** Correctly identifies terms regardless of capitalization (e.g., `Spiderhole` vs `spiderhole`).
 - **Styling:** Added dedicated CSS to `_visual-elements.scss` for accented headers and high-readability definition text within the tooltips.
 
-## 13. Repository Cleanup & Architectural Documentation
+## 15. Obsidian Canvas JSON Support & Repository Sanitization
 
-We performed a deep quality-of-life clean-up to shed dead weight from the repository's root structure and improve navigation.
+Implemented a robust bridge between native Obsidian data formats and the Digital Garden's web-rendered output.
 
-- **Defunct Artifact Removal:** Safely deleted old site configuration files (`plugin-info.json`, `vercel.json`, `netlify.toml`) no longer necessary since migrating to Cloudflare Pages.
-- **Dead Asset Purge:** Removed 5 default vector graphics from `src/site/img/` (like `tree-1.svg`) that became orphaned after our transition to the Lucide SVG framework.
-- **Typo Fixes:** Identified and deleted the accidental `" .doc/"` duplicate folder.
-- **Structural Guide:** Successfully mapped out the entire physical architecture of the repository to `project_structure.md` located inside `.doc/`.
+- **Native Canvas Rendering:** Added a build-time renderer in `.eleventy.js` that transforms raw Obsidian `.canvas` files (JSON) into interactive HTML boards.
+  - **Node Support:** Correctly renders text (with markdown processing via Base64 passing), file embeds (via iframes), groups, and links.
+  - **Filter Injection:** Introduced a `renderCanvas` Eleventy filter in `note.njk` to safely intercept and render JSON content even when a Markdown engine override is active for the folder.
+- **Dual-Mode Frontmatter Parsing:** Implemented `parseFrontMatter` in the build config to correctly extract `permalink` and `dg-publish` status from both standard YAML (Markdown) and internal JSON metadata (Canvas).
+- **Sidebar & Permalink Accuracy:** Updated `filetreeUtils.js` to correctly preserve the `.canvas` extension in the navigation tree, ensuring sidebar links always point to the correct resolved permalink.
+- **Repository Sanitization (.gitignore):** Standardized the project to ignore the entire `.obsidian/` directory. This hides personal workspace states (`workspace.json`), plugin configurations (`tasks.json`), and binaries, resulting in a cleaner, content-focused Git history.
 
 ### Documentation History
 
+Updated by Antigravity on 2026-04-06 (Obsidian Canvas JSON Support & Repository Sanitization).
 Updated by Antigravity on 2026-03-30 (Quick Definitions / Glossary Implementation).
 Updated by Antigravity on 2026-03-29 (Repository Cleanup & Architectural Documentation).
 Updated by Antigravity on 2026-03-29 (Vault Integration & YAML Flattening).

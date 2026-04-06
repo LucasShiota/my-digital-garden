@@ -13,20 +13,9 @@ _site/
 **/.DS_Store
 
 # ─── Obsidian Vault ───────────────────────────────────────────────────
-# CRITICAL: Plugin API tokens — never commit
-.obsidian/plugins/digitalgarden/data.json
-
-# Obsidian workspace state (personal, regenerated per machine)
-.obsidian/workspace.json
-.obsidian/workspace-mobile.json
-.obsidian/graph.json
-.obsidian/appearance.json
-
-# Plugin binaries — compiled JS/CSS, not needed in git (100MB+)
-# Obsidian downloads these automatically from manifests
-.obsidian/plugins/*/main.js
-.obsidian/plugins/*/styles.css
-.obsidian/icons/
+# Ignore the entire .obsidian directory to stop syncing personal UI state, 
+# plugin settings, and binary files that create noise but don't affect the site.
+.obsidian/
 
 # ─── Local-only Drafts ──────────────────────────────────────────────
 # Notes in _drafts/ are private and never pushed to git

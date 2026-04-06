@@ -12,6 +12,70 @@ const markdownIt = require("markdown-it");
 const fs = require("fs");
 const matter = require("gray-matter");
 const faviconsPlugin = require("eleventy-plugin-gen-favicons");
+
+/**
+ * Robustly parse frontmatter from either Markdown (YAML) or Canvas (JSON) format.
+ * @param {string} content The file content to parse.
+ * @returns {object} The parsed frontmatter and content.
+ */
+function parseFrontMatter(content) {
+  if (content.trim().startsWith("{")) {
+    try {
+      const json = JSON.parse(content);
+      const data = json.metadata?.frontmatter || {};
+      return { data, content };
+    } catch (e) {}
+  }
+  return matter(content);
+}
+
+/**
+ * Render Obsidian Canvas JSON nodes as HTML for build-time generation.
+ * @param {string} content The raw JSON content of a .canvas file.
+ * @returns {string} The HTML structure for the canvas wrapper.
+ */
+function renderCanvasContent(content) {
+  try {
+    const json = JSON.parse(content);
+    const nodes = (json.nodes || []).map((node) => {
+      let nodeContent = "";
+      if (node.type === "text") {
+        const base64 = Buffer.from(node.text || "").toString("base64");
+        // Use data-markdown to trigger build-time markdown rendering
+        nodeContent = `<div class="canvas-node-text-content" data-markdown="${base64}"></div>`;
+      } else if (node.type === "file") {
+        // Use an iframe to pull in the content of the linked note/file
+        nodeContent = `<iframe class="canvas-file-iframe" src="/notes/${slugify(node.file.replace(/\.md$/, ""))}?canvas=true"></iframe>`;
+      } else if (node.type === "group") {
+        nodeContent = `<div class="canvas-node-group-content">${node.label || ""}</div>`;
+      } else if (node.type === "link") {
+        nodeContent = `<a href="${node.url}" class="canvas-node-link-content" target="_blank">${node.url}</a>`;
+      }
+
+      return `<div class="canvas-node" style="transform: translate(${node.x}px, ${node.y}px); width: ${node.width}px; height: ${node.height}px;">
+                <div class="canvas-node-content">${nodeContent}</div>
+              </div>`;
+    }).join("\n");
+
+    return `<div class="canvas-wrapper hide">
+              <div class="canvas">
+                ${nodes}
+              </div>
+              <svg class="canvas-background">
+                <defs>
+                  <pattern id="grid" width="25" height="25" patternUnits="userSpaceOnUse">
+                    <circle cx="2" cy="2" r="1" fill="var(--color-dot)"/>
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)"/>
+              </svg>
+            </div>`;
+  } catch (e) {
+    console.error("Canvas JSON parse error:", e);
+    return content;
+  }
+}
+
 const tocPlugin = require("eleventy-plugin-nesting-toc");
 const { parse } = require("node-html-parser");
 const htmlMinifier = require("html-minifier-terser");
@@ -66,7 +130,7 @@ function getAnchorAttributes(filePath, linkTitle) {
       fullPath = `${startPath}${fileName}.md`;
     }
     const file = fs.readFileSync(fullPath, "utf8");
-    const frontMatter = matter(file);
+    const frontMatter = parseFrontMatter(file);
     if (frontMatter.data.permalink) {
       permalink = frontMatter.data.permalink;
     }
@@ -810,16 +874,54 @@ module.exports = function(eleventyConfig) {
     tags: ["h1", "h2", "h3", "h4", "h5", "h6"],
   });
 
-  // Canvas files are pre-compiled HTML by the plugin - don't process as markdown
+  // Canvas files are either pre-compiled HTML (old DG plugin format) or raw JSON (Obsidian native).
+  // CRITICAL: notes.json sets templateEngineOverride:'md' for the whole notes directory. This means
+  // Eleventy would re-process our compiled canvas HTML through Markdown, mangling it. We must
+  // explicitly set templateEngineOverride:false in getData for JSON canvas files to prevent this.
   eleventyConfig.addExtension("canvas", {
     read: true,
+    getData: async function(inputPath) {
+        const content = fs.readFileSync(inputPath, "utf-8");
+        const parsed = parseFrontMatter(content);
+        if (content.trim().startsWith("{")) {
+            // Raw Obsidian JSON: inject canvas-page class and disable md re-processing
+            parsed.data.contentClasses = (parsed.data.contentClasses || "") + " canvas-page";
+            parsed.data.templateEngineOverride = false;
+        }
+        return parsed.data;
+    },
     compile: async function(inputContent, inputPath) {
-      // Extract content after frontmatter (canvas HTML is already compiled by plugin)
+      if (inputContent.trim().startsWith("{")) {
+        // Raw Obsidian JSON canvas — convert nodes to the canvas-wrapper HTML at build time
+        return async (data) => renderCanvasContent(inputContent);
+      }
+      // Pre-compiled HTML canvas (old DG plugin format) — strip YAML frontmatter, return HTML as-is
       const parsed = matter(inputContent);
       return async (data) => {
-        // Return the HTML content directly without markdown processing
         return parsed.content;
       };
+    }
+  });
+
+  // renderCanvas filter: used in note.njk to handle raw JSON canvas files.
+  // Since notes.json overrides templateEngines to 'md' for all notes,
+  // the canvas JSON gets passed through markdown as plain text.
+  // This filter intercepts the raw file content directly and renders it.
+  eleventyConfig.addFilter("renderCanvas", function(content) {
+    const inputPath = this.page?.inputPath;
+    if (!inputPath || !inputPath.endsWith(".canvas")) {
+      return content;
+    }
+    try {
+      const rawContent = fs.readFileSync(inputPath, "utf-8");
+      if (rawContent.trim().startsWith("{")) {
+        return renderCanvasContent(rawContent);
+      }
+      // Pre-compiled HTML format (old DG plugin): strip YAML frontmatter
+      return matter(rawContent).content;
+    } catch (e) {
+      console.error("[renderCanvas] Failed to process canvas file:", e);
+      return content;
     }
   });
 

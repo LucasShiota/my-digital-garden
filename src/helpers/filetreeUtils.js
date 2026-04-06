@@ -113,7 +113,11 @@ function getPermalinkMeta(note, key) {
         folders = []; // Handle unexpected cases gracefully
       }
     }
-    folders[folders.length - 1]+= ".md";
+    if (note.inputPath.endsWith(".canvas")) {
+      folders[folders.length - 1] += ".canvas";
+    } else {
+      folders[folders.length - 1] += ".md";
+    }
   } catch {
     //ignore
   }
