@@ -60,7 +60,8 @@ Infiltrators need to have a reliable tool that allows them to stay hidden and he
 | Hive Tunnel 2  | Hive Tunnel |                                                                                                                                                                                                   | Level 4                                                         |
 | Empty Room     |             |                                                                                                                                                                                                   |                                                                 |
 
-## Additional Rules
+## Rules List
+
 
 **Hidden Entrance**
 Player must be within 3 meters of the entrance for 3 seconds before the entrance is highlighted and becomes interactable.

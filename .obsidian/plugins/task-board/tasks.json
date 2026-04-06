@@ -1,6 +1,6 @@
 {
     "VaultName": "test",
-    "Modified_at": "2026-03-30T19:23:29",
+    "Modified_at": "2026-04-05T21:46:18",
     "Pending": {
         "Immune Defense/Interaction Spec.md": [],
         "Immune Defense/References.md": [],
@@ -9,7 +9,9 @@
         "Immune Defense/Hero/Hero Matrix.md": [],
         "Baraliot Fantasia/Baraliot Fantasia.md": [],
         "src/site/notes/Immune Defense/Buildings/Buildings Matrix.md": [],
-        "src/site/notes/Immune Defense/Buildings/Dynamic Buildings/Foxhole Specs.md": []
+        "src/site/notes/Immune Defense/Buildings/Foxhole Specs.md": [],
+        "src/site/notes/Immune Defense/Hero/Engineer Corps Specs.md": [],
+        "src/site/notes/Immune Defense/Hero/Intel & Comms.md": []
     },
     "Completed": {
         "Immune Defense/Interaction Spec.md": [],
@@ -19,6 +21,8 @@
         "Immune Defense/Hero/Hero Matrix.md": [],
         "Baraliot Fantasia/Baraliot Fantasia.md": [],
         "src/site/notes/Immune Defense/Buildings/Buildings Matrix.md": [],
-        "src/site/notes/Immune Defense/Buildings/Dynamic Buildings/Foxhole Specs.md": []
+        "src/site/notes/Immune Defense/Buildings/Foxhole Specs.md": [],
+        "src/site/notes/Immune Defense/Hero/Engineer Corps Specs.md": [],
+        "src/site/notes/Immune Defense/Hero/Intel & Comms.md": []
     }
 }
