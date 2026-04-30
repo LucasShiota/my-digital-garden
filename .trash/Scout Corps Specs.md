@@ -6,6 +6,5 @@ showTimestamps: true
 showReadingTime: true
 ---
 
-
 ---
 

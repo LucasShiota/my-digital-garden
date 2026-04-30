@@ -12,11 +12,10 @@ module.exports = async (data) => {
   const logoFiles = globSync("src/site/logo.{png,jpg,jpeg,gif,svg,webp}");
   let logoPath = "";
   if (logoFiles.length > 0) {
-    // Use the first match and convert to site-relative path
-    logoPath = "/" + logoFiles[0].split("src/site/")[1];
+    logoPath = "/" + logoFiles[0].split("src/site/")[1].replace(/\\/g, "/").replace(/^\//, "");
   }
   if (themeStyle) {
-    themeStyle = themeStyle.split("site")[1];
+    themeStyle = "/" + themeStyle.split("site")[1].replace(/\\/g, "/").replace(/^\//, "");
   }
   let bodyClasses = [];
   let noteIconsSettings = {

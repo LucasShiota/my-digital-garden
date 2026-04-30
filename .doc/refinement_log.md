@@ -138,8 +138,21 @@ Implemented a robust rendering bridge to ensure all vault-native features work c
 - **Content Pipeline Optimization:** Refactored `note.njk` to include a sequential rendering pipeline:
   `renderCanvas` $\rightarrow$ `renderDataview` $\rightarrow$ `renderExcalidraw` $\rightarrow$ `renderTransclusions`.
 
+## 17. Unified Strict Icon System (::li-kebab-case::)
+
+Implemented a synchronized, repository-local icon system to ensure perfect visual parity between the Obsidian editor and the live website.
+
+- **Unified Logic:** Created `src/helpers/iconUtils.js` to enforce a strict `::li-kebab-case::` format.
+- **Strict Syntax:** Moving away from flexible patterns to a single, predictable syntax: `::li-lamp-desk::`. This prevents broken icons caused by capitalization or underscore/hyphen confusion.
+- **Custom Obsidian Plugin:** Built and checked in a lightweight, local Obsidian plugin (`garden-inline-icons`).
+  - **Permanence:** The plugin source lives in the repo, ensuring the feature is never lost even if third-party plugins are deprecated.
+  - **Live Preview:** Added full support for the Obsidian Live Preview editor using CodeMirror decorations.
+  - **Built-in Assets:** Leverages Obsidian's native Lucide icon set for instant, zero-dependency rendering in the editor.
+- **Web Parity:** Updated the Eleventy `iconify` filter to use the exact same "brain" as the Obsidian plugin.
+
 ### Documentation History
 
+Updated by Antigravity on 2026-04-30 (Unified Strict Icon System).
 Updated by Antigravity on 2026-04-06 (Obsidian Feature Parity: Native Dataview & Excalidraw).
 Updated by Antigravity on 2026-04-06 (Obsidian Canvas JSON Support & Repository Sanitization).
 Updated by Antigravity on 2026-03-30 (Quick Definitions / Glossary Implementation).

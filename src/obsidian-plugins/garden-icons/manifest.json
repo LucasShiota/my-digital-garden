@@ -1,0 +1,10 @@
+{
+  "id": "garden-inline-icons",
+  "name": "Garden Inline Icons",
+  "version": "1.0.0",
+  "minAppVersion": "1.0.0",
+  "description": "Strict ::li-kebab-case:: icon rendering for Digital Garden.",
+  "author": "Antigravity",
+  "authorUrl": "https://github.com/google-deepmind",
+  "isDesktopOnly": false
+}

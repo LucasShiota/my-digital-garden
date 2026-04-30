@@ -164,10 +164,7 @@ function runDataview(query, collection) {
     return `<table class="dataview table-view"><thead><tr><th>File</th>${headers}</tr></thead><tbody>${rows}</tbody></table>`;
   }
 }
-  Image(src, options);
-  let metadata = Image.statsSync(src, options);
-  return metadata;
-}
+
 
 function getAnchorLink(filePath, linkTitle) {
   const { attributes, innerHTML } = getAnchorAttributes(filePath, linkTitle);
@@ -519,25 +516,8 @@ module.exports = function(eleventyConfig) {
   });
 
   eleventyConfig.addFilter("iconify", function(str) {
-    if (!str) return str;
-    // Identifies :home:, ::home::, :LiHome:, ::LiHome:
-    // Added 'i' flag to match :li: or :LI: or :Li:
-    return str.replace(/:{1,2}(?:li)?([a-zA-Z0-9-]+):{1,2}/gi, (match, iconName) => {
-      // Convert camelCase to kebab-case (e.g., MessageCircleQuestion -> message-circle-question)
-      let normalizedName = iconName
-        .replace(/([a-z])([A-Z])/g, '$1-$2')
-        .replace(/([A-Z]+)([A-Z][a-z])/g, '$1-$2')
-        .replace(/([a-z0-9])([A-Z])/g, '$1-$2') // handle numbers (e.g., Grid3x3 -> grid-3x3)
-        .toLowerCase();
-      
-      // Compatibility: Strip trailing "-mark" which some Obsidian plugins append
-      // (e.g., MessageCircleQuestionMark -> message-circle-question-mark -> message-circle-question)
-      if (normalizedName.endsWith("-mark")) {
-        normalizedName = normalizedName.replace(/-mark$/, '');
-      }
-      
-      return `<i data-lucide="${normalizedName}" class="inline-icon"></i>`;
-    });
+    const { transformIcons } = require("./src/helpers/iconUtils");
+    return transformIcons(str);
   });
 
 
@@ -983,7 +963,10 @@ module.exports = function(eleventyConfig) {
       if (rawContent.trim().startsWith("{")) {
         return renderCanvasContent(rawContent);
       }
+    } catch (e) {
+      console.error("renderCanvas filter error:", e);
     }
+    return content;
   });
 
   /**

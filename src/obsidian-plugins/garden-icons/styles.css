@@ -1,0 +1,16 @@
+.garden-inline-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    height: 1.1em;
+    width: 1.1em;
+    position: relative;
+    top: -0.05em; /* Subtle adjustment to center with text */
+}
+
+.garden-inline-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 2px;
+}
